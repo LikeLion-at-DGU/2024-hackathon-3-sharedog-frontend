@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import AppleSDGothicNeoL from "./assets/fonts/AppleSDGothicNeoL.ttf";
-import AppleSDGothicNeoB from "./assets/fonts/AppleSDGothicNeoB.ttf";
-import AppleSDGothicNeoM from "./assets/fonts/AppleSDGothicNeoM.ttf";
+// import AppleSDGothicNeoL from "./assets/fonts/AppleSDGothicNeoL.ttf";
+// import AppleSDGothicNeoB from "./assets/fonts/AppleSDGothicNeoB.ttf";
+// import AppleSDGothicNeoM from "./assets/fonts/AppleSDGothicNeoM.ttf";
 
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -53,7 +53,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-@font-face {
+/* @font-face {
     font-family: "AppleSDGothicNeoL";
     src: url(${AppleSDGothicNeoL});
     font-weight: normal;
@@ -70,12 +70,13 @@ table {
     src: url(${AppleSDGothicNeoB});
     font-weight: normal;
     font-style: normal;
-}
+} */
 
 * {
     box-sizing: border-box;
     /* overflow-x: hidden; */
-    max-width: 100%;//반응형할때 가로 스크롤 없애는 코드 모바일화면할때 수정해야될수있음 
+    /* max-width: 100%; */
+    //반응형할때 가로 스크롤 없애는 코드 모바일화면할때 수정해야될수있음 
 }
 
 /* *::selection {
