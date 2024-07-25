@@ -1,20 +1,31 @@
+import {
+  Wrap,Box,Logo,Slogan,Title,
+} from './Styled';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import styled from 'styled-components';
-
-const Wrap = styled.div`
-  display  :flex ;
-  justify-content: center;
-  width: 80vw;
-  border: 1px solid white;
-  margin: 0 auto;
-`;
 const Splash = () => {
-    return (
-    <Wrap>
-        <div>스플래쉬 화면</div>
-    </Wrap>
-    )
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/login');
+    }, 2000); // 2초 후 로그인 페이지로 이동
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
+  return (
+  <Wrap>
+    
+      <Box>
+        <Logo/>
+        <Slogan>반려견 헌혈,<br/>신청부터 관리까지 한 번에</Slogan>
+        <Title>나눠주개</Title>
+      </Box>
+  </Wrap>
+  )
 };
 
 export default Splash;
-    
+
+

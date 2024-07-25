@@ -1,8 +1,11 @@
+import {
+    Wrapper,
+} from './Styled';
 const Home = () => {
     return (
-    <>
-        <div>로그인 화면</div>
-    </>
+    <Wrapper>
+        <div>홈화면</div>
+    </Wrapper>
     )
 };
 

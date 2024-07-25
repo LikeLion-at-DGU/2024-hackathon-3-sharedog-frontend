@@ -20,6 +20,7 @@ npm install
 npm install react-router-dom
 npm install styled-component
 npm install axios
+npm install vite-plugin-svgr
 ```
 
 ```
