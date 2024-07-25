@@ -1,7 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-// import AppleSDGothicNeoL from "./assets/fonts/AppleSDGothicNeoL.ttf";
-// import AppleSDGothicNeoB from "./assets/fonts/AppleSDGothicNeoB.ttf";
-// import AppleSDGothicNeoM from "./assets/fonts/AppleSDGothicNeoM.ttf";
+
 
 export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -53,24 +51,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-/* @font-face {
-    font-family: "AppleSDGothicNeoL";
-    src: url(${AppleSDGothicNeoL});
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: "AppleSDGothicNeoM";
-    src: url(${AppleSDGothicNeoM});
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-    font-family: "AppleSDGothicNeoB";
-    src: url(${AppleSDGothicNeoB});
-    font-weight: normal;
-    font-style: normal;
-} */
+
 
 * {
     box-sizing: border-box;
@@ -85,9 +66,8 @@ table {
 } */
 
 body {
-    /* font-family: "AppleSDGothicNeoM"; */
-    background-color: ${(props) => props.theme.bgColor};
-    color: ${(props) => props.theme.textColor};
+    
+    
 }
 
 `;
