@@ -1,4 +1,5 @@
-import Header from './components/header/Header';
+// APP 담당자: 이동건 
+import Header from './pages/homePage/header/Header';
 import Footer from './components/footer/Footer';
 import { GlobalStyle } from './GlobalStyle';
 import { Outlet } from 'react-router-dom';
@@ -28,7 +29,7 @@ const Layout = () => {
 
   return (
     <Wrapper>
-      {!hideHeaderFooter && <Header />}
+      {/* {!hideHeaderFooter && <Header />} */}
       <MainContent>
         <Outlet />
       </MainContent>

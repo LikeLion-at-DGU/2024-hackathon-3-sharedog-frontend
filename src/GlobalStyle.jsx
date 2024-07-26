@@ -1,3 +1,5 @@
+// 글로벌 스타일 담당자: 이동건 
+
 import { createGlobalStyle } from "styled-components";
 
 
@@ -72,6 +74,61 @@ html, body, #root {
 body {
     
     
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 100;
+    font-style: normal;
+    src: url('./assets/font/SUIT-Thin.ttf') format('ttf')
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 200;
+    font-style: normal;
+    src: url('./assets/font/SUIT-ExtraLight.ttf') format('ttf')
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 300;
+    font-style: normal;
+    src: url('./assets/font/SUIT-Light.ttf') format('ttf')
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 400;
+    font-style: normal;
+    src: url('./assets/font/SUIT-Regular.ttf') format('ttf')
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 500;
+    font-style: normal;
+    src: url('./assets/font/SUIT-Medium.ttf') format('ttf')
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 600;
+    font-style: normal;
+    src: url('./assets/font/SUIT-SemiBold.ttf') format('ttf')
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 700;
+    font-style: normal;
+    src: url('./assets/font/SUIT-Bold.ttf') format('ttf')
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 800;
+    font-style: normal;
+    src: url('./assets/font/SUIT-ExtraBold.ttf') format('ttf')
+
+}
+@font-face {
+    font-family: 'SUIT';
+    font-weight: 900;
+    font-style: normal;
+    src: url('./assets/font/SUIT-Heavy.ttf') format('ttf')
 }
 
 `;
