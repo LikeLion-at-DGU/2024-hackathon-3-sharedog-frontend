@@ -10,7 +10,7 @@
 | 이름   | 전공           |
 | ------ | -------------- |
 | 이동건 | 컴퓨터공학과   |
-| 최효은 | 행정학과       |
+| 최효은 | 행정학         |
 | 이수용 | 정보통신공학과 |
 
 ## 💻 프로젝트 설정& 가상환경 실행 방법
@@ -26,9 +26,11 @@ npm install vite-plugin-svgr
 ```
 npm run dev
 ```
+
 ## 🎯 Commit Convention
 
 "태그:제목"의 형태이며, : 뒤에만 space가 있음에 유의합니다. ex) Feat: 메인페이지 추가
+
 - `Feat`: 새로운 기능을 추가할 경우
 - `Fix`: 버그를 고친 경우
 - `Design`: CSS 등 사용자 UI 디자인 변경
@@ -43,9 +45,9 @@ npm run dev
 - `Rename`: 파일 혹은 폴더명을 수정하거나 옮기는 작업만인 경우
 - `Remove`: 파일을 삭제하는 작업만 수행한 경우
 
-
 ## 💡 PR Convetion
-ex) 💄 Design: 가로스크롤 개선 
+
+ex) 💄 Design: 가로스크롤 개선
 
 | 아이콘 | 코드                       | 설명                     |
 | ------ | -------------------------- | ------------------------ |
@@ -62,9 +64,9 @@ ex) 💄 Design: 가로스크롤 개선
 | 🗃      | :card_file_box             | 데이버베이스 관련 수정   |
 
 ## 🛠️ 사용 언어
+
 <div>
   <img src="https://img.shields.io/badge/html5-E34F26?style=flat&logo=html5&logoColor=white" />
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat&logo=javascript&logoColor=white" />
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white" />
 </div>
-
