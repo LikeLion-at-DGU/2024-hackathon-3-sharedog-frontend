@@ -1,3 +1,4 @@
+// 긴급헌혈페이지 스타일 담당자: 이동건
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`

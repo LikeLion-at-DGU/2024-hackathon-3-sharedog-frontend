@@ -1,3 +1,4 @@
+// 긴급헌혈페이지 담당자: 이동건
 import {
     Wrapper,
 } from './Styled';
