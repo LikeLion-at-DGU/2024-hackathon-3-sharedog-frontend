@@ -1,3 +1,7 @@
+import kuHos from '../assets/images/KuHos.jpg';
+import adeHos from '../assets/images/AdeHos.jpg';
+import seoulHos from '../assets/images/SeoulHos.jpg';
+
 const dummyReservation =[
   //여기 콘스트로 선언해줘야 사용가능함 -이동건
   {
@@ -7,7 +11,7 @@ const dummyReservation =[
       "place": "서울 광진구 능동로 120 건국대학교 부속 동물병원 2층",
       "created_at": "2024-07-26T12:09:08.354438",
       "updated_at": "2024-07-26T12:09:08.354438",
-      "image": null
+      "image": kuHos
   },
   {
       "id": 2,
@@ -16,7 +20,7 @@ const dummyReservation =[
       "place": "서울 관악구 관악로 1",
       "created_at": "2024-07-27T00:51:30.681353",
       "updated_at": "2024-07-27T00:51:30.681353",
-      "image": null
+      "image": seoulHos
   },
   {
     "id": 3,
@@ -25,7 +29,7 @@ const dummyReservation =[
     "place": "서울 강남구 논현로 813 1F, B1F",
     "created_at": "2024-07-27T01:38:30.681353",
     "updated_at": "2024-07-27T01:38:30.681353",
-    "image": null
+    "image": adeHos
   }
 ];
 
