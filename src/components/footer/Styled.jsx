@@ -66,14 +66,18 @@ const Path = styled(NavLink)` // NavLink
 `;
 
 const FooterIcon = ({ Svg, label, to }) => (
-    <Path to={to} activeClassName="active">
+    <Path to={to} className={({ isActive }) => (isActive ? 'active' : '')}>
         <IconBox>
             <Icon as={Svg} />
             <IconText>{label}</IconText>
         </IconBox>
     </Path>
 );
-
+{/* <Path to={to} activeClassName="active">
+    **원래 이렇게썼었는데 작동은되지만 오류떠서 수정함 
+이 방식은 activeClassName prop을 직접 설정하지 않으며, 
+대신 className prop을 동적으로 설정하여 스타일을 적용합니다. 
+이로 인해 경고 메시지가 발생하지 않으며, 스타일도 올바르게 적용됩니다. */}
 const styles = {
     Wrapper,
     IconWrapper,

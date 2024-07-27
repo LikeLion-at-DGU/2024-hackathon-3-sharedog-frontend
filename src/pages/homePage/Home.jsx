@@ -2,6 +2,8 @@ import {
     Wrapper,
 } from './Styled';
 import Header from './header/Header';
+import React from 'react';
+
 const Home = () => {
     return (
     <>
@@ -11,7 +13,9 @@ const Home = () => {
         <div>홈화면</div>
     </Wrapper>
     </>
-    )
+
+  );
+    
 };
 
 export default Home;
