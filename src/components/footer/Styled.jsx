@@ -6,8 +6,6 @@ import ReserveIcon  from '../../assets/icons/footerReserve.svg?react';
 import MyPageIcon  from '../../assets/icons/footerMyPage.svg?react';
 import BloodIcon  from '../../assets/icons/footerBloodPost.svg?react';
 
-
-
 const styles = {
     Wrapper: styled.div`
         display: flex;
