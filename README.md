@@ -21,6 +21,7 @@ npm install react-router-dom
 npm install styled-component
 npm install axios
 npm install vite-plugin-svgr
+npm install @fortawesome/fontawesome-svg-core @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 ```
 
 ```
