@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import SplashLogo  from '../../assets/icons/SplashLogo.svg?react';
 //svg파일을 import하는방법이 vite로 넘어오면서 달라짐 끝에 ?react를 붙여야되네..
+
 export const Wrap = styled.div`
     display  :flex ;
     justify-content: center;
