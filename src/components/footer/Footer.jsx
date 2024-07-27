@@ -1,14 +1,18 @@
 // 푸터 담당자: 이동건 
 
-import {
-  Wrapper,
-} from './Styled';
+import F from './Styled';
+
 
 const Footer = () => {
     return (
-      <Wrapper>
-        <div>푸터 여기서 작업</div>
-      </Wrapper>
+      <F.Wrapper>
+        <F.IconBox>
+          <F.FooterH/>
+          <F.FooterR/>
+          <F.FooterM/>
+          <F.FooterB/>
+        </F.IconBox>
+      </F.Wrapper>
     );
   };
   
