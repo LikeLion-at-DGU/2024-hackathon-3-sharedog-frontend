@@ -1,6 +1,7 @@
 // 푸터 담당자: 이동건 
 
 import S from './Styled';
+import { useLocation } from 'react-router-dom';
 import HomeIcon  from '../../assets/icons/footerHome.svg?react';
 import ReserveIcon  from '../../assets/icons/footerReserve.svg?react';
 import MyPageIcon  from '../../assets/icons/footerMyPage.svg?react';
@@ -10,6 +11,8 @@ import FillReserve from '../../assets/icons/fillReserve.svg?react'
 import FillMyPage from '../../assets/icons/fillMyPage.svg?react'
 import FillBlood from '../../assets/icons/fillBloodPost.svg?react'
 const Footer = () => {
+  const location = useLocation();
+
   return (
     <S.Wrapper>
         <S.IconWrapper>
