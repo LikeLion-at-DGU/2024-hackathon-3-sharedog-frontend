@@ -1,4 +1,5 @@
-[
+const dummyReservation =[
+  //여기 콘스트로 선언해줘야 사용가능함 -이동건
   {
       "id": 1,
       "name": "KU 아임도그너 헌혈센터",
@@ -26,4 +27,7 @@
     "updated_at": "2024-07-27T01:38:30.681353",
     "image": null
   }
-] 
+];
+
+export default dummyReservation;
+  //마찬가지로 다른파일에서 사용할거면 export설정
