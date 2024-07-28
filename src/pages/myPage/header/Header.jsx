@@ -48,7 +48,7 @@ const AlramBtn = styled.button`
   cursor: pointer;
 `;
 
-const TitleTxt = styled.text`
+const TitleTxt = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
