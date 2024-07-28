@@ -8,6 +8,7 @@ const Wrapper = styled.div`// 푸터 프레임
     align-items: center;
     width: 100%;
     height: 10vh;
+    background-color: #FAFAFC;
     box-shadow: 0px -6px 14px 0px rgba(47, 47, 47, 0.04);
 `;
 
