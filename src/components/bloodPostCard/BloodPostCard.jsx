@@ -33,7 +33,7 @@ const BloodPostCard= ({ image, title, content, date, commentsCount, likes, blood
                 <Title>{title} <Writer>| {writer}</Writer></Title>
                 
                 <Body $hasImage={!!image}>
-                    {/* 이미지가 있을때는 출력 */}
+                    {/* 이미지가 있을때는 출력하기 */}
                     {image && (
                         <ImageWrapper>
                         <img src={image} alt={title} />
