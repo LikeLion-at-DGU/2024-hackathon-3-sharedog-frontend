@@ -8,13 +8,19 @@ export const Wrapper = styled.div`
   font-size: 20px;
   font-family: SUIT; // 폰트 사용 예시
   font-weight: 800;
+
+  flex: 1;
+  overflow-y: auto;
 `;
 
 export const RegionButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 10px;
+  position: sticky;
+  top: 0;
+  background: white; // 고정될 때 배경색을 지정하여 스크롤 시 병원 카드와 구분되도록 함
+  z-index: 1000;
 `;
 
 export const RegionButtons = styled.div`
@@ -68,3 +74,4 @@ export const HospitalInfo = styled.div`
     margin: 5px 0 0;
   }
 `;
+
