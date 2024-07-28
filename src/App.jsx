@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin: 0 auto;
   overflow: hidden;//스크롤설정
+  /* background-color: #FAFAFC; */
 `;
 const MainContent = styled.div`
   flex: 1;
