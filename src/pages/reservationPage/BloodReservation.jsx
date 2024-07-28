@@ -1,25 +1,36 @@
-import { Wrapper,} from './Styled';
-import React from "react";
+import React from 'react';
+import { Wrapper, RegionButtonsContainer, RegionButtons, RegionButton, HospitalContainer, HospitalCard, HospitalImage, HospitalInfo } from './Styled';
 import Header from './header/Header';
-import dummyReservation from "../../data/dummyReservation";
-//임포트할때 default export는중괄호 없이 사용 +경로수정 -이동건
+import dummyReservation from '../../data/dummyReservation';
 
 const BloodReservation = () => {
   return (
-    <div>
-      <input type="text" placeholder="검색어를 입력하세요." style={{ width: '100%', padding: '10px', marginBottom: '20px' }} />
-      <div>
-        {dummyReservation.map(hospital => (
-          <div key={hospital.id} style={{ display: 'flex', alignItems: 'center', border: '1px solid #ccc', borderRadius: '5px', padding: '10px', marginBottom: '10px' }}>
-            <img src={hospital.image} alt={`${hospital.name}_image`} style={{ width: '100px', height: '100px', marginRight: '20px' }} />
-            <div>
-              <h1>{hospital.name}</h1>
-              <p>{hospital.place}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+      <Header />
+      <Wrapper>
+        <RegionButtonsContainer>
+          <RegionButtons>
+            <RegionButton className="active">서울</RegionButton>
+            <RegionButton>경기</RegionButton>
+            <RegionButton>경상</RegionButton>
+            <RegionButton>충청</RegionButton>
+            <RegionButton>전라</RegionButton>
+            <RegionButton>제주</RegionButton>
+          </RegionButtons>
+        </RegionButtonsContainer>
+        <HospitalContainer>
+          {dummyReservation.map(hospital => (
+            <HospitalCard key={hospital.id}>
+              <HospitalImage src={hospital.image} alt={`${hospital.name}_image`} />
+              <HospitalInfo>
+                <h1>{hospital.name}</h1>
+                <p>{hospital.place}</p>
+              </HospitalInfo>
+            </HospitalCard>
+          ))}
+        </HospitalContainer>
+      </Wrapper>
+    </>
   );
 }
 
