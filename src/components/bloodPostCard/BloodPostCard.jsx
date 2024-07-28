@@ -1,5 +1,5 @@
 // 긴급헌혈페이지 작성게시글 보여주는 카드(마이페이지에서도 사용가능)담당자:이동건
-import { Wrapper,ContentWrapper, Header,Body, Title, Writer, Content, Footer, Badge,
+import { Wrapper,ContentWrapper, Header,TagWrapper,Body, Title, Writer, Content, Footer, Badge,
      Tag, DateText,LikeCount, CommentCount,CommentIcon, ImageWrapper,  FooterIcon, HeartIcon
     
     } from './Styled';
@@ -21,9 +21,12 @@ const BloodPostCard= ({ image, title, content, date, commentsCount, likes, blood
     return (
         <Wrapper>
             <ContentWrapper>
-                <Header> 
-                    <Badge>{bloodType}</Badge>
-                    <Tag>{region}</Tag>
+                <Header>
+                    <TagWrapper>
+                        <Badge>{bloodType}</Badge>
+                        <Tag>{region}</Tag>
+                    </TagWrapper>
+                    
                     <DateText>{new Date(date).toLocaleDateString()}</DateText>
                 </Header>
                 
