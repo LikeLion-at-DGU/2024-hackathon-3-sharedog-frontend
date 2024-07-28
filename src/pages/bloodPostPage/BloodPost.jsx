@@ -1,4 +1,5 @@
 // 긴급헌혈페이지 담당자: 이동건
+import dummyBloodPost from "../../data/dummyBloodPost";
 import {
     Wrapper,
 } from './Styled';
@@ -16,4 +17,13 @@ const BloodPost = () => {
 };
 
 export default BloodPost;
-    
+
+{/* <div>
+    {dummyReservation.map(hospital => (
+        <div key={hospital.id} style={{ display: 'flex', alignItems: 'center', border: '1px solid #ccc', borderRadius: '5px', padding: '10px', marginBottom: '10px' }}>
+         <img src={hospital.image} alt={`${hospital.name}_image`} style={{ width: '100px', height: '100px', marginRight: '20px' }} />
+        <div>
+            <h1>{hospital.name}</h1>
+            <p>{hospital.place}</p>
+        </div>
+</div> */}
