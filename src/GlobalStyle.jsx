@@ -61,6 +61,7 @@ table {
     /* max-width: 100%; */
     //반응형할때 가로 스크롤 없애는 코드 모바일화면할때 수정해야될수있음 
     /* overflow-y: hidden; */
+    
 }
 
 /* *::selection {
@@ -70,6 +71,7 @@ table {
 html, body, #root {
     width: 100%;
     height: 100%;
+    background-color: #FAFAFC;
 }
 body {
     
