@@ -14,14 +14,18 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-
+  overflow: hidden;//스크롤설정
 `;
 const MainContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-`;
 
+  overflow-y: auto; //스크롤설정
+`;
+const FooterWrapper = styled.div` //스크롤설정 
+  flex-shrink: 0; /* Footer가 줄어들지 않도록 고정 */
+`;
 const Layout = () => {
   const location = useLocation();
   const hideHeaderFooter = location.pathname === '/' 
@@ -33,7 +37,11 @@ const Layout = () => {
       <MainContent>
         <Outlet />
       </MainContent>
-      {!hideHeaderFooter && <Footer />}
+      {!hideHeaderFooter && ( //스크롤설정
+        <FooterWrapper>
+        <Footer />
+      </FooterWrapper>
+      )}
       
       
     </Wrapper>
