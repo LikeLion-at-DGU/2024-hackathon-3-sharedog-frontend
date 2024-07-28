@@ -1,16 +1,15 @@
-import styled from "styled-components";
+import { Wrapper } from "./Styled";
+import Header from "./header/Header";
+import React from "react";
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 10vh;
-`;
 const MyPage = () => {
   return (
-    <Wrapper>
-      <div>마이페이지입니다.</div>
-    </Wrapper>
+    <>
+      <Header />
+      <Wrapper>
+        <div>마이페이지</div>
+      </Wrapper>
+    </>
   );
 };
 
