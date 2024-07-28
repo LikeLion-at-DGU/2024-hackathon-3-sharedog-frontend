@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import VectorIcon from '../../assets/icons/Vector.svg?react';
+
 
 export const Wrapper = styled.div`
   display: flex;
@@ -16,26 +18,39 @@ export const Wrapper = styled.div`
 export const RegionButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 80%;
+  margin: 0 auto;
   position: sticky;
   top: 0;
   background: white; // 고정될 때 배경색을 지정하여 스크롤 시 병원 카드와 구분되도록 함
   z-index: 1000;
+  padding: 10px 0;
 `;
 
 export const RegionButtons = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 12px;
   flex-shrink: 0;
-  padding: 5px 15px;
 `;
 
 export const RegionButton = styled.button`
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 20px;
+  display: flex;
+  padding: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 1px solid #D9D9D9;
   background-color: white;
+  text-align: center;
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   cursor: pointer;
   &.active {
     border-radius: 50px;
@@ -45,8 +60,14 @@ export const RegionButton = styled.button`
 `;
 
 export const HospitalContainer = styled.div`
-  width: 100%;
+  width: 80%;
   padding: 20px 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; // Center the content horizontally
+  justify-content: center;
 `;
 
 export const HospitalCard = styled.div`
@@ -57,21 +78,43 @@ export const HospitalCard = styled.div`
   background: #FFF;
   padding: 10px;
   margin-bottom: 10px;
+  width: 100%;
 `;
 
 export const HospitalImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 103px;
+  height: 68px;
   margin-right: 20px;
 `;
 
 export const HospitalInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
   h1 {
-    font-size: 18px;
-    margin: 0;
+    color: #000;
+    font-family: SUIT;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
   p {
-    margin: 5px 0 0;
+    color: var(--Gray-Gray03, #3A3A3C);
+    font-family: SUIT;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
   }
 `;
 
+export const HosPlace = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 6px;
+`;
+
+export {VectorIcon};
