@@ -14,7 +14,7 @@ const HeaderBox = styled.div` //헤더 요소를 감싸는 프레임
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 88%;
+    width: 80%;
     gap: 22px;
 `;
 const Search = styled.div`//검색창 디브 
