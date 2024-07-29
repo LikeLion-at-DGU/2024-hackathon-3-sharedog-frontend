@@ -10,7 +10,7 @@ import BloodPost from "./pages/bloodPostPage/BloodPost";
 import BloodReservation from "./pages/reservationPage/BloodReservation";
 import MyPage from "./pages/myPage/MyPage";
 import PostWrite from "./pages/postWritePage/PostWrite";
-
+import BloodPostDetail from './pages/bloodPostDetailPage/BloodPostDetail';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> }, // 로그인 화면
       { path: "/home", element: <Home /> }, // 홈 화면
       { path: "/bloodPost", element: <BloodPost /> }, // 긴급헐혈 화면
+      { path: "/bloodPost/:id", element: <BloodPostDetail /> },//긴급헌혈 상세게시글 들어가기
       { path: "/reservation", element: <BloodReservation /> }, // 헌열예약 화면
       { path: "/mypage", element: <MyPage /> }, //마이페이지 화면
       { path: "/postwrite", element: <PostWrite /> },//긴급헌혈에서 글쓰기 화면

@@ -3,13 +3,17 @@ import { Wrapper,ContentWrapper, Header,TagWrapper,Body, Title, Writer, Content,
      Tag, DateText,LikeCount, CommentCount,CommentIcon, ImageWrapper,  FooterIcon, HeartIcon
     
     } from './Styled';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHeart as faHeartSolid, } 
     from "@fortawesome/free-solid-svg-icons";
 import {faHeart as faHeartRegular,faCommentDots as faCommentDotsRegular } 
 from "@fortawesome/free-regular-svg-icons";
+
+import { NavLink } from 'react-router-dom';//카드 누르면 상세페이지로 이동하려고
 import React, { useState } from 'react'; //하트 클릭하면 채워지게 만들려고 
 import { API } from '../../api';
+
 //이미지 url포트번호 제거하는 함수 
 const removePortFromURL = (url) => {
     if (!url) return url; // url이 없다면 바로 반환
@@ -42,7 +46,9 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
     };
 
     return (
+       
         <Wrapper>
+             <NavLink to={`/bloodPost/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* 링크 추가 */}
             <ContentWrapper>
                 <Header>
                     <TagWrapper>
@@ -82,7 +88,9 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                 </FooterIcon>
                 
             </Footer>
+            </NavLink>
         </Wrapper>
+  
     );
     
 }
