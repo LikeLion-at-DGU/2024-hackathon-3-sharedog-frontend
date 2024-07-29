@@ -8,14 +8,14 @@ import Header from './header/Header';
 import BloodPostCard from '../../components/bloodPostCard/BloodPostCard';
 import Dropdown from './DropDown';
 import {API} from '../../api'
-const regions = ["전체", "서울", "인천", "경기", "강원", "경상", "충청", "전라", "제주"];
-const bloodTypes = ["전체", "DEA 1-", "DEA 1.1", "DEA 1.2", "DEA 3", "DEA 4", "DEA 5", "DEA 7"];
+const regions = ["지역", "서울", "인천", "경기", "강원", "경상", "충청", "전라", "제주"];
+const bloodTypes = ["혈액형", "DEA 1-", "DEA 1.1", "DEA 1.2", "DEA 3", "DEA 4", "DEA 5", "DEA 7"];
 
 const BloodPost = () => {
   const [posts, setPosts] = useState([]);
   //필터사용을위한 useState훅
-  const [selectedRegion, setSelectedRegion] = useState("전체");
-  const [selectedBloodType, setSelectedBloodType] = useState("전체");
+  const [selectedRegion, setSelectedRegion] = useState("지역");
+  const [selectedBloodType, setSelectedBloodType] = useState("혈액형");
 
   // 초기에는 더미 데이터를 사용
   // setPosts(dummyBloodPost);
@@ -25,8 +25,8 @@ const BloodPost = () => {
     try {
         // 선택된 필터 값을 쿼리 파라미터로 포함하여 API 요청
         const params= {
-                region: selectedRegion === "전체" ? undefined : selectedRegion,
-                bloodType: selectedBloodType === "전체" ? undefined : selectedBloodType
+                region: selectedRegion === "지역" ? undefined : selectedRegion,
+                bloodType: selectedBloodType === "혈액형" ? undefined : selectedBloodType
             };
           
         console.log('Fetching posts with params:', params); // 필터링된 파라미터 콘솔 로그
@@ -70,16 +70,17 @@ return (
             {/* 게시물 카드 목록 */}
             {posts && posts.map(post => (
                 <BloodPostCard
-                    key={post.id}
-                    image={post.image}
-                    title={post.title}
-                    content={post.content}
-                    date={post.created_at}
-                    commentsCount={post.comments_cnt}
-                    likes={post.like_num}
-                    bloodType={post.blood}
-                    region={post.region}
-                    writer={post.writer}
+                key={post.id}
+                id={post.id} // 수정됨: 게시글 ID를 prop으로 전달
+                image={post.image}
+                title={post.title}
+                content={post.content}
+                date={post.created_at}
+                commentsCount={post.comments_cnt}
+                likes={post.like_num}
+                bloodType={post.blood}
+                region={post.region}
+                writer={post.writer}
                 />
             ))}
         </Wrapper>
