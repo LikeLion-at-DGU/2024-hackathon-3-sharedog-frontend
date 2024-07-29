@@ -17,7 +17,6 @@ export const Wrapper = styled.div`
 
 export const RegionButtonsContainer = styled.div`
   display: flex;
-  justify-content: center;
   width: 80%;
   margin: 0 auto;
   position: sticky;
@@ -29,8 +28,8 @@ export const RegionButtonsContainer = styled.div`
 
 export const RegionButtons = styled.div`
   display: flex;
+  margin: 0 auto;
   align-items: center;
-  justify-content: space-evenly;
   gap: 12px;
   flex-shrink: 0;
 `;
@@ -45,9 +44,9 @@ export const RegionButton = styled.button`
   border-radius: 50px;
   border: 1px solid #D9D9D9;
   background-color: white;
+  color: var(--Gray-Gray01, #9C9CA1);
   text-align: center;
   font-family: SUIT;
-  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -55,6 +54,7 @@ export const RegionButton = styled.button`
   &.active {
     border-radius: 50px;
     border: 1px solid var(--Red-Red04, #FF6969);
+    color: var(--Red-Red04, #FF6969);
     background: rgba(255, 105, 105, 0.20);
   }
 `;
