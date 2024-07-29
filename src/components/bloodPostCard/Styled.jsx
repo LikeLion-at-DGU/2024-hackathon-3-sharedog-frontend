@@ -120,16 +120,20 @@ export const Body = styled.div`
 // ImageWrapper: 이미지가 있을 경우 감싸는 래퍼
 export const ImageWrapper = styled.div`
     display: flex;
-    width: 40%;
-    min-height: 52px;
+    /* width: 40%;
+    min-height: 52px; */
+    width: 84px;
+    height: 52px;
+    flex-shrink: 0;
     overflow: hidden;
     border-radius: 8px;
+    
   /* margin-top: 12px; */
     img {
         width: 100%;
-        flex-shrink: 0;
-        height: auto;
-        min-height: 52px;
+        height: 100%;
+        object-fit: cover; 
+        
     }
 `;
 // Content: 게시글 내용
