@@ -64,20 +64,17 @@ const Option = styled.div`
     color: var(--Red-Red04, #FF6969);
 }`;
 
-// Dropdown 컴포넌트: 드롭다운 버튼과 내용을 포함하는 컴포넌트
-const Dropdown = ({ options, label }) => {
-  // 드롭다운의 열림/닫힘 상태를 관리하기 위한 상태
+// Dropdown 컴포넌트 정의
+const Dropdown = ({ options,  selectedOption, onSelect }) => {
+  // 드롭다운 열림/닫힘 상태를 관리하는 useState 훅
   const [isDropdownOpen, setDropdownOpen] = useState(false);
-  
+
   // 드롭다운 열림/닫힘 상태를 토글하는 함수
   const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
-  
-  // 선택된 옵션을 관리하기 위한 상태
-  const [selectedOption, setSelectedOption] = useState(label);
-  
-  // 옵션 클릭 시 호출되는 함수
+
+  // 옵션이 선택되었을 때 호출되는 함수
   const handleOptionClick = (option) => {
-    setSelectedOption(option); // 선택된 옵션 업데이트
+    onSelect(option); // 부모 컴포넌트로 선택된 옵션 전달
     setDropdownOpen(false); // 드롭다운 닫기
   };
 
@@ -85,17 +82,14 @@ const Dropdown = ({ options, label }) => {
     <DropdownContainer>
       {/* 드롭다운 버튼 */}
       <DropdownButton onClick={toggleDropdown}>
-        {selectedOption} {/* 선택된 옵션을 버튼에 표시 */}
-        <DropDownIcon /> {/* 드롭다운 아이콘 */}
+        {selectedOption} {/* 현재 선택된 옵션 표시 */}
+        <DropDownIcon />
       </DropdownButton>
       {/* 드롭다운 내용 */}
       <DropdownContent $isDropdownOpen={isDropdownOpen}>
         {options.map((option, index) => (
-          <Option
-            key={index}
-            onClick={() => handleOptionClick(option)} // 옵션 클릭 시 함수 호출
-          >
-            {option} {/* 옵션 텍스트 */}
+          <Option key={index} onClick={() => handleOptionClick(option)}>
+            {option} {/* 각 옵션 표시 */}
           </Option>
         ))}
       </DropdownContent>
