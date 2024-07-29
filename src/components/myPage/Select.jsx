@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -8,7 +9,6 @@ export const Wrapper = styled.div`
   font-size: 20px;
   font-family: SUIT, sans-serif; // 폰트 사용 예시
   font-weight: 800;
-  display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   margin: 3px;
 `;
@@ -49,7 +49,8 @@ export const Option = styled.div`
   gap: 10px;
 
   border-radius: 20px;
-  background: rgba(156, 156, 161, 0.5);
+  background: ${(props) =>
+    props.$isSelected ? "#FF6969" : "rgba(156, 156, 161, 0.5)"};
 
   color: #fff;
   text-align: center;
@@ -59,17 +60,30 @@ export const Option = styled.div`
   font-weight: 500;
   line-height: 160%; /* 22.4px */
   letter-spacing: -0.28px;
+  cursor: pointer;
 `;
 
 const Select = ({ title }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionClick = (option) => {
+    setSelectedOption(option);
+  };
+
   return (
     <Wrapper>
       <InPutSection>
         <InPutText>{title}</InPutText>
         <SelectBox>
-          <Option>수컷</Option>
-          <Option>중성화</Option>
-          <Option>암컷</Option>
+          {["수컷", "중성화", "암컷"].map((option) => (
+            <Option
+              key={option}
+              $isSelected={selectedOption === option}
+              onClick={() => handleOptionClick(option)}
+            >
+              {option}
+            </Option>
+          ))}
         </SelectBox>
       </InPutSection>
     </Wrapper>
