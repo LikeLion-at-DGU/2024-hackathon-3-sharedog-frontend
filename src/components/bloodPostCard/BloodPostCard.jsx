@@ -36,7 +36,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
             setIsLiked(!isLiked); // 좋아요 상태를 토글
 
             // 수정됨: 서버에 좋아요 상태 업데이트 요청
-            await API.post(`/api/community/posts/${id}/like_num`, { isLiked: !isLiked });
+            await API.post(`/api/community/posts/${id}/likes`, { isLiked: !isLiked });
         } catch (error) {
             console.error('Error updating like status:', error);
             // 수정됨: 에러 발생 시 상태 복구
@@ -71,6 +71,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                     <Content $hasImage={!!image}>{content}</Content>
                 </Body>
             </ContentWrapper>
+            </NavLink>
             <Footer>
                 <FooterIcon>
                     <LikeCount>
@@ -88,7 +89,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                 </FooterIcon>
                 
             </Footer>
-            </NavLink>
+            
         </Wrapper>
   
     );
