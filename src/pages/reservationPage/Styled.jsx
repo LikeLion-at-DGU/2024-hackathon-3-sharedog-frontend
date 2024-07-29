@@ -50,6 +50,7 @@ export const RegionButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  box-sizing: border-box; // 패딩과 보더를 포함하여 크기를 계산
   cursor: pointer;
   &.active {
     border-radius: 50px;
