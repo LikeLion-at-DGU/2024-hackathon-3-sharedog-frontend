@@ -1,11 +1,9 @@
-// 마이페이지 헤더 담당자: 최효은
+// Header.jsx
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react"; // SVG 파일 가져오기
-import AlramBtnSVG from "../../../assets/icons/alramMyPage.svg?react"; // SVG 파일 가져오기
+import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
+import AlramBtnSVG from "../../../assets/icons/alramMyPage.svg?react";
 
 const Wrapper = styled.div`
-  // 헤더 전체 프레임
   display: flex;
   justify-content: center;
   width: 100%;
@@ -13,9 +11,8 @@ const Wrapper = styled.div`
 `;
 
 const HeaderBox = styled.div`
-  // 헤더 요소를 감싸는 프레임
   display: flex;
-  justify-content: space-between; /* BackBtn과 TitleTxt의 위치를 조정 */
+  justify-content: space-between;
   align-items: center;
   width: 88%;
   height: 8vh;
@@ -23,7 +20,6 @@ const HeaderBox = styled.div`
 `;
 
 const BackBtn = styled.button`
-  // 백 버튼 스타일링
   display: flex;
   font-size: 19px;
   justify-content: center;
@@ -36,7 +32,6 @@ const BackBtn = styled.button`
 `;
 
 const AlramBtn = styled.button`
-  // 백 버튼 스타일링
   display: flex;
   font-size: 19px;
   justify-content: center;
@@ -61,16 +56,16 @@ const TitleTxt = styled.div`
   font-weight: 600;
 `;
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
     <Wrapper>
       <HeaderBox>
         <BackBtn>
-          <BackBtnSVG /> {/* SVG 컴포넌트를 사용 */}
+          <BackBtnSVG />
         </BackBtn>
-        <TitleTxt>마이페이지</TitleTxt>
+        <TitleTxt>{title}</TitleTxt> {/*props 수정*/}
         <AlramBtn>
-          <AlramBtnSVG /> {/* SVG 컴포넌트를 사용 */}
+          <AlramBtnSVG />
         </AlramBtn>
       </HeaderBox>
     </Wrapper>

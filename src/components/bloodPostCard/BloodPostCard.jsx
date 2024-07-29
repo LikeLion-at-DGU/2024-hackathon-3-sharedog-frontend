@@ -24,6 +24,7 @@ const removePortFromURL = (url) => {
 
   
 const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
+const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
     
     const [isLiked, setIsLiked] = useState(false);
     const [likeCount, setLikeCount] = useState(likes); // 수정됨: 현재 게시글의 좋아요 수를 저장
@@ -80,6 +81,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                             icon={isLiked ? faHeartSolid : faHeartRegular}
                             onClick={handleLikeToggle} // onClick 핸들러 추가
                         />
+                        {likeCount}
                         {likeCount}
                     </LikeCount>
                     <CommentCount>

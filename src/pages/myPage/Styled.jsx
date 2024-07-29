@@ -1,6 +1,8 @@
+// Styled.js 파일에서
 import styled from "styled-components";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react"; // SVG 파일 가져오기
 import ProfileMyPageSVG from "../../assets/icons/profileMyPage.svg?react"; // SVG 파일 가져오기
+import PictureMyPageSVG from "../../assets/icons/pictureMyPage.svg?react"; // SVG 파일 가져오기
 import GoMyPageSVG from "../../assets/icons/goMyPage.svg?react"; // SVG 파일 가져오기
 
 // Wrapper: 전체 컨테이너 스타일
@@ -25,6 +27,7 @@ export const MyInfo = styled.div`
   border-radius: 11.587px;
   border: 1.159px solid rgba(234, 234, 234, 0.8);
   background: #fff;
+  margin-bottom: 10px;
 
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
@@ -41,6 +44,7 @@ export const InfoBox = styled.div`
   align-items: center;
   gap: 4px;
   box-shadow: 0px 7.679px 19.197px 0px rgba(154, 170, 207, 0.1);
+  margin-top: 5px;
 
   color: var(--Grayscale-Gray700, #222b39);
   font-family: Pretendard;
@@ -139,5 +143,33 @@ export const GoBtn = styled.div`
   flex-shrink: 0;
 `;
 
+export const InPutBox = styled.div`
+  width: 80%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 10px;
+`;
+
+export const CompleteBtn = styled.div`
+  display: flex;
+  padding: 10px 47px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+
+  border-radius: 30px;
+  background: rgba(156, 156, 161, 0.5);
+
+  color: #fff;
+  font-family: SUIT;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 22.4px */
+`;
+
 // EditMyPageSVG: SVG 아이콘 컴포넌트 내보내기
-export { EditMyPageSVG, ProfileMyPageSVG, GoMyPageSVG };
+export { EditMyPageSVG, ProfileMyPageSVG, GoMyPageSVG, PictureMyPageSVG };
