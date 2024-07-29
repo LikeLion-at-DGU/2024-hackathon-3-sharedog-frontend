@@ -4,7 +4,6 @@ import {
   Wrapper,
   ProfileImg,
   ProfileMyPageSVG,
-  PictureMyPageSVG,
   InPutBox,
   CompleteBtn,
 } from "./Styled";
@@ -34,7 +33,7 @@ const MyPageEdit = () => {
             title={"반려견 이름"}
             inputtext={"반려견 이름을 입력해 주세요."}
           />
-          <Select title={"반려견 성별"} />
+          <Select title={"반려견 성별"} $isSelected={true} />
           <InputDropDown
             title={"반려견 나이"}
             inputtext={"반려견 나이를 선택해 주세요."}

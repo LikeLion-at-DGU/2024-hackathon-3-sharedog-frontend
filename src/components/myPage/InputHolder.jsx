@@ -6,10 +6,9 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 15vh;
   font-size: 20px;
-  font-family: SUIT, sans-serif; // 폰트 사용 예시
+  font-family: SUIT, sans-serif;
   font-weight: 800;
-  display: flex;
-  flex-direction: column; /* 요소들을 수직 정렬 */
+  flex-direction: column;
   margin: 3px;
 `;
 
@@ -32,33 +31,45 @@ export const InPutText = styled.div`
   letter-spacing: -0.28px;
 `;
 
-export const Holder = styled.div`
+export const Holder = styled.input`
   width: 100%;
-
-  display: flex;
   padding: 10px;
-  align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
   border-radius: 12px;
   border: 1px solid var(--Grayscale-Gray200, #eff1f3);
   background: var(--Grayscale-White, #fff);
-
-  color: var(--Gray-Gray01, #9c9ca1);
   font-family: SUIT, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 160%; /* 19.2px */
   letter-spacing: -0.24px;
+
+  color: var(--Gray-Gray01, #9c9ca1); /* 기본 텍스트 색상 */
+
+  &::placeholder {
+    color: var(--Gray-Gray01, #9c9ca1); /* 플레이스홀더 색상 */
+  }
+
+  &:focus {
+    color: #000; /* 포커스 시 텍스트 색상 */
+  }
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: #000 !important; /* 자동완성 텍스트 색상 */
+  }
 `;
 
-const InputHolder = ({ title, inputtext }) => {
+const InputHolder = ({ title, inputtext, value, onChange }) => {
   return (
     <Wrapper>
       <InPutSection>
         <InPutText>{title}</InPutText>
-        <Holder>{inputtext}</Holder>
+        <Holder
+          type="text"
+          placeholder={inputtext}
+          value={value}
+          onChange={onChange}
+        />
       </InPutSection>
     </Wrapper>
   );
