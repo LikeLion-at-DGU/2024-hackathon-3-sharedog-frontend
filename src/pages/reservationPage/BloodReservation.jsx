@@ -1,5 +1,5 @@
 import React from 'react';
-import { Wrapper, RegionButtonsContainer, RegionButtons, RegionButton, HospitalContainer, HospitalCard, HospitalImage, HospitalInfo } from './Styled';
+import { Wrapper, RegionButtonsContainer, RegionButtons, RegionButton, HospitalContainer, HospitalCard, HospitalImage, HospitalInfo, HosPlace, VectorIcon } from './Styled';
 import Header from './header/Header';
 import dummyReservation from '../../data/dummyReservation';
 
@@ -24,7 +24,10 @@ const BloodReservation = () => {
               <HospitalImage src={hospital.image} alt={`${hospital.name}_image`} />
               <HospitalInfo>
                 <h1>{hospital.name}</h1>
-                <p>{hospital.place}</p>
+                <HosPlace>
+                  <VectorIcon/>
+                  <p>{hospital.place}</p>
+                </HosPlace>
               </HospitalInfo>
             </HospitalCard>
           ))}
