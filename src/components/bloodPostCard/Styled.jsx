@@ -132,7 +132,7 @@ export const ImageWrapper = styled.div`
     img {
         width: 100%;
         height: 100%;
-        object-fit: cover; 
+        object-fit: cover; //이미지 크기는 84 52로고정이고 비율안깨지게함 
         
     }
 `;
