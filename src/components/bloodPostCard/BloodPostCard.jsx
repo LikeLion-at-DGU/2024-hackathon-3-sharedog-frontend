@@ -23,7 +23,7 @@ const removePortFromURL = (url) => {
   }
 
   
-const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
+
 const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
     
     const [isLiked, setIsLiked] = useState(false);
