@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import BloodPost from "./pages/bloodPostPage/BloodPost";
 import BloodReservation from "./pages/reservationPage/BloodReservation";
 import MyPage from "./pages/myPage/MyPage";
+import PostWrite from "./pages/postWritePage/PostWrite";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { path: "/bloodPost", element: <BloodPost /> }, // 긴급헐혈 화면
       { path: "/reservation", element: <BloodReservation /> }, // 헌열예약 화면
       { path: "/mypage", element: <MyPage /> }, //마이페이지 화면
+      { path: "/postwrite", element: <PostWrite /> },//긴급헌혈에서 글쓰기 화면
     ],
     errorElement: <NotFound />,
   },
