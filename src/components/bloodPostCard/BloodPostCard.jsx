@@ -10,6 +10,15 @@ import {faHeart as faHeartRegular,faCommentDots as faCommentDotsRegular }
 from "@fortawesome/free-regular-svg-icons";
 import React, { useState } from 'react'; //하트 클릭하면 채워지게 만들려고 
 
+//이미지 url포트번호 제거하는 함수 
+const removePortFromURL = (url) => {
+    if (!url) return url; // url이 없다면 바로 반환
+    const urlObj = new URL(url);
+    urlObj.port = ''; // 포트 번호 제거
+    return urlObj.href; // 수정된 URL 반환
+  }
+
+  
 const BloodPostCard= ({ image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
     
     const [isLiked, setIsLiked] = useState(false);
@@ -27,7 +36,7 @@ const BloodPostCard= ({ image, title, content, date, commentsCount, likes, blood
                         <Tag>{region}</Tag>
                     </TagWrapper>
                     
-                    <DateText>{new Date(date).toLocaleDateString()}</DateText>
+                    <DateText>{date}</DateText>
                 </Header>
                 
                 <Title>{title} <Writer>| {writer}</Writer></Title>
@@ -36,7 +45,7 @@ const BloodPostCard= ({ image, title, content, date, commentsCount, likes, blood
                     {/* 이미지가 있을때는 출력하기 */}
                     {image && (
                         <ImageWrapper>
-                        <img src={image} alt={title} />
+                        <img src={removePortFromURL(image)} alt={title} />
                         </ImageWrapper>
                     )}
                     <Content $hasImage={!!image}>{content}</Content>

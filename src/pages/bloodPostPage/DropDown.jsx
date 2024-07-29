@@ -34,7 +34,7 @@ const DropdownButton = styled.button`
 
 // 드롭다운 내용 스타일: 드롭다운이 열릴 때 표시되는 내용의 스타일 정의
 const DropdownContent = styled.div`
-    display: ${({ isOpen }) => (isOpen ? 'block' : 'none')}; // isOpen 상태에 따라 표시 여부 결정
+   display: ${({ $isDropdownOpen }) => ($isDropdownOpen ? 'block' : 'none')};// 드롭다운 열림/닫힘 상태에 따라 표시 여부 결정// isOpen 상태에 따라 표시 여부 결정
     position: absolute; // 부모 컨테이너에 상대적으로 위치 설정
     border: 1px solid #D9D9D9;
     /* border-left: 1px solid #D9D9D9;
@@ -66,34 +66,41 @@ const Option = styled.div`
 
 // Dropdown 컴포넌트: 드롭다운 버튼과 내용을 포함하는 컴포넌트
 const Dropdown = ({ options, label }) => {
-    const [isOpen, setIsOpen] = useState(false); // 드롭다운의 열림/닫힘 상태 관리
-    const toggleDropdown = () => setIsOpen(!isOpen); // 드롭다운 열림/닫힘 상태 토글
+  // 드롭다운의 열림/닫힘 상태를 관리하기 위한 상태
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  
+  // 드롭다운 열림/닫힘 상태를 토글하는 함수
+  const toggleDropdown = () => setDropdownOpen(!isDropdownOpen);
+  
+  // 선택된 옵션을 관리하기 위한 상태
+  const [selectedOption, setSelectedOption] = useState(label);
+  
+  // 옵션 클릭 시 호출되는 함수
+  const handleOptionClick = (option) => {
+    setSelectedOption(option); // 선택된 옵션 업데이트
+    setDropdownOpen(false); // 드롭다운 닫기
+  };
 
-    const [selectedOption, setSelectedOption] = useState(label); // 선택된 항목 상태 관리
-    const handleOptionClick = (option) => {
-        setSelectedOption(option); // 선택된 항목 업데이트
-        setIsOpen(false); // 드롭다운 닫기
-    };
-
-    return (
-        <DropdownContainer>
-        <DropdownButton onClick={toggleDropdown}>
-        {selectedOption} {/* 선택된 항목을 버튼에 표시 */}
-        <DropDownIcon /> {/* 드롭다운 아이콘 추가 */}
+  return (
+    <DropdownContainer>
+      {/* 드롭다운 버튼 */}
+      <DropdownButton onClick={toggleDropdown}>
+        {selectedOption} {/* 선택된 옵션을 버튼에 표시 */}
+        <DropDownIcon /> {/* 드롭다운 아이콘 */}
       </DropdownButton>
-      <DropdownContent isOpen={isOpen}>
-        {options.map((option, index) => ( 
-          <Option 
+      {/* 드롭다운 내용 */}
+      <DropdownContent $isDropdownOpen={isDropdownOpen}>
+        {options.map((option, index) => (
+          <Option
             key={index}
-            selected={option === selectedOption} // 선택된 항목인지 확인
-            onClick={() => handleOptionClick(option)} // 항목 클릭 시 처리
+            onClick={() => handleOptionClick(option)} // 옵션 클릭 시 함수 호출
           >
-            {option} {/* 각 옵션의 텍스트 */}
+            {option} {/* 옵션 텍스트 */}
           </Option>
         ))}
       </DropdownContent>
-        </DropdownContainer>
-    );
+    </DropdownContainer>
+  );
 };
 
 export default Dropdown; // Dropdown 컴포넌트를 기본 내보내

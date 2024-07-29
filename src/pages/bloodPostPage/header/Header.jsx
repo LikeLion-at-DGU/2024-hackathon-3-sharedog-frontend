@@ -5,6 +5,8 @@ import {faMagnifyingGlass as faMagnifyingGlassSolid, }
     from "@fortawesome/free-solid-svg-icons";
 import HeaderWrite from '../../../assets/icons/headerWriteBtn.svg?react'
 
+import { useNavigate } from 'react-router-dom'; // React Router의 useNavigate 훅 추가
+
 const Wrapper = styled.div` //헤더 전체 프레임 
     display  :flex ;
     justify-content: center;
@@ -82,6 +84,13 @@ const SearchInput=styled.input`
 `;
 
 const Header = () => {
+
+    const navigate = useNavigate(); // useNavigate 훅 초기화
+
+    const handleNavigateToPostWrite = () => {
+        navigate('/postwrite'); // 글쓰기 페이지 경로
+    };
+
     return (
     <Wrapper>
         <HeaderBox>
@@ -89,7 +98,7 @@ const Header = () => {
                 <SearchInput placeholder="검색어를 입력하세요." />
                 <SearchIcon icon={faMagnifyingGlassSolid}/>
             </Search>
-            <WriteBtn>
+            <WriteBtn onClick={handleNavigateToPostWrite}>
                 <HeaderWrite/>
             </WriteBtn>
         </HeaderBox>
