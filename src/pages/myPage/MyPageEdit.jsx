@@ -26,9 +26,9 @@ const MyPageEdit = () => {
       <Header title="프로필 수정" />
       <Wrapper>
         <MyInfo>
-          <ProfileImg>
-            <ProfileMyPageSVG />
-          </ProfileImg>
+          <PictureImg>
+            <PictureMyPageSVG />
+          </PictureImg>
           <InfoBox>황민영</InfoBox>
           <Editbtn>
             <PictureImg>
