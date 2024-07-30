@@ -6,11 +6,13 @@ import {
   ProfileMyPageSVG,
   InPutBox,
   CompleteBtn,
+  PictureImg,
+  PictureMyPageSVG,
 } from "./Styled";
 import Header from "./header/Header";
-import InputHolder from "../../components/myPage/InputHolder";
-import InputDropDown from "../../components/myPage/InputDropDown";
-import Select from "../../components/myPage/Select";
+import InputHolder from "../../components/myPageComponent/InputHolder";
+import InputDropDown from "../../components/myPageComponent/InputDropDown";
+import Select from "../../components/myPageComponent/Select";
 import React from "react";
 
 const MyPageEdit = () => {
@@ -19,9 +21,9 @@ const MyPageEdit = () => {
       <Header title="프로필 수정" />
       <Wrapper>
         <MyInfo>
-          <ProfileImg>
-            <ProfileMyPageSVG />
-          </ProfileImg>
+          <PictureImg>
+            <PictureMyPageSVG />
+          </PictureImg>
           <InfoBox>황민영</InfoBox>
         </MyInfo>
         <InPutBox>

@@ -24,6 +24,10 @@ const MyPage = () => {
     navigate("/MyPageEdit"); // /mypageedit 경로로 이동
   };
 
+  const handleManageClick = () => {
+    navigate("/AccountManage"); // /mypageedit 경로로 이동
+  };
+
   return (
     <>
       <Header title="마이페이지" />
@@ -41,9 +45,9 @@ const MyPage = () => {
         <InfoList>
           <InfoListItem>
             내 정보
-            <ItemDetail>
+            <ItemDetail onClick={handleManageClick}>
               계정 관리
-              <GoBtn>
+              <GoBtn onClick={handleManageClick}>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>
