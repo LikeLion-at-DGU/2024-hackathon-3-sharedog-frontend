@@ -1,6 +1,7 @@
 // Styled.js 파일에서
 import styled from "styled-components";
 import ProfileMyPageSVG from "../../assets/icons/profileMyPage.svg?react"; // SVG 파일 가져오기
+import CautionSVG from "../../assets/icons/Caution.svg?react";
 
 // Wrapper: 전체 컨테이너 스타일
 export const Wrapper = styled.div`
@@ -22,14 +23,48 @@ export const MyInfo = styled.div`
   height: 25vh;
   flex-shrink: 0;
   border-radius: 11.587px;
-  border: 1.159px solid rgba(234, 234, 234, 0.8);
-  background-color: #fff;
   margin-bottom: 10px;
 
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   justify-content: center; /* 수직 중앙 정렬 */
   align-items: center; /* 수평 중앙 정렬 */
+`;
+
+export const CautionBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+  border-radius: 10px;
+  background: rgba(255, 105, 105, 0.10);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+`;
+
+export const CautionTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  h1 {
+    color: #000;
+    font-family: SUIT;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  p {
+    color: var(--Gray-Gray03, #3A3A3C);
+    font-family: SUIT;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+`;
+
+export const Msg = styled.div`
+  
 `;
 
 export const ProfileImg = styled.div`
@@ -47,10 +82,6 @@ export const InPutBox = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   gap: 10px;
-`;
-
-export const InfoBox = styled.div`
-  
 `;
 
 export const CompleteBtn = styled.div`
@@ -73,4 +104,4 @@ export const CompleteBtn = styled.div`
 `;
 
 // EditMyPageSVG: SVG 아이콘 컴포넌트 내보내기
-export { ProfileMyPageSVG };
+export { ProfileMyPageSVG, CautionSVG };

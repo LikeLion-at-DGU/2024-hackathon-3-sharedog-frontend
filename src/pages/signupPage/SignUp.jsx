@@ -7,7 +7,7 @@ import {
   CompleteBtn,
 } from "./Styled";
 import Header from "./header/Header";
-import InputHolder from "../../components/myPage/InputHolder";
+import InputHolder from "../../components/myPageComponent/InputHolder";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
 import { API } from '../../api'; 

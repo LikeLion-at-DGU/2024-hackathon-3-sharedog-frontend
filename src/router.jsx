@@ -10,7 +10,7 @@ import MyPage from "./pages/myPage/MyPage";
 import MyPageEdit from "./pages/myPage/MyPageEdit";
 import AccountManage from "./pages/myPage/AccountManage";
 import PostWrite from "./pages/postWritePage/PostWrite";
-import SignUp from "./pages/signupPage/SignUP";
+import SignUp from "./pages/signupPage/SignUp";
 import SignUpPet from "./pages/signupPage/SignUpPet";
 
 const router = createBrowserRouter([
