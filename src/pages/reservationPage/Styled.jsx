@@ -17,20 +17,22 @@ export const Wrapper = styled.div`
 
 export const RegionButtonsContainer = styled.div`
   display: flex;
-  width: 80%;
+  width: 88%;
   margin: 0 auto;
   position: sticky;
   top: 0;
-  background: white; // 고정될 때 배경색을 지정하여 스크롤 시 병원 카드와 구분되도록 함
+  background: #FAFAFC; // 고정될 때 배경색을 지정하여 스크롤 시 병원 카드와 구분되도록 함
   z-index: 1000;
   padding: 10px 0;
 `;
 
 export const RegionButtons = styled.div`
   display: flex;
-  margin: 0 auto;
+  width: 100%;
+  /* margin: 0 auto; */
   align-items: center;
-  gap: 12px;
+  /* gap: 12px; */
+  justify-content: space-between;
   flex-shrink: 0;
 `;
 
