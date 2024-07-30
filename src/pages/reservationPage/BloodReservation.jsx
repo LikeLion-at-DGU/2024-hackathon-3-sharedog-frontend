@@ -4,7 +4,7 @@ import Header from './header/Header';
 import dummyReservation from '../../data/dummyReservation';
 
 const BloodReservation = () => {
-  const [selectedRegion, setSelectedRegion] = useState('서울');
+  const [selectedRegion, setSelectedRegion] = useState('전체');
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleRegionClick = (region) => {
@@ -16,7 +16,7 @@ const BloodReservation = () => {
   };
 
   const filteredHospitals = dummyReservation.filter(hospital =>
-    hospital.region === selectedRegion &&
+    (selectedRegion === '전체' || hospital.region === selectedRegion) &&
     hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
@@ -26,7 +26,7 @@ const BloodReservation = () => {
       <Wrapper>
         <RegionButtonsContainer>
           <RegionButtons>
-            {['서울', '경기', '경상', '충청', '전라', '제주'].map(region => (
+            {['전체', '서울', '경기', '경상', '충청', '전라', '제주'].map(region => (
               <RegionButton
                 key={region}
                 className={selectedRegion === region ? 'active' : ''}
