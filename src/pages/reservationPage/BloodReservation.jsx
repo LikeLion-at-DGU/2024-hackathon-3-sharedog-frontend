@@ -5,16 +5,24 @@ import dummyReservation from '../../data/dummyReservation';
 
 const BloodReservation = () => {
   const [selectedRegion, setSelectedRegion] = useState('서울');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
   };
 
-  const filteredHospitals = dummyReservation.filter(hospital => hospital.region === selectedRegion);
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredHospitals = dummyReservation.filter(hospital =>
+    hospital.region === selectedRegion &&
+    hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
-      <Header />
+      <Header onSearchChange={handleSearchChange} />
       <Wrapper>
         <RegionButtonsContainer>
           <RegionButtons>
