@@ -34,8 +34,8 @@ export const InPutText = styled.div`
 
 export const SelectBox = styled.div`
   display: flex;
-  align-items: flex-start;
-  gap: 18px;
+  align-items: center;
+  justify-content: space-evenly;
   align-self: stretch;
 `;
 
