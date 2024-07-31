@@ -37,7 +37,6 @@ export const DropDown = styled.div`
   display: flex;
   align-items: center;
   padding: 10px;
-  gap: 10px;
   border-radius: 12px;
   border: 1px solid var(--Grayscale-Gray200, #eff1f3);
   background: var(--Grayscale-White, #fff);
@@ -55,14 +54,19 @@ export const DropDown = styled.div`
 export const DropDownSelect = styled.select`
   background: transparent;
   border: none;
-  font-size: 1rem;
   outline: none;
   width: 100%;
-  padding: 0.5rem 0;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: #000; // 필요에 따라 색상 조정
+  color: #9C9CA1;
+  color: var(--Gray-Gray01, #9C9CA1);
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%; /* 19.2px */
+  letter-spacing: -0.24px; // 필요에 따라 색상 조정
   cursor: pointer; // 커서가 포인터로 변경되도록 추가
 `;
 

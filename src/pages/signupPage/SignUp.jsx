@@ -5,6 +5,7 @@ import {
   ProfileMyPageSVG,
   InPutBox,
   CompleteBtn,
+  Field
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -55,37 +56,39 @@ const SignUp = () => {
     <>
       <Header title="회원가입" />
       <Wrapper>
-        <MyInfo>
-          <ProfileImg>
-            <ProfileMyPageSVG />
-          </ProfileImg>
-        </MyInfo>
-        <InPutBox>
-          <InputHolder
-            title={"견주님 성함"}
-            inputtext={"견주님 성함을 입력해주세요"}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <InputHolder
-            title={"전화번호"}
-            inputtext={"전화번호를 입력해주세요"}
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          /> 
-          <InputHolder
-            title={"이메일"}
-            inputtext={"이메일 주소를 입력해주세요"}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <CompleteBtn
-            onClick={handleCompleteClick}
-            style={{ backgroundColor: isComplete ? '#FF6969' : 'rgba(156, 156, 161, 0.50)' }}
-          >
-            완료
-          </CompleteBtn>
-        </InPutBox>
+        <Field>
+          <MyInfo>
+            <ProfileImg>
+              <ProfileMyPageSVG />
+            </ProfileImg>
+          </MyInfo>
+          <InPutBox>
+            <InputHolder
+              title={"견주님 성함"}
+              inputtext={"견주님 성함을 입력해주세요"}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <InputHolder
+              title={"전화번호"}
+              inputtext={"전화번호를 입력해주세요"}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            /> 
+            <InputHolder
+              title={"이메일"}
+              inputtext={"이메일 주소를 입력해주세요"}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <CompleteBtn
+              onClick={handleCompleteClick}
+              style={{ backgroundColor: isComplete ? '#FF6969' : 'rgba(156, 156, 161, 0.50)' }}
+            >
+              완료
+            </CompleteBtn>
+          </InPutBox>
+        </Field>
       </Wrapper>
     </>
   );
