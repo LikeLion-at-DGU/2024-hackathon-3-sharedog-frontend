@@ -72,7 +72,7 @@ return (
                 <BloodPostCard
                 key={post.id}
                 id={post.id} // 수정됨: 게시글 ID를 prop으로 전달
-                image={post.image}
+                image={post.image_1}//첫번째 사진으로 썸네일 지정
                 title={post.title}
                 content={post.content}
                 date={post.created_at}

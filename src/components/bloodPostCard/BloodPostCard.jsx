@@ -20,9 +20,9 @@ const removePortFromURL = (url) => {
     const urlObj = new URL(url);
     urlObj.port = ''; // 포트 번호 제거
     return urlObj.href; // 수정된 URL 반환
-  }
+}
 
-  
+
 
 const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
     
@@ -82,7 +82,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                             onClick={handleLikeToggle} // onClick 핸들러 추가
                         />
                         {likeCount}
-                        {likeCount}
+                        
                     </LikeCount>
                     <CommentCount>
                         <CommentIcon icon={faCommentDotsRegular} />    
