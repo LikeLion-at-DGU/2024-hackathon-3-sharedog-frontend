@@ -21,8 +21,17 @@ export const Field = styled.div`
   width: 91%;
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
-  align-items: flex-start; /* 수평 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  justify-content: space-between;
   gap: 30px;
+`;
+
+export const InputField = styled.div`
+  display: flex;
+  flex-direction: column; /* 요소들을 수직 정렬 */
+  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; 
+  width: 91%;
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
@@ -93,6 +102,8 @@ export const InPutBox = styled.div`
   height: 50vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
   flex-shrink: 0;
   gap: 10px;
 `;
@@ -107,7 +118,6 @@ export const CompleteBtn = styled.div`
 
   border-radius: 30px;
   background: rgba(156, 156, 161, 0.5);
-
   color: #fff;
   font-family: SUIT;
   font-size: 16px;

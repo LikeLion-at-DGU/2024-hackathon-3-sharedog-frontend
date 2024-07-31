@@ -5,7 +5,8 @@ import {
   ProfileMyPageSVG,
   InPutBox,
   CompleteBtn,
-  Field
+  Field,
+  InputField
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -28,10 +29,8 @@ const SignUp = () => {
         phone,
         email
       });
-      alert('Post 성공 :)');
       console.log('서버 응답 데이터:', response.data); // 서버 응답 데이터 콘솔에 찍기
     } catch (error) {
-      alert('Post 실패 :(');
       console.log('네트워크 오류:', error); // 네트워크 오류 콘솔에 찍기
     }
   };
@@ -57,37 +56,39 @@ const SignUp = () => {
       <Header title="회원가입" />
       <Wrapper>
         <Field>
-          <MyInfo>
-            <ProfileImg>
-              <ProfileMyPageSVG />
-            </ProfileImg>
-          </MyInfo>
-          <InPutBox>
-            <InputHolder
-              title={"견주님 성함"}
-              inputtext={"견주님 성함을 입력해주세요"}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <InputHolder
-              title={"전화번호"}
-              inputtext={"전화번호를 입력해주세요"}
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            /> 
-            <InputHolder
-              title={"이메일"}
-              inputtext={"이메일 주소를 입력해주세요"}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <CompleteBtn
-              onClick={handleCompleteClick}
-              style={{ backgroundColor: isComplete ? '#FF6969' : 'rgba(156, 156, 161, 0.50)' }}
-            >
-              완료
-            </CompleteBtn>
-          </InPutBox>
+          <InputField>
+            <MyInfo>
+              <ProfileImg>
+                <ProfileMyPageSVG />
+              </ProfileImg>
+            </MyInfo>
+            <InPutBox>
+              <InputHolder
+                title={"견주님 성함"}
+                inputtext={"견주님 성함을 입력해주세요"}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <InputHolder
+                title={"전화번호"}
+                inputtext={"전화번호를 입력해주세요"}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              /> 
+              <InputHolder
+                title={"이메일"}
+                inputtext={"이메일 주소를 입력해주세요"}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </InPutBox>
+          </InputField>  
+          <CompleteBtn
+            onClick={handleCompleteClick}
+            style={{ backgroundColor: isComplete ? '#FF6969' : 'rgba(156, 156, 161, 0.50)' }}
+          >
+            완료
+          </CompleteBtn>
         </Field>
       </Wrapper>
     </>
