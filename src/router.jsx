@@ -15,8 +15,8 @@ import PostWrite from "./pages/postWritePage/PostWrite";
 import SignUp from "./pages/signupPage/SignUp";
 import SignUpPet from "./pages/signupPage/SignUpPet";
 import SignUpSplash from "./pages/signupSplashPage/SignUpSplash";
-
 import BloodPostDetail from "./pages/bloodPostDetailPage/BloodPostDetail";
+
 const router = createBrowserRouter([
   {
     path: "/",
