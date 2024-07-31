@@ -8,15 +8,15 @@ import GoMyPageSVG from "../../assets/icons/goMyPage.svg?react"; // SVG 파일 �
 // Wrapper: 전체 컨테이너 스타일
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 80vh;
-  font-size: 20px;
-  font-family: SUIT, sans-serif; // 폰트 사용 예시
-  font-weight: 800;
-  display: flex;
-  flex-direction: column; /* 요소들을 수직 정렬 */
+  justify-content: flex-start; /* 요소들을 상단에 배치 */
   align-items: center; /* 수평 중앙 정렬 */
+  flex-direction: column; /* 요소들을 수직 정렬 */
+  width: 100%;
+  min-height: 80vh;
+  font-size: 20px;
+  font-family: SUIT, sans-serif;
+  font-weight: 800;
+  padding-top: 20px; /* 상단 여백 추가 */
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
@@ -84,13 +84,35 @@ export const ProfileImg = styled.div`
   background: #eaeaec;
 `;
 
+export const PictureImg = styled.div`
+  padding: 22px 22px;
+
+  border-radius: 32.047px;
+  border-style: none;
+  background: #eaeaec;
+`;
+
 export const InfoList = styled.div`
   width: 80%;
   height: 50vh;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 5px;
+  padding: 10px 15px;
+  border-radius: 11.518px;
+  border: 0.96px solid var(--Grayscale-Gray200, #eff1f3);
+  background: var(--Grayscale-White, #fff);
+  box-shadow: 0px 7.679px 19.197px 0px rgba(154, 170, 207, 0.1);
+`;
+
+export const InfoList2 = styled.div`
+  width: 80%;
+  min-height: 32vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px; /* 하단 여백 */
   padding: 10px 15px;
   border-radius: 11.518px;
   border: 0.96px solid var(--Grayscale-Gray200, #eff1f3);

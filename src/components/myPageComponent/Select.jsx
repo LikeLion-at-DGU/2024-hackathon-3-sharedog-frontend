@@ -1,5 +1,5 @@
+import React, { useState } from "react";
 import styled from "styled-components";
-import DropDownSVG from "../../assets/icons/dropdownMyPage.svg?react"; // SVG 파일 가져오기
 
 export const Wrapper = styled.div`
   display: flex;
@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   font-size: 20px;
   font-family: SUIT, sans-serif; // 폰트 사용 예시
   font-weight: 800;
-  display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   margin: 3px;
 `;
@@ -33,41 +32,58 @@ export const InPutText = styled.div`
   letter-spacing: -0.28px;
 `;
 
-export const DropDown = styled.div`
-  width: 100%;
-
+export const SelectBox = styled.div`
   display: flex;
-  padding: 10px;
   align-items: flex-start;
-  gap: 10px;
-  flex-shrink: 0;
-  border-radius: 12px;
-  border: 1px solid var(--Grayscale-Gray200, #eff1f3);
-  background: var(--Grayscale-White, #fff);
-  justify-content: space-between;
+  gap: 18px;
+  align-self: stretch;
+`;
 
-  color: var(--Gray-Gray01, #9c9ca1);
-  font-family: SUIT, sans-serif;
+export const Option = styled.div`
+  display: flex;
+  width: 90px;
+  height: 40px;
+  padding: 14px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 20px;
+  background: ${(props) =>
+    props.$isSelected ? "#FF6969" : "rgba(156, 156, 161, 0.5)"};
+
+  color: #fff;
+  text-align: center;
+  font-family: SUIT;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
-  line-height: 160%; /* 19.2px */
-  letter-spacing: -0.24px;
+  line-height: 160%; /* 22.4px */
+  letter-spacing: -0.28px;
+  cursor: pointer;
 `;
 
-const InputDropdown = ({ title, inputtext }) => {
+const Select = ({ title, value, onChange }) => {
+  const options = ["수컷", "중성화", "암컷"];
+
   return (
     <Wrapper>
       <InPutSection>
         <InPutText>{title}</InPutText>
-        <DropDown>
-          {inputtext}
-          <DropDownSVG />
-        </DropDown>
+        <SelectBox>
+          {options.map((option) => (
+            <Option
+              key={option}
+              $isSelected={value === option}
+              onClick={() => onChange(option)}
+            >
+              {option}
+            </Option>
+          ))}
+        </SelectBox>
       </InPutSection>
     </Wrapper>
   );
 };
 
-export default InputDropdown;
-export { DropDownSVG };
+export default Select;
