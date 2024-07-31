@@ -28,6 +28,10 @@ const MyPageMain = () => {
     navigate("/AccountManage"); // /mypageedit 경로로 이동
   };
 
+  const handlePetClick = () => {
+    navigate("/PetInfo"); // /PetEdit 경로로 이동
+  };
+
   return (
     <>
       <Header title="마이페이지" />
@@ -48,6 +52,12 @@ const MyPageMain = () => {
             <ItemDetail onClick={handleManageClick}>
               계정 관리
               <GoBtn onClick={handleManageClick}>
+                <GoMyPageSVG />
+              </GoBtn>
+            </ItemDetail>
+            <ItemDetail onClick={handlePetClick}>
+              반려견 정보
+              <GoBtn onClick={handlePetClick}>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>

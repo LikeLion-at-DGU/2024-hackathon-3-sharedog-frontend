@@ -52,6 +52,7 @@ export const Holder = styled.input`
 
   &:focus {
     color: #000; /* 포커스 시 텍스트 색상 */
+    border-color: black; /* 포커스 시 보더 색상 */
   }
 
   &:-webkit-autofill {

@@ -8,6 +8,8 @@ import BloodPost from "./pages/bloodPostPage/BloodPost";
 import BloodReservation from "./pages/reservationPage/BloodReservation";
 import MyPageMain from "./pages/myPage/MyPageMain";
 import MyPageEdit from "./pages/myPage/MyPageEdit";
+import PetInfo from "./pages/myPage/PetInfo";
+import PetEdit from "./pages/myPage/PetEdit";
 import AccountManage from "./pages/myPage/AccountManage";
 import PostWrite from "./pages/postWritePage/PostWrite";
 import SignUp from "./pages/signupPage/SignUp";
@@ -28,6 +30,8 @@ const router = createBrowserRouter([
       { path: "/reservation", element: <BloodReservation /> }, // 헌열예약 화면
       { path: "/mypage", element: <MyPageMain /> }, // 마이페이지 화면
       { path: "/mypageedit", element: <MyPageEdit /> }, // 마이페이지 프로필 수정 화면
+      { path: "/petinfo", element: <PetInfo /> }, // 반려견 프로필 수정 화면
+      { path: "/petedit", element: <PetEdit /> }, // 반려견 프로필 수정 화면
       { path: "/accountmanage", element: <AccountManage /> }, // 마이페이지 계정 관리 화면
       { path: "/postwrite", element: <PostWrite /> }, // 긴급헌혈에서 글쓰기 화면
       { path: "/signup", element: <SignUp /> }, //회원가입 화면
