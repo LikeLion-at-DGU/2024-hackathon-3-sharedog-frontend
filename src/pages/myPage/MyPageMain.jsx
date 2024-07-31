@@ -16,7 +16,7 @@ import Header from "./header/Header";
 import React from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
 
-const MyPage = () => {
+const MyPageMain = () => {
   const navigate = useNavigate(); // useNavigate 훅 초기화
 
   // Editbtn 클릭 핸들러
@@ -84,4 +84,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default MyPageMain;
