@@ -63,23 +63,19 @@ export const Option = styled.div`
   cursor: pointer;
 `;
 
-const Select = ({ title }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const handleOptionClick = (option) => {
-    setSelectedOption(option);
-  };
+const Select = ({ title, value, onChange }) => {
+  const options = ["수컷", "중성화", "암컷"];
 
   return (
     <Wrapper>
       <InPutSection>
         <InPutText>{title}</InPutText>
         <SelectBox>
-          {["수컷", "중성화", "암컷"].map((option) => (
+          {options.map((option) => (
             <Option
               key={option}
-              $isSelected={selectedOption === option}
-              onClick={() => handleOptionClick(option)}
+              $isSelected={value === option}
+              onClick={() => onChange(option)}
             >
               {option}
             </Option>
