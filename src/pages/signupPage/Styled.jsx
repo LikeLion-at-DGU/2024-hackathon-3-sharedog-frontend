@@ -21,12 +21,23 @@ export const Field = styled.div`
   width: 91%;
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
-  align-items: flex-start; /* 수평 중앙 정렬 */
+  align-items: center; /* 수평 중앙 정렬 */
+  justify-content: space-between;
   gap: 30px;
+`;
+
+export const InputField = styled.div`
+  display: flex;
+  flex-direction: column; /* 요소들을 수직 정렬 */
+  justify-content: center; /* 수직 중앙 정렬 */
+  align-items: center; 
+  width: 91%;
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
 export const MyInfo = styled.div`
+  width: 100%;
+  height: 15vh;
   width: 100%;
   height: 15vh;
   flex-shrink: 0;
@@ -57,18 +68,34 @@ export const CautionField = styled.div`
   gap: 5px;
 `;
 
+export const CautionField = styled.div` 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 11px auto;
+  gap: 5px;
+`;
+
 export const CautionTitle = styled.div`
   h1 {
     color: var(--Gray-Gray03, #3A3A3C);
+    color: var(--Gray-Gray03, #3A3A3C);
     font-family: SUIT;
+    font-size: 14px;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     display: flex;
     justify-content: center;
     margin: 0 0 9px 0;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 9px 0;
   }
   p {
+    color: var(--Gray-Gray02, #636366);
+    text-align: center;
     color: var(--Gray-Gray02, #636366);
     text-align: center;
     font-family: SUIT;
@@ -93,6 +120,8 @@ export const InPutBox = styled.div`
   height: 50vh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
   flex-shrink: 0;
   gap: 10px;
 `;
@@ -107,7 +136,6 @@ export const CompleteBtn = styled.div`
 
   border-radius: 30px;
   background: rgba(156, 156, 161, 0.5);
-
   color: #fff;
   font-family: SUIT;
   font-size: 16px;
