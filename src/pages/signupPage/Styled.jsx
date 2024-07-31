@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 
 export const Field = styled.div`
   display: flex;
-  width: 91%;
+  width: 94%;
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   align-items: center; /* 수평 중앙 정렬 */
@@ -31,7 +31,8 @@ export const InputField = styled.div`
   flex-direction: column; /* 요소들을 수직 정렬 */
   justify-content: center; /* 수직 중앙 정렬 */
   align-items: center; 
-  width: 91%;
+  width: 100%;
+  height: 75vh;
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
@@ -99,7 +100,18 @@ export const ProfileImg = styled.div`
 
 export const InPutBox = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  gap: 10px;
+`;
+
+export const InPut = styled.div`
+  width: 100%;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
