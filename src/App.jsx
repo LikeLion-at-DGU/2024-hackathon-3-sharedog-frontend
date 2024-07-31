@@ -30,7 +30,7 @@ const FooterWrapper = styled.div` //스크롤설정
 const Layout = () => {
   const location = useLocation();
   const hideHeaderFooter = location.pathname === '/' 
-        || location.pathname === '/login';
+        || location.pathname === '/login' || location.pathname === '/signupsplash';
 
   return (
     <Wrapper>

@@ -6,7 +6,6 @@ import CautionSVG from "../../assets/icons/Caution.svg?react";
 // Wrapper: 전체 컨테이너 스타일
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
   width: 100%;
   height: 80vh;
   font-size: 20px;
@@ -17,10 +16,19 @@ export const Wrapper = styled.div`
   align-items: center; /* 수평 중앙 정렬 */
 `;
 
+export const Field = styled.div`
+  display: flex;
+  width: 91%;
+  display: flex;
+  flex-direction: column; /* 요소들을 수직 정렬 */
+  align-items: flex-start; /* 수평 중앙 정렬 */
+  gap: 30px;
+`;
+
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
 export const MyInfo = styled.div`
-  width: 80%;
-  height: 25vh;
+  width: 100%;
+  height: 15vh;
   flex-shrink: 0;
   border-radius: 11.587px;
   margin-bottom: 10px;
@@ -35,36 +43,41 @@ export const CautionBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 9px;
+  width: 100%;
   border-radius: 10px;
   background: rgba(255, 105, 105, 0.10);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 `;
 
-export const CautionTitle = styled.div`
+export const CautionField = styled.div` 
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 11px auto;
+  gap: 5px;
+`;
+
+export const CautionTitle = styled.div`
   h1 {
-    color: #000;
+    color: var(--Gray-Gray03, #3A3A3C);
     font-family: SUIT;
-    font-size: 12px;
+    font-size: 14px;
     font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 9px 0;
   }
   p {
-    color: var(--Gray-Gray03, #3A3A3C);
+    color: var(--Gray-Gray02, #636366);
+    text-align: center;
     font-family: SUIT;
     font-size: 10px;
     font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
   }
-`;
-
-export const Msg = styled.div`
-  
 `;
 
 export const ProfileImg = styled.div`
@@ -76,7 +89,7 @@ export const ProfileImg = styled.div`
 `;
 
 export const InPutBox = styled.div`
-  width: 80%;
+  width: 100%;
   height: 50vh;
   display: flex;
   flex-direction: column;

@@ -12,6 +12,7 @@ import AccountManage from "./pages/myPage/AccountManage";
 import PostWrite from "./pages/postWritePage/PostWrite";
 import SignUp from "./pages/signupPage/SignUp";
 import SignUpPet from "./pages/signupPage/SignUpPet";
+import SignUpSplash from "./pages/signupSplashPage/SignUpSplash";
 
 import BloodPostDetail from './pages/bloodPostDetailPage/BloodPostDetail';
 const router = createBrowserRouter([
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
       { path: "/accountmanage", element: <AccountManage /> }, // 마이페이지 계정 관리 화면
       { path: "/postwrite", element: <PostWrite /> }, // 긴급헌혈에서 글쓰기 화면
       { path: "/signup", element: <SignUp /> }, //회원가입 화면 
-      { path: "/signuppet", element: <SignUpPet /> }
+      { path: "/signuppet", element: <SignUpPet /> },
+      { path: "/signupsplash", element: <SignUpSplash /> }
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
