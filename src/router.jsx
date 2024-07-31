@@ -6,7 +6,7 @@ import Home from "./pages/homePage/Home";
 import NotFound from "./pages/NotFound/NotFound";
 import BloodPost from "./pages/bloodPostPage/BloodPost";
 import BloodReservation from "./pages/reservationPage/BloodReservation";
-import MyPage from "./pages/myPage/MyPageMain";
+import MyPageMain from "./pages/myPage/MyPageMain";
 import MyPageEdit from "./pages/myPage/MyPageEdit";
 import AccountManage from "./pages/myPage/AccountManage";
 import PostWrite from "./pages/postWritePage/PostWrite";
