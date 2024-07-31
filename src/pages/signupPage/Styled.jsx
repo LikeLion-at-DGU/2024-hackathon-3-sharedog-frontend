@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
 
 export const Field = styled.div`
   display: flex;
-  width: 91%;
+  width: 94%;
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   align-items: center; /* 수평 중앙 정렬 */
@@ -31,13 +31,12 @@ export const InputField = styled.div`
   flex-direction: column; /* 요소들을 수직 정렬 */
   justify-content: center; /* 수직 중앙 정렬 */
   align-items: center; 
-  width: 91%;
+  width: 100%;
+  height: 75vh;
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
 export const MyInfo = styled.div`
-  width: 100%;
-  height: 15vh;
   width: 100%;
   height: 15vh;
   flex-shrink: 0;
@@ -68,34 +67,18 @@ export const CautionField = styled.div`
   gap: 5px;
 `;
 
-export const CautionField = styled.div` 
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 11px auto;
-  gap: 5px;
-`;
-
 export const CautionTitle = styled.div`
   h1 {
     color: var(--Gray-Gray03, #3A3A3C);
-    color: var(--Gray-Gray03, #3A3A3C);
     font-family: SUIT;
-    font-size: 14px;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     display: flex;
     justify-content: center;
     margin: 0 0 9px 0;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
-    margin: 0 0 9px 0;
   }
   p {
-    color: var(--Gray-Gray02, #636366);
-    text-align: center;
     color: var(--Gray-Gray02, #636366);
     text-align: center;
     font-family: SUIT;
@@ -117,7 +100,18 @@ export const ProfileImg = styled.div`
 
 export const InPutBox = styled.div`
   width: 100%;
-  height: 50vh;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  gap: 10px;
+`;
+
+export const InPut = styled.div`
+  width: 100%;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

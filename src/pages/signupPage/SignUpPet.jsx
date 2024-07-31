@@ -1,6 +1,6 @@
 import {
   Wrapper,
-  InPutBox,
+  InPut,
   CompleteBtn,
   CautionSVG,
   CautionBox,
@@ -82,7 +82,7 @@ const SignUpPet = () => {
                 </CautionTitle>
               </CautionField>
             </CautionBox>
-            <InPutBox>
+            <InPut>
               <InputHolder
                 title={"반려견 이름"}
                 inputtext={"반려견 이름을 입력해 주세요."}
@@ -114,7 +114,7 @@ const SignUpPet = () => {
                 options={bloodOptions}
                 onChange={(e) => setDogBlood(e.target.value)}
               />
-            </InPutBox>
+            </InPut>
           </InputField>
           <CompleteBtn 
               onClick={handleCompleteClick}
