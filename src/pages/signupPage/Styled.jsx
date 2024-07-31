@@ -38,6 +38,8 @@ export const InputField = styled.div`
 export const MyInfo = styled.div`
   width: 100%;
   height: 15vh;
+  width: 100%;
+  height: 15vh;
   flex-shrink: 0;
   border-radius: 11.587px;
   margin-bottom: 10px;
@@ -66,18 +68,34 @@ export const CautionField = styled.div`
   gap: 5px;
 `;
 
+export const CautionField = styled.div` 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 11px auto;
+  gap: 5px;
+`;
+
 export const CautionTitle = styled.div`
   h1 {
     color: var(--Gray-Gray03, #3A3A3C);
+    color: var(--Gray-Gray03, #3A3A3C);
     font-family: SUIT;
+    font-size: 14px;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     display: flex;
     justify-content: center;
     margin: 0 0 9px 0;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 9px 0;
   }
   p {
+    color: var(--Gray-Gray02, #636366);
+    text-align: center;
     color: var(--Gray-Gray02, #636366);
     text-align: center;
     font-family: SUIT;

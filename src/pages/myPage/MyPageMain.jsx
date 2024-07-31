@@ -16,7 +16,7 @@ import Header from "./header/Header";
 import React from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
 
-const MyPage = () => {
+const MyPageMain = () => {
   const navigate = useNavigate(); // useNavigate 훅 초기화
 
   // Editbtn 클릭 핸들러
@@ -26,6 +26,10 @@ const MyPage = () => {
 
   const handleManageClick = () => {
     navigate("/AccountManage"); // /mypageedit 경로로 이동
+  };
+
+  const handlePetClick = () => {
+    navigate("/PetInfo"); // /PetEdit 경로로 이동
   };
 
   return (
@@ -48,6 +52,12 @@ const MyPage = () => {
             <ItemDetail onClick={handleManageClick}>
               계정 관리
               <GoBtn onClick={handleManageClick}>
+                <GoMyPageSVG />
+              </GoBtn>
+            </ItemDetail>
+            <ItemDetail onClick={handlePetClick}>
+              반려견 정보
+              <GoBtn onClick={handlePetClick}>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>
@@ -84,4 +94,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default MyPageMain;
