@@ -3,22 +3,27 @@ import { Wrapper,ContentWrapper, Header,TagWrapper,Body, Title, Writer, Content,
      Tag, DateText,LikeCount, CommentCount,CommentIcon, ImageWrapper,  FooterIcon, HeartIcon
     
     } from './Styled';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHeart as faHeartSolid, } 
     from "@fortawesome/free-solid-svg-icons";
 import {faHeart as faHeartRegular,faCommentDots as faCommentDotsRegular } 
 from "@fortawesome/free-regular-svg-icons";
+
+import { NavLink } from 'react-router-dom';//카드 누르면 상세페이지로 이동하려고
 import React, { useState } from 'react'; //하트 클릭하면 채워지게 만들려고 
 import { API } from '../../api';
+
 //이미지 url포트번호 제거하는 함수 
 const removePortFromURL = (url) => {
     if (!url) return url; // url이 없다면 바로 반환
     const urlObj = new URL(url);
     urlObj.port = ''; // 포트 번호 제거
     return urlObj.href; // 수정된 URL 반환
-  }
+}
 
-  
+
+
 const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
     
     const [isLiked, setIsLiked] = useState(false);
@@ -32,7 +37,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
             setIsLiked(!isLiked); // 좋아요 상태를 토글
 
             // 수정됨: 서버에 좋아요 상태 업데이트 요청
-            await API.post(`/api/community/posts/${id}/like_num`, { isLiked: !isLiked });
+            await API.post(`/api/community/posts/${id}/likes`, { isLiked: !isLiked });
         } catch (error) {
             console.error('Error updating like status:', error);
             // 수정됨: 에러 발생 시 상태 복구
@@ -42,7 +47,9 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
     };
 
     return (
+       
         <Wrapper>
+             <NavLink to={`/bloodPost/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* 링크 추가 */}
             <ContentWrapper>
                 <Header>
                     <TagWrapper>
@@ -65,6 +72,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                     <Content $hasImage={!!image}>{content}</Content>
                 </Body>
             </ContentWrapper>
+            </NavLink>
             <Footer>
                 <FooterIcon>
                     <LikeCount>
@@ -74,6 +82,7 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                             onClick={handleLikeToggle} // onClick 핸들러 추가
                         />
                         {likeCount}
+                        
                     </LikeCount>
                     <CommentCount>
                         <CommentIcon icon={faCommentDotsRegular} />    
@@ -82,7 +91,9 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                 </FooterIcon>
                 
             </Footer>
+            
         </Wrapper>
+  
     );
     
 }
