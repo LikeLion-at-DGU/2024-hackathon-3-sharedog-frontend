@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   font-size: 20px;
   font-family: SUIT, sans-serif; // 폰트 사용 예시
   font-weight: 800;
-  display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   margin: 3px;
 `;
@@ -35,12 +34,10 @@ export const InPutText = styled.div`
 
 export const DropDown = styled.div`
   width: 100%;
-
   display: flex;
+  align-items: center;
   padding: 10px;
-  align-items: flex-start;
   gap: 10px;
-  flex-shrink: 0;
   border-radius: 12px;
   border: 1px solid var(--Grayscale-Gray200, #eff1f3);
   background: var(--Grayscale-White, #fff);
@@ -55,13 +52,34 @@ export const DropDown = styled.div`
   letter-spacing: -0.24px;
 `;
 
-const InputDropdown = ({ title, inputtext }) => {
+export const DropDownSelect = styled.select`
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  padding: 0.5rem 0;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #000; // 필요에 따라 색상 조정
+  cursor: pointer; // 커서가 포인터로 변경되도록 추가
+`;
+
+const InputDropDown = ({ title, inputtext, value, options = [], onChange }) => {
   return (
     <Wrapper>
       <InPutSection>
         <InPutText>{title}</InPutText>
         <DropDown>
-          {inputtext}
+          <DropDownSelect value={value} onChange={onChange}>
+            <option value="" disabled>{inputtext}</option>
+            {options.length > 0 && options.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </DropDownSelect>
           <DropDownSVG />
         </DropDown>
       </InPutSection>
@@ -69,5 +87,5 @@ const InputDropdown = ({ title, inputtext }) => {
   );
 };
 
-export default InputDropdown;
+export default InputDropDown;
 export { DropDownSVG };
