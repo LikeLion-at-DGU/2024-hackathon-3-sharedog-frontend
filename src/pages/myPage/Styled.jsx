@@ -1,14 +1,14 @@
 // Styled.js 파일에서
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react"; // SVG 파일 가져오기
 import ProfileMyPageSVG from "../../assets/icons/profileMyPage.svg?react"; // SVG 파일 가져오기
 import PictureMyPageSVG from "../../assets/icons/pictureMyPage.svg?react"; // SVG 파일 가져오기
 import GoMyPageSVG from "../../assets/icons/goMyPage.svg?react"; // SVG 파일 가져오기
+import PetFootMyPageSVG from "../../assets/icons/petFootMyPage.svg?react"; // SVG 파일 가져오기
 
 // Wrapper: 전체 컨테이너 스타일
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: flex-start; /* 요소들을 상단에 배치 */
   align-items: center; /* 수평 중앙 정렬 */
   flex-direction: column; /* 요소들을 수직 정렬 */
   width: 100%;
@@ -57,23 +57,22 @@ export const InfoBox = styled.div`
 
 // Editbtn: 프로필 수정 버튼 스타일
 export const Editbtn = styled.button`
+  width: 100%;
+  height: 7vh;
+  border-radius: 0px 0px 10px 10px;
+  border: none;
+  background: rgba(255, 105, 105, 0.15);
+  transform: translateY(23%);
+
   display: flex;
   align-items: center;
-  padding: 2px 4px;
-  justify-content: center; /* 버튼 내용 중앙 정렬 */
-  gap: 4px;
-  margin-top: 5px;
+  justify-content: center;
 
-  border-radius: 10px;
-  border-style: none;
-  background: var(--Grayscale-Gray100, #f6f7f8);
-
-  color: var(--Grayscale-Gray400, #8490a0);
-  font-family: Pretendard;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 100%; /* 10px */
+  color: var(--Red-Red04, #ff6969);
+  font-family: SUIT;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.24px;
 `;
 
 export const ProfileImg = styled.div`
@@ -85,16 +84,14 @@ export const ProfileImg = styled.div`
 `;
 
 export const PictureImg = styled.div`
-  padding: 22px 22px;
-
-  border-radius: 32.047px;
-  border-style: none;
-  background: #eaeaec;
+  width: 20px;
+  height: 15px;
+  flex-shrink: 0;
 `;
 
 export const InfoList = styled.div`
   width: 80%;
-  height: 50vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -167,31 +164,54 @@ export const GoBtn = styled.div`
 
 export const InPutBox = styled.div`
   width: 80%;
-  height: 50vh;
+  height: 30vh;
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   flex-shrink: 0;
   gap: 10px;
 `;
 
-export const CompleteBtn = styled.div`
+export const BtnBox = styled.div`
+  width: 80%;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 10px;
+`;
+
+export const CompleteBtn = styled.button`
   display: flex;
   padding: 10px 47px;
   justify-content: center;
+  margin-top: 20px;
   align-items: center;
   gap: 10px;
   align-self: stretch;
 
   border-radius: 30px;
+  border: none;
   background: rgba(156, 156, 161, 0.5);
-
   color: #fff;
   font-family: SUIT;
   font-size: 16px;
-  font-style: normal;
   font-weight: 600;
   line-height: 140%; /* 22.4px */
+
+  &[data-active="true"] {
+    background-color: #ff6969;
+  }
 `;
 
 // EditMyPageSVG: SVG 아이콘 컴포넌트 내보내기
-export { EditMyPageSVG, ProfileMyPageSVG, GoMyPageSVG, PictureMyPageSVG };
+export {
+  EditMyPageSVG,
+  ProfileMyPageSVG,
+  GoMyPageSVG,
+  PictureMyPageSVG,
+  PetFootMyPageSVG,
+};
