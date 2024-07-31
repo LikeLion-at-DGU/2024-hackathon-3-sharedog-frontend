@@ -1,6 +1,7 @@
 // Header.jsx
 import styled from "styled-components";
 import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,13 +45,20 @@ const TitleTxt = styled.div`
 `;
 
 const Header = ({ title }) => {
+  const navigate = useNavigate();
+
+    const goBack = () => {
+        navigate(-1);
+    };
+
   return (
     <Wrapper>
       <HeaderBox>
-        <BackBtn>
+        <BackBtn onClick={goBack}>
           <BackBtnSVG />
         </BackBtn>
         <TitleTxt>{title}</TitleTxt> {/*props 수정*/}
+        <div style={{width: '11px'}}></div>
       </HeaderBox>
     </Wrapper>
   );
