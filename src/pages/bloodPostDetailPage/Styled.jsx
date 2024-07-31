@@ -20,7 +20,7 @@ const Line =styled.div` //게시글이랑 댓글 사이에 선
 
 //댓글목록디자인 만들기 
 
-const FooterCmt= style.div`
+const FooterCmt= styled.div`
     
 `;
 const detailPageStyles = {
