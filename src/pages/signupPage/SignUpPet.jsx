@@ -5,6 +5,8 @@ import {
   CautionSVG,
   CautionBox,
   CautionTitle,
+  CautionField,
+  Field
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -43,7 +45,7 @@ const SignUpPet = () => {
 
   const postData = async () => {
     try {
-      const response = await API.post('/api/accounts/profiles', {
+      const response = await API.post('/api/accounts/dogprofiles', {
         dogname,
         gender,
         dog_age,
@@ -69,7 +71,7 @@ const SignUpPet = () => {
   const handleCompleteClick = () => {
     if (isComplete) {
       postData();
-      navigate("/home");
+      navigate("/signupsplash");
     }
   };
 
@@ -77,53 +79,56 @@ const SignUpPet = () => {
     <>
       <Header title="회원가입" />
       <Wrapper>
-        <CautionBox>
-          <CautionSVG />
-          <CautionTitle>
-            <h1>대표로 등록할 반려견 정보를 입력해주세요.</h1>
-            <p>나중에 마이페이지에서 추가로 반려견 정보를 등록할 수 있어요!</p>
-          </CautionTitle>
-        </CautionBox>
-        <InPutBox>
-          <InputHolder
-            title={"반려견 이름"}
-            inputtext={"반려견 이름을 입력해 주세요."}
-            value={dogname}
-            onChange={(e) => setDogname(e.target.value)}
-          />
-          <Select
-            title={"반려견 성별"}
-            $isSelected={true}
-            value={gender}
-            onChange={(value) => setGender(value)}
-          />
-          <InputDropDown
-            title={"반려견 나이"}
-            inputtext={"반려견 나이를 선택해 주세요."}
-            value={dog_age}
-            options={ageOptions}
-            onChange={(e) => setDog_Age(e.target.value)}
-          />
-          <InputHolder
-            title={"반려견 몸무게"}
-            inputtext={"반려견 몸무게를 입력해 주세요."}
-            value={dog_weight}
-            onChange={(e) => setDogWeight(e.target.value)}
-          />
-          <InputDropDown
-            title={"반려견 혈액형"}
-            inputtext={"반려견 혈액형을 선택해 주세요."}
-            value={dog_blood}
-            options={bloodOptions}
-            onChange={(e) => setDogBlood(e.target.value)}
-          />
-          <CompleteBtn 
-            onClick={handleCompleteClick}
-            style={{ backgroundColor: isComplete ? '#FF6969' : 'rgba(156, 156, 161, 0.50)' }}
-          >
-            완료
-          </CompleteBtn>
-        </InPutBox>
+        <Field>
+          <CautionBox>
+            <CautionField>
+              <CautionSVG />
+              <CautionTitle>
+                <h1>대표로 등록할 반려견 정보를 입력해주세요.</h1>
+                <p>나중에 마이페이지에서 추가로 반려견 정보를 등록할 수 있어요!</p>
+              </CautionTitle>
+            </CautionField>
+          </CautionBox>
+          <InPutBox>
+            <InputHolder
+              title={"반려견 이름"}
+              inputtext={"반려견 이름을 입력해 주세요."}
+              value={dogname}
+              onChange={(e) => setDogname(e.target.value)}
+            />
+            <Select
+              title={"반려견 성별"}
+              $isSelected={true}
+              value={gender}
+              onChange={(value) => setGender(value)}
+            />
+            <InputHolder
+              title={"반려견 나이"}
+              inputtext={"반려견 나이를 선택해 주세요."}
+              value={dog_age}
+              onChange={(e) => setDog_Age(e.target.value)}
+            />
+            <InputHolder
+              title={"반려견 몸무게"}
+              inputtext={"반려견 몸무게를 입력해 주세요."}
+              value={dog_weight}
+              onChange={(e) => setDogWeight(e.target.value)}
+            />
+            <InputDropDown
+              title={"반려견 혈액형"}
+              inputtext={"반려견 혈액형을 선택해 주세요."}
+              value={dog_blood}
+              options={bloodOptions}
+              onChange={(e) => setDogBlood(e.target.value)}
+            />
+            <CompleteBtn 
+              onClick={handleCompleteClick}
+              style={{ backgroundColor: isComplete ? '#FF6969' : 'rgba(156, 156, 161, 0.50)' }}
+            >
+              완료
+            </CompleteBtn>
+          </InPutBox>
+        </Field>
       </Wrapper>
     </>
   );
