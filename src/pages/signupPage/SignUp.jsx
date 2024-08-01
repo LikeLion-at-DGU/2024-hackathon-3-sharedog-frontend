@@ -11,11 +11,11 @@ import {
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
+import { useNavigate } from "react-router-dom"; 
 import { API } from '../../api'; 
 
 const SignUp = () => {
-  const navigate = useNavigate(); // useNavigate 훅 초기화
+  const navigate = useNavigate(); 
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -29,14 +29,13 @@ const SignUp = () => {
         phone,
         email
       });
-      console.log('서버 응답 데이터:', response.data); // 서버 응답 데이터 콘솔에 찍기
+      console.log('서버 응답 데이터:', response.data); 
     } catch (error) {
-      console.log('네트워크 오류:', error); // 네트워크 오류 콘솔에 찍기
+      console.log('네트워크 오류:', error); 
     }
   };
 
   useEffect(() => {
-    // 모든 필드가 채워졌는지 확인
     if (name && phone && email) {
       setIsComplete(true);
     } else {
@@ -46,14 +45,14 @@ const SignUp = () => {
 
   const handleCompleteClick = () => {
     if (isComplete) {
-      postData(); // 데이터 전송
-      navigate("/SignUpPet"); // /SignUpPet 경로로 이동
+      postData(); 
+      navigate("/SignUpPet"); 
     }
   };
 
   return (
     <>
-      <Header title="회원가입" />
+      <Header title="회원가입" progress={50} /> {/* Progress 50% */}
       <Wrapper>
         <Field>
           <InputField>
