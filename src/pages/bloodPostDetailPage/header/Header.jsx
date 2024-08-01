@@ -9,9 +9,11 @@ const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 10vh;
+    height: 8vh;
     background-color: #FFF;
-    
+    position: fixed;  /* 헤더를 고정 */
+  top: 0;
+  z-index: 1001;    /* 다른 요소 위에 표시되도록 z-index 설정 */
 `;
 
 const HeaderBox = styled.div`
