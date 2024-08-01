@@ -28,8 +28,8 @@ export const RegionButtonsContainer = styled.div`
 
 export const RegionButtons = styled.div`
   display: flex;
-  width: 100%;
-  /* margin: 0 auto; */
+  width: 88%;
+  margin: 0 auto;
   align-items: center;
   /* gap: 12px; */
   justify-content: space-between;
@@ -55,7 +55,6 @@ export const RegionButton = styled.button`
   box-sizing: border-box; // 패딩과 보더를 포함하여 크기를 계산
   cursor: pointer;
   &.active {
-    border-radius: 50px;
     border: 1px solid var(--Red-Red04, #FF6969);
     color: var(--Red-Red04, #FF6969);
     background: rgba(255, 105, 105, 0.20);
@@ -69,7 +68,7 @@ export const HospitalContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: center; // Center the content horizontally
+  align-items: center; 
   justify-content: center;
 `;
 
