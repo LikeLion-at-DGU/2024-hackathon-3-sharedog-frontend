@@ -56,20 +56,25 @@ const BloodPostDetail = () => {
     <Header title="커뮤니티"/>
     
     <S.Body>
-      <S.Content>
+      
         {post ? (
+          <S.Content>
             <DetailCard
               post={post}
               isLiked={isLiked}
               likeCount={likeCount}
               handleLikeToggle={handleLikeToggle}
             />
+            <S.Line/>
+            {post.comments.map((comment) => (
+                <S.Comments key={comment.id} comment={comment} />
+              ))}
+            </S.Content>
           ) : (
             <div>Loading...</div>
           )}
-        <S.Line/>
-      </S.Content>
-      <S.CommentBox />
+
+      <S.CommentSend />
     </S.Body>
     </S.Wrapper>
     

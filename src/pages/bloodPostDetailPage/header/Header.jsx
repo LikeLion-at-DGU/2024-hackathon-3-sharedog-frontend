@@ -7,8 +7,11 @@ import { useNavigate } from "react-router-dom";
 const Wrapper = styled.div`
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: 10vh;
+    background-color: #FFF;
+    
 `;
 
 const HeaderBox = styled.div`

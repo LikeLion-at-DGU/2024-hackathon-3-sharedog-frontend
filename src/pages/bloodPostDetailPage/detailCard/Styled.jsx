@@ -8,6 +8,9 @@ const Wrapper = styled.div`
     /* height: 80vh;
     flex: 1;
     overflow-y: auto; */
+    border-radius: 10px;
+    border: 1px solid var(--Color-Gray-Gray01, #EAEAEA);
+    background: #FFF;
 `;
 //88%
 const ContentWrapper = styled.div`
