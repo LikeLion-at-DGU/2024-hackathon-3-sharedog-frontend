@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faMagnifyingGlass as faMagnifyingGlassSolid, } 
     from "@fortawesome/free-solid-svg-icons";
 import HeaderWrite from '../../../assets/icons/headerWriteBtn.svg?react'
-
-import { useNavigate } from 'react-router-dom'; // React Router의 useNavigate 훅 추가
+import React, { useEffect, useState } from 'react';
+import { useNavigate, } from 'react-router-dom'; // React Router의 useNavigate 훅 추가
 
 const Wrapper = styled.div` //헤더 전체 프레임 
     display  :flex ;
@@ -47,8 +47,8 @@ const SearchBtn =styled.button` //검색창안에 돋보기 css
     margin: 0;
     cursor: pointer;
 `;
-const SearchIcon = ({ icon }) => ( //돋보기 fontawsome으로 가져옴
-    <SearchBtn>
+const SearchIcon = ({ icon,onClick }) => ( //돋보기 fontawsome으로 가져옴
+    <SearchBtn onClick={onClick}>
         <FontAwesomeIcon icon={icon} />
     </SearchBtn>
 );
@@ -83,20 +83,31 @@ const SearchInput=styled.input`
     }
 `;
 
-const Header = () => {
+const Header = ({ onSearch }) => {
 
     const navigate = useNavigate(); // useNavigate 훅 초기화
+
+    const [searchText, setSearchText] = useState("");//검색기능 
 
     const handleNavigateToPostWrite = () => {
         navigate('/postwrite'); // 글쓰기 페이지 경로
     };
 
+    //검색어 함수
+    const handleSearchChange = (e) => {
+        setSearchText(e.target.value);
+      };
+    const handleSearchClick = () => { // 검색 버튼 클릭 시 검색어 상태 업데이트
+        onSearch(searchText);
+      };
     return (
     <Wrapper>
         <HeaderBox>
             <Search>
-                <SearchInput placeholder="검색어를 입력하세요." />
-                <SearchIcon icon={faMagnifyingGlassSolid}/>
+                <SearchInput placeholder="검색어를 입력하세요." 
+                value={searchText}
+                onChange={handleSearchChange}/>
+                <SearchIcon icon={faMagnifyingGlassSolid} onClick={handleSearchClick}/>
             </Search>
             <WriteBtn onClick={handleNavigateToPostWrite}>
                 <HeaderWrite/>

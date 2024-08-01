@@ -6,12 +6,12 @@ import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as faHeartRegular, faCommentDots as faCommentDotsRegular } from "@fortawesome/free-regular-svg-icons";
 import D from './Styled'; // 새로 생성한 스타일 파일을 임포트
 
-const removePortFromURL = (url) => {
-  if (!url) return url; // url이 없다면 바로 반환
-  const urlObj = new URL(url);
-  urlObj.port = ''; // 포트 번호 제거
-  return urlObj.href; // 수정된 URL 반환
-};
+// const removePortFromURL = (url) => {
+//   if (!url) return url; // url이 없다면 바로 반환
+//   const urlObj = new URL(url);
+//   urlObj.port = ''; // 포트 번호 제거
+//   return urlObj.href; // 수정된 URL 반환
+// };
 
 const DetailCard = ({ post, isLiked, likeCount, handleLikeToggle }) => {
   if (!post) {
@@ -36,17 +36,17 @@ const DetailCard = ({ post, isLiked, likeCount, handleLikeToggle }) => {
           {/* 이미지가 있을때는 출력하기 */}
           {post.image_1 && (
             <D.ImageWrapper>
-              <img src={removePortFromURL(post.image_1)} alt={post.title} />
+              <img src={post.image_1} alt={post.title} />
             </D.ImageWrapper>
           )}
           {post.image_2 && (
           <D.ImageWrapper>
-              <img src={removePortFromURL(post.image_2)} alt={post.title} />
+              <img src={post.image_2} alt={post.title} />
             </D.ImageWrapper>
           )}
           {post.image_2 && (
             <D.ImageWrapper>
-              <img src={removePortFromURL(post.image_3)} alt={post.title} />
+              <img src={post.image_3} alt={post.title} />
             </D.ImageWrapper>
             )}
           <D.Content $hasImage={!!post.image_1}>{post.content}</D.Content>

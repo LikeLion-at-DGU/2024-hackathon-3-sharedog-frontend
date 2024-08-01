@@ -52,24 +52,26 @@ const BloodPostDetail = () => {
   }
 
   return (
-    <>
+    <S.Wrapper>
     <Header title="커뮤니티"/>
     
-    <S.Wrapper>
-      
-      {post ? (
-          <DetailCard
-            post={post}
-            isLiked={isLiked}
-            likeCount={likeCount}
-            handleLikeToggle={handleLikeToggle}
-          />
-        ) : (
-          <div>Loading...</div>
-        )}
+    <S.Body>
+      <S.Content>
+        {post ? (
+            <DetailCard
+              post={post}
+              isLiked={isLiked}
+              likeCount={likeCount}
+              handleLikeToggle={handleLikeToggle}
+            />
+          ) : (
+            <div>Loading...</div>
+          )}
         <S.Line/>
+      </S.Content>
+      <S.CommentBox />
+    </S.Body>
     </S.Wrapper>
-    </>
     
   );
 };
