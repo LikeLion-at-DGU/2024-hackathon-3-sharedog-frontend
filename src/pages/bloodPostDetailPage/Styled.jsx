@@ -18,10 +18,12 @@ const Body = styled.div`
     align-items: center;
     width: 88%;
     height: 80vh;
+    height: 100vh;
     flex: 1;
     overflow-y: auto;
     gap:23px;
-    position: relative;
+    /* position: relative;
+    //FooterCmt를 position: absolute;로 하단에 고정시키기 위함  */
 `;
 
 const Content = styled.div`
@@ -43,15 +45,22 @@ const Line =styled.div` //게시글이랑 댓글 사이에 선
 const FooterCmt= styled.div`
     display: flex;
     justify-content: center;
-    width: 99%;
+    width: 88%;//position:fixed;설정을 해놔서 부모 요소영향을 안받음 
     height: 34px;
+    margin: 0 auto;
     border-radius: 20px;
     background: #FFF;
     border: 1px solid #EAEAEA;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.15);
-    margin-bottom:10px;
+    margin-bottom:20px;
 
- 
+    
+  //댓글 다는 푸터 하단에 고정시키기 
+    position:fixed;
+    bottom: 10vh;  // 뷰포트의 하단에 고정
+    left: 0;
+    right: 0;
+    z-index: 1000;  
 `;
 const FooterCmtContent=styled.div`
     display: flex;

@@ -65,7 +65,7 @@ const DetailCard = ({ post, isLiked, likeCount, handleLikeToggle }) => {
           </D.LikeCount>
           <D.CommentCount>
             <D.CommentIcon icon={faCommentDotsRegular} />    
-            {post.comments_cnt} {/*이거 api에 없는듯이항목 */}
+            {post.comments_cnt} 
           </D.CommentCount>
         </D.FooterIcon>
       </D.Footer>
