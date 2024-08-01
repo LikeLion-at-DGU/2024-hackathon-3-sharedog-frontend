@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { Wrapper, RegionButtonsContainer, RegionButtons, RegionButton, HospitalContainer, HospitalCard, HospitalImage, HospitalInfo, HosPlace, VectorIcon } from './Styled';
 import Header from './header/Header';
 import dummyReservation from '../../data/dummyReservation';
+import styled from "styled-components";
 
 const BloodReservation = () => {
   const [selectedRegion, setSelectedRegion] = useState('전체');
@@ -19,6 +21,21 @@ const BloodReservation = () => {
     (selectedRegion === '전체' || hospital.region === selectedRegion) &&
     hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const HospitalCard = styled(Link)`
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--Color-Gray-Gray01, #EAEAEA);
+  background: #FFF;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  width: 100%;
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+`;
 
   return (
     <>
@@ -39,7 +56,7 @@ const BloodReservation = () => {
         </RegionButtonsContainer>
         <HospitalContainer>
           {filteredHospitals.map(hospital => (
-            <HospitalCard key={hospital.id}>
+            <HospitalCard key={hospital.id} to={`/calendar/${hospital.id}`}>
               <HospitalImage src={hospital.image} alt={`${hospital.name}_image`} />
               <HospitalInfo>
                 <h1>{hospital.name}</h1>
