@@ -18,13 +18,14 @@ const Body = styled.div`
     flex-direction: column;
     align-items: center;
     width: 88%;
-    height: 80vh;
-    height: 100vh;
+    /* height: 80vh; */
+    height: 80vh; /* 80vh에서 FooterCmt 높이를 제외 */
     flex: 1;
     overflow-y: auto;
+    padding-top:8vh;
+    padding-bottom: 10vh; /* FooterCmt 높이만큼 padding 추가 */
+   
     
-    /* position: relative;
-    //FooterCmt를 position: absolute;로 하단에 고정시키기 위함  */
 `;
 
 const Content = styled.div`
@@ -44,11 +45,17 @@ const Line =styled.div` //게시글이랑 댓글 사이에 선
 `;
 
 //댓글목록디자인-------------------------------------------- 
+const CmtDepth = styled.div`//대댓글에서만 적용되는 스타일디브
+  margin-left: ${props => props.$depth * 5}vw;
+  width: calc(100% - ${props => props.$depth * 5}vw);
+  margin-top:  ${props => props.$depth * 10}px;
+`;
 const CmtWrapper =styled.div` //댓글 하나 전체를  감싸는 디브 
   width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
+
 `;
 const CmtProfile = styled.div`//댓글프로필 
     display: flex;
@@ -67,26 +74,48 @@ const CmtProfile = styled.div`//댓글프로필
 `;
 const CmtContent =styled.div` //댓글내용 디브 
   display: flex;
-  width: 80%;
+  width: 100%;
+  min-height: 46px;
   border-radius: 10px;
   border: 1px solid var(--Color-Gray-Gray01, #EAEAEA);
   background: #FFF;
 `;
-const Comments  = ({comment }) => {
+const Comments  = ({comment, depth = 0 }) => {
   
   return (
-   <CmtWrapper>
-    <CmtProfile>
-      <img src={comment.profileImageUrl} alt={comment.writer} />
-    </CmtProfile>
-    <CmtContent>
-
-    </CmtContent>
-   </CmtWrapper>
+    <CmtDepth $depth={depth}>
+      <CmtWrapper>
+        <CmtProfile>
+          <img src={comment.profileImageUrl} alt={comment.writer} />
+        </CmtProfile>
+        <CmtContent>
+          {comment.content}
+        </CmtContent>
+      </CmtWrapper>
+      {comment.recomments && comment.recomments.length > 0 && (
+        comment.recomments.map((recomment) => (
+          <Comments key={recomment.id} comment={recomment} depth={depth + 1} />
+        ))
+      )}
+    </CmtDepth>
   );
 };
 // ----------------------------------------------------------
 //댓글작성하는 푸터 디자인 -----------------------------------
+
+const Color = styled.div`//댓글달때 배경색
+  background-color: #FAFAFC;
+  box-shadow: 0px 4px 14px 0px rgba(47, 47, 47, 0.04); /* 새로운 그림자 효과 추가 */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
+  position:fixed;
+    bottom: 10vh;  // 푸터바로위에 위치하려고 푸터높이만큼 높임 
+    left: 0;
+    right: 0;
+    z-index: 999;
+`;
 const FooterCmt= styled.div`
     display: flex;
     justify-content: center;
@@ -102,7 +131,8 @@ const FooterCmt= styled.div`
     
   //댓글 다는 푸터 하단에 고정시키기 
     position:fixed;
-    bottom: 10vh;  // 푸터바로위에 위치하려고 푸터높이만큼 높임 
+    /* bottom: 10vh;  // 푸터바로위에 위치하려고 푸터높이만큼 높임  */
+    bottom: 10vh;  // 푸터 위에 적절한 위치로 설정
     left: 0;
     right: 0;
     z-index: 1000;  
@@ -135,6 +165,7 @@ const IconWrapper = styled.div`
 `;
 
 
+
 const CommentSend  = () => {
     const [inputValue, setInputValue] = useState('');
   
@@ -143,6 +174,7 @@ const CommentSend  = () => {
     };
   
     return (
+      <Color>
       <FooterCmt>
         <FooterCmtContent>
           <Input
@@ -156,6 +188,7 @@ const CommentSend  = () => {
           </IconWrapper>
         </FooterCmtContent>
       </FooterCmt>
+      </Color>
     );
   };
 // -----------------------------------
