@@ -100,13 +100,20 @@ const Header = ({ onSearch }) => {
     const handleSearchClick = () => { // 검색 버튼 클릭 시 검색어 상태 업데이트
         onSearch(searchText);
       };
+       // [추가된 부분] 엔터 키를 눌렀을 때 검색을 실행하는 함수
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            onSearch(searchText);
+        }
+    };
     return (
     <Wrapper>
         <HeaderBox>
             <Search>
                 <SearchInput placeholder="검색어를 입력하세요." 
                 value={searchText}
-                onChange={handleSearchChange}/>
+                onChange={handleSearchChange}
+                onKeyDown={handleKeyPress}/>
                 <SearchIcon icon={faMagnifyingGlassSolid} onClick={handleSearchClick}/>
             </Search>
             <WriteBtn onClick={handleNavigateToPostWrite}>
