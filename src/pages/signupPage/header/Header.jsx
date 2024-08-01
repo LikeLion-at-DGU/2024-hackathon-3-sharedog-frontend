@@ -1,13 +1,13 @@
-// Header.jsx
 import styled from "styled-components";
 import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
 import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 10vh;
+  height: 10vh; /* Adjusted height to fit the progress bar */
 `;
 
 const HeaderBox = styled.div`
@@ -15,7 +15,7 @@ const HeaderBox = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 88%;
-  height: 8vh;
+  height: 7vh;
   flex-shrink: 0;
 `;
 
@@ -44,12 +44,24 @@ const TitleTxt = styled.div`
   font-weight: 600;
 `;
 
-const Header = ({ title }) => {
+const ProgressBarContainer = styled.div`
+  width: 100%;
+  height: 0.5vh;
+  background-color: #EFF1F3;
+`;
+
+const ProgressBar = styled.div`
+  width: ${(props) => props.progress}%;
+  height: 100%;
+  background-color: #FF6969;
+`;
+
+const Header = ({ title, progress }) => {
   const navigate = useNavigate();
 
-    const goBack = () => {
-        navigate(-1);
-    };
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return (
     <Wrapper>
@@ -57,9 +69,12 @@ const Header = ({ title }) => {
         <BackBtn onClick={goBack}>
           <BackBtnSVG />
         </BackBtn>
-        <TitleTxt>{title}</TitleTxt> {/*props 수정*/}
+        <TitleTxt>{title}</TitleTxt>
         <div style={{width: '11px'}}></div>
       </HeaderBox>
+      <ProgressBarContainer>
+        <ProgressBar progress={progress} />
+      </ProgressBarContainer>
     </Wrapper>
   );
 };
