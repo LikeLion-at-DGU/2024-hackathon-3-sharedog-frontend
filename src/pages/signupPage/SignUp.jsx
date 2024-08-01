@@ -6,7 +6,10 @@ import {
   InPutBox,
   CompleteBtn,
   Field,
-  InputField
+  InputField,
+  PictureImg,
+  PictureMyPageSVG,
+  Editbtn,
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -21,6 +24,8 @@ const SignUp = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [isComplete, setIsComplete] = useState(false);
+
+  const [uploadedImage, setUploadedImage] = useState(null);
 
   const postData = async () => {
     try {
@@ -50,6 +55,12 @@ const SignUp = () => {
     }
   };
 
+  const onChangeImage = e => {
+    const file = e.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    setUploadedImage(imageUrl);
+  }
+
   return (
     <>
       <Header title="회원가입" progress={50} /> {/* Progress 50% */}
@@ -57,9 +68,23 @@ const SignUp = () => {
         <Field>
           <InputField>
             <MyInfo>
-              <ProfileImg>
-                <ProfileMyPageSVG />
+              <ProfileImg imageUrl={uploadedImage}>
+                {!uploadedImage && <ProfileMyPageSVG />}
               </ProfileImg>
+              <Editbtn>
+                <PictureImg>
+                  <PictureMyPageSVG />
+                </PictureImg>
+                <label htmlFor="imageUpload" style={{ cursor: 'pointer' }}>
+                  프로필 사진 등록하기
+                </label>
+                <input
+                  type="file"
+                  id="imageUpload"
+                  style={{ display: 'none' }}
+                  onChange={onChangeImage}
+                />
+              </Editbtn>
             </MyInfo>
             <InPutBox>
               <InputHolder
