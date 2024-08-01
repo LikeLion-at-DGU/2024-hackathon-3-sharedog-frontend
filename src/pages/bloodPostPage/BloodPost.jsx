@@ -17,6 +17,7 @@ const BloodPost = () => {
   const [selectedRegion, setSelectedRegion] = useState("지역");
   const [selectedBloodType, setSelectedBloodType] = useState("혈액형");
 
+  const [searchQuery, setSearchQuery] = useState("");
   // 초기에는 더미 데이터를 사용
   // setPosts(dummyBloodPost);
   // 실제 API 호출이 필요한 경우, 아래 코드를 사용
@@ -24,32 +25,45 @@ const BloodPost = () => {
    const fetchPosts = async () => {
     try {
         // 선택된 필터 값을 쿼리 파라미터로 포함하여 API 요청
-        const params= {
-                region: selectedRegion === "지역" ? undefined : selectedRegion,
-                bloodType: selectedBloodType === "혈액형" ? undefined : selectedBloodType
-            };
-          
-        console.log('Fetching posts with params:', params); // 필터링된 파라미터 콘솔 로그
-        // 받아온 데이터를 상태에 저장
-        
-
-        const response = await API.get('/api/community/posts', { params });
+        let url = '/api/community/posts'; // 기본 URL 설정
+        const params = {};
+    
+        if (searchQuery) {
+          // 검색어가 있는 경우 검색 엔드포인트 사용
+          url = '/api/community/posts';
+          params.q = searchQuery;
+        } else {
+          // 검색어가 없는 경우 필터 엔드포인트 사용
+          url = '/api/community/posts/filter';
+          if (selectedRegion !== "지역") {
+            params.region = selectedRegion;
+          }
+          if (selectedBloodType !== "혈액형") {
+            params.blood = selectedBloodType;
+          }
+        }
+    
+        console.log('Fetching posts from:', url, 'with params:', params); // 필터링된 파라미터 콘솔 로그
+    
+        // API 요청을 통해 데이터를 가져옴
+        const response = await API.get(url, { params });
         console.log('받아온헌혈글들:', response.data); // API 응답 데이터 콘솔 로그
-        
+    
+        // 받아온 데이터를 상태에 저장
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);
-    }
-};
+      }
+    };
 
 // 선택된 필터가 변경될 때마다 데이터를 다시 가져오기 위해 useEffect 훅 사용
 useEffect(() => {
     fetchPosts();
-}, [selectedRegion, selectedBloodType]); // 의존성 배열에 필터 상태 추가
+}, [selectedRegion, selectedBloodType,searchQuery]); // 의존성 배열에 필터 상태 추가
 
 return (
     <>
-        <Header />
+        <Header onSearch={setSearchQuery} />
         <Wrapper>
             <DropdownWrapper>
                 {/* 지역 선택 드롭다운 */}

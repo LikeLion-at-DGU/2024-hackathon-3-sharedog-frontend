@@ -4,10 +4,13 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Wrapper = styled.div`
-    width: 88%;
+    width: 100%;
     /* height: 80vh;
     flex: 1;
     overflow-y: auto; */
+    border-radius: 10px;
+    border: 1px solid var(--Color-Gray-Gray01, #EAEAEA);
+    background: #FFF;
 `;
 //88%
 const ContentWrapper = styled.div`

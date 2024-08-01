@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
     align-items: center;
     /* justify-content: center; */
     gap:20px;
+
     width: 100%;
     height: 80vh;
     /* font-size: 20px;

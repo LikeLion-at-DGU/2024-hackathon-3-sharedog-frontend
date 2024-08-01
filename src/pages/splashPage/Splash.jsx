@@ -21,7 +21,7 @@ const Splash = () => {
       <Box>
         <Logo/>
         <Slogan>반려견 헌혈,<br/><br/>신청부터 관리까지 한 번에</Slogan>
-        <Title>나눠주개</Title>
+        <Title>포피 Poppy</Title>
       </Box>
   </Wrap>
   )

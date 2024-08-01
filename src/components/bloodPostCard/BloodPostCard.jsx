@@ -15,15 +15,40 @@ import React, { useState } from 'react'; //하트 클릭하면 채워지게 만�
 import { API } from '../../api';
 
 //이미지 url포트번호 제거하는 함수 
-const removePortFromURL = (url) => {
-    if (!url) return url; // url이 없다면 바로 반환
-    const urlObj = new URL(url);
-    urlObj.port = ''; // 포트 번호 제거
-    return urlObj.href; // 수정된 URL 반환
-}
+// const removePortFromURL = (url) => {
+//     try {
+//         // if (!url || url.includes('None')) {
+//         //     console.error('Invalid or missing URL, skipping image display.');
+//         //     return null; // 이미지 표시를 건너뛰도록 null 반환
+//         // }
+
+//         // 절대 URL로 변환
+//         const absoluteUrl = new URL(url, window.location.origin).href;
+
+//         // 절대 URL에서 포트 번호 제거
+//         const urlObj = new URL(absoluteUrl);
+//         urlObj.port = ''; // 포트 번호 제거
+//         return urlObj.href; // 수정된 URL 반환
+//     } catch (error) {
+//         console.error('Invalid URL:', url, error); // 유효하지 않은 URL 에러 로그
+//         return null; // 이미지 표시를 건너뛰도록 null 반환
+//     }
+// };
+//url추가하는 함수 
+// const addBaseUrl = (url) => {
+//     if (!url) return url;
+//     const baseUrl = 'http://52.79.63.140';
+//     return url.startsWith('/media') ? `${baseUrl}${url}` : url;
+//   };
 
 
-
+//   const removePortFromURL = (url) => {
+//     if (!url) return url; // url이 없다면 바로 반환
+//     const urlObj = new URL(url);
+//     urlObj.port = ''; // 포트 번호 제거
+//     return urlObj.href; // 수정된 URL 반환
+//   };
+  
 const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
     
     const [isLiked, setIsLiked] = useState(false);
@@ -66,7 +91,8 @@ const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bl
                     {/* 이미지가 있을때는 출력하기 */}
                     {image && (
                         <ImageWrapper>
-                        <img src={removePortFromURL(image)} alt={title} />
+                        <img src={image} alt={title} />
+                        {/* {removePortFromURL(image)} */}
                         </ImageWrapper>
                     )}
                     <Content $hasImage={!!image}>{content}</Content>

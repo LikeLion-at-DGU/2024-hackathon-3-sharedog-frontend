@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 const SignUpSplash = () => {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     navigate('/home');
-  //   }, 2000); // 2초 후 로그인 페이지로 이동
-  //   return () => clearTimeout(timer);
-  // }, [navigate]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/home');
+    }, 2000); // 2초 후 로그인 페이지로 이동
+    return () => clearTimeout(timer);
+  }, [navigate]);
 
   return (
     <Wrap>

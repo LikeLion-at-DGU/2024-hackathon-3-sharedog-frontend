@@ -1,5 +1,5 @@
 //긴급헌혈페이지 작성게시글카드 담당자:이동건
-
+//bloodPostCard Styled
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
 // 기본 글꼴 설정
