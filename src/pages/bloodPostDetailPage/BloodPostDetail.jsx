@@ -67,15 +67,16 @@ const BloodPostDetail = () => {
             />
             <S.Line/>
             {post.comments.map((comment) => (
-                <S.Comments key={comment.id} comment={comment} />
-              ))}
+              <S.Comments key={comment.id} comment={comment} depth={0} />
+            ))}
             </S.Content>
           ) : (
             <div>Loading...</div>
           )}
 
-      <S.CommentSend />
+
     </S.Body>
+    <S.CommentSend />
     </S.Wrapper>
     
   );
