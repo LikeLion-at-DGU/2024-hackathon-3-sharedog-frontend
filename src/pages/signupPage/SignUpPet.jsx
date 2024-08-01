@@ -69,7 +69,7 @@ const SignUpPet = () => {
 
   return (
     <>
-      <Header title="회원가입" />
+      <Header title="회원가입" progress={100} /> {/* Progress 100% */}
       <Wrapper>
         <Field>
           <InputField>
