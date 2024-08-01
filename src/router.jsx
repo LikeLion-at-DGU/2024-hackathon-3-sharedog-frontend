@@ -16,6 +16,7 @@ import SignUp from "./pages/signupPage/SignUp";
 import SignUpPet from "./pages/signupPage/SignUpPet";
 import SignUpSplash from "./pages/signupSplashPage/SignUpSplash";
 import BloodPostDetail from "./pages/bloodPostDetailPage/BloodPostDetail";
+import Calendar from "./pages/calendarPage/Calendar";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       { path: "/signup", element: <SignUp /> }, //회원가입 화면
       { path: "/signuppet", element: <SignUpPet /> },
       { path: "/signupsplash", element: <SignUpSplash /> },
+      { path: "/calendar/:id", element: <Calendar /> },
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
