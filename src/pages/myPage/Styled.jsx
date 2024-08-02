@@ -22,12 +22,10 @@ export const Wrapper = styled.div`
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
 export const MyInfo = styled.div`
   width: 80%;
-  height: 25vh;
+  height: 20vh;
   flex-shrink: 0;
   border-radius: 11.587px;
-  border: 1.159px solid rgba(234, 234, 234, 0.8);
-  background: #fff;
-  margin-bottom: 10px;
+  margin-top: 10px;
 
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
@@ -58,11 +56,10 @@ export const InfoBox = styled.div`
 // Editbtn: 프로필 수정 버튼 스타일
 export const Editbtn = styled.button`
   width: 100%;
-  height: 7vh;
+  height: 50px;
   border-radius: 0px 0px 10px 10px;
   border: none;
   background: rgba(255, 105, 105, 0.15);
-  transform: translateY(23%);
 
   display: flex;
   align-items: center;
@@ -76,11 +73,19 @@ export const Editbtn = styled.button`
 `;
 
 export const ProfileImg = styled.div`
-  padding: 15.058px 15.83px;
-
-  border-radius: 32.047px;
-  border-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16vw; // 적절한 크기로 설정
+  height: 16vw; // 적절한 크기로 설정
+  border-radius: 50%;
+  flex-shrink: 0;
   background: #eaeaec;
+  background-image: ${({ imageUrl }) =>
+    imageUrl ? `url(${imageUrl})` : "none"};
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; // 이미지가 요소의 경계를 넘어가지 않도록
 `;
 
 export const PictureImg = styled.div`
@@ -211,6 +216,7 @@ export const PlusBtn = styled.button`
   display: flex;
   width: 112px;
   padding: 11.868px 0px;
+  margin: 10px;
   justify-content: center;
   align-items: center;
   border-radius: 22.252px;
