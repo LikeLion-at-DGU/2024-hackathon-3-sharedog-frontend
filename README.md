@@ -1,7 +1,7 @@
 ![헤더배너](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=header&text=2024-hackathon-3-sharedog-frontend&fontSize=40)
 
 <div align="center" style="font-size: 1.5em;">
-     <strong>&#x1F64B; 멋쟁이사자처럼 중앙 해커톤 '나눠주개' 프론트엔드 레포지토리 입니다. &#x1F64B;</strong>
+     <strong>&#x1F64B; 멋쟁이사자처럼 중앙 해커톤 '포피' 프론트엔드 레포지토리 입니다. &#x1F64B;</strong>
 </div>
 <br>
 
