@@ -30,7 +30,7 @@ export const InputField = styled.div`
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   justify-content: center; /* 수직 중앙 정렬 */
-  align-items: center; 
+  align-items: center;
   width: 100%;
   height: 75vh;
 `;
@@ -75,11 +75,11 @@ export const CautionBox = styled.div`
   align-items: center;
   width: 100%;
   border-radius: 10px;
-  background: rgba(255, 105, 105, 0.10);
+  background: rgba(255, 105, 105, 0.1);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 `;
 
-export const CautionField = styled.div` 
+export const CautionField = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -89,7 +89,7 @@ export const CautionField = styled.div`
 
 export const CautionTitle = styled.div`
   h1 {
-    color: var(--Gray-Gray03, #3A3A3C);
+    color: var(--Gray-Gray03, #3a3a3c);
     font-family: SUIT;
     font-size: 13px;
     font-style: normal;
@@ -114,12 +114,13 @@ export const ProfileImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16vw;  // 적절한 크기로 설정
+  width: 16vw; // 적절한 크기로 설정
   height: 16vw; // 적절한 크기로 설정
   border-radius: 50%;
   flex-shrink: 0;
   background: #eaeaec;
-  background-image: ${({ imageUrl }) => imageUrl ? `url(${imageUrl})` : 'none'};
+  background-image: ${({ imageUrl }) =>
+    imageUrl ? `url(${imageUrl})` : "none"};
   background-size: cover;
   background-position: center;
   overflow: hidden; // 이미지가 요소의 경계를 넘어가지 않도록

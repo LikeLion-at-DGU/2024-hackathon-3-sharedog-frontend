@@ -1,9 +1,11 @@
+
 import React from 'react';
 import styled from 'styled-components';
 import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import dummyReservation from "../../../data/dummyReservation";
+
 import  VectorIcon  from '../../../assets/icons/Vector.svg?react';
 
 const Wrapper = styled.div`
@@ -40,6 +42,7 @@ const HosPlace = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 9px;
+
   color: var(--Red-Red04, #FF6969);
   font-family: SUIT;
   font-size: 12px;
@@ -49,6 +52,7 @@ const HosPlace = styled.div`
 `;
 
 const BackBtn = styled.button`
+
     display: flex;
     font-size: 19px;
     justify-content: center;
@@ -86,6 +90,7 @@ const Header = () => {
             </HeaderBox>
         </Wrapper>
     );
+
 };
 
 export default Header;
