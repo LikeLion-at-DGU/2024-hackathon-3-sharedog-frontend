@@ -28,7 +28,9 @@ const Home = () => {
         <Bg>
             <Header/>
             <OverlapContent>
-                겹치는 부분 
+            <PetTest>
+
+            </PetTest>
             </OverlapContent>
         </Bg>
         <ContentWrapper>
