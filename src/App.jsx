@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 const Wrapper = styled.div`
   min-width: 360px;
   max-width:600px;
+
   width: 100%;
   height: 100vh;
   display: flex;
