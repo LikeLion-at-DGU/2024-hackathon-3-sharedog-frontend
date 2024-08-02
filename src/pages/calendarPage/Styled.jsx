@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import VectorIcon from '../../assets/icons/Vector.svg?react';
-
 
 export const Wrapper = styled.div`
   display: flex;
@@ -16,7 +14,6 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  padding: 0 20px;
   max-width: 800px;
   width: 88%;
   margin: 0 auto;
@@ -32,7 +29,7 @@ export const Title = styled.h1`
 
 export const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 25vh;
   border-radius: 6px;
 `;
 
@@ -46,4 +43,3 @@ export const HosInfo = styled.div`
   
 `;
 
-export {VectorIcon};

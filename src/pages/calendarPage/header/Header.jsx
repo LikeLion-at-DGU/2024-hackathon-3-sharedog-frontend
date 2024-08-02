@@ -4,20 +4,21 @@ import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import dummyReservation from "../../../data/dummyReservation";
-import { VectorIcon } from '../Styled';
+import  VectorIcon  from '../../../assets/icons/Vector.svg?react';
 
 const Wrapper = styled.div`
     display: flex;
-    justify-content: center;
+
     width: 100%;
     height: 10vh;
 `;
 
 const HeaderBox = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 88%;
+    margin: 0 auto;
 `;
 
 const Search = styled.div`
@@ -81,6 +82,7 @@ const Header = () => {
                   <p>{hospital.name}</p>
                 </HosPlace>
               </Search>
+              <div></div>
             </HeaderBox>
         </Wrapper>
     );
