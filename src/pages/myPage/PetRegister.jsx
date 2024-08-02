@@ -9,6 +9,7 @@ import {
   CompleteBtn,
   PictureImg,
   PictureMyPageSVG,
+  PetFootMyPageSVG,
   Editbtn,
 } from "./Styled";
 import Header from "./header/Header";
@@ -78,7 +79,7 @@ const PetRegister = () => {
               backgroundImage: uploadedImage ? `url(${uploadedImage})` : "none",
             }}
           >
-            {!uploadedImage && <ProfileMyPageSVG />}
+            {!uploadedImage && <PetFootMyPageSVG />}
           </ProfileImg>
           <InfoBox>루피</InfoBox>
           <Editbtn>

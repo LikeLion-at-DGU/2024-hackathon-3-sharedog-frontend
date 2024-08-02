@@ -8,6 +8,7 @@ const dummyPetInfo = [
     weight: "5kg",
     blood: "DEA 1.1",
     image: PostDog,
+    status: "best",
   },
   {
     id: 2,

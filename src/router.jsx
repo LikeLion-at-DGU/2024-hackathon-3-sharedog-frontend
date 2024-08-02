@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       { path: "/bloodPost", element: <BloodPost /> }, // 긴급헐혈 화면
       { path: "/bloodPost/:id", element: <BloodPostDetail /> }, //긴급헌혈 상세게시글 들어가기
       { path: "/reservation", element: <BloodReservation /> }, // 헌열예약 화면
-      { path: "/mypage", element: <MyPageMain /> }, // 마이페이지 화면
+      { path: "/mypagemain", element: <MyPageMain /> }, // 마이페이지 화면
       { path: "/mypageedit", element: <MyPageEdit /> }, // 마이페이지 프로필 수정 화면
       { path: "/petinfo", element: <PetInfo /> }, // 반려견 프로필 수정 화면
       { path: "/petedit", element: <PetEdit /> }, // 반려견 프로필 수정 화면
