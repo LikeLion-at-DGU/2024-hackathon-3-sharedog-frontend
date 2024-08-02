@@ -1,3 +1,5 @@
+//인포 카드 담당자: 최효은
+
 import React from "react";
 import styled from "styled-components";
 import CheckMyPageSVG from "../../assets/icons/checkMyPage.svg?react";
