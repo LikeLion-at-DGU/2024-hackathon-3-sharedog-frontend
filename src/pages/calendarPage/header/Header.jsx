@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass as faMagnifyingGlassSolid } from "@fortawesome/free-solid-svg-icons";
+import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import dummyReservation from "../../../data/dummyReservation";
+import { VectorIcon } from '../Styled';
 
 const Wrapper = styled.div`
     display: flex;
@@ -9,69 +12,75 @@ const Wrapper = styled.div`
     width: 100%;
     height: 10vh;
 `;
+
 const HeaderBox = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 80%;
-    gap: 22px;
+    width: 88%;
 `;
+
 const Search = styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content:center;
     box-sizing: border-box;
-    padding: 7px 18px;
-    width: 100%;
+    width: 80%;
     min-width: 260px;
     min-height: 33px;
     border-radius: 50px;
     border: 1px solid #FF6969;
     background: rgba(255, 255, 255, 0.80);
+    position: relative; /* Enable positioning for child elements */
 `;
-const SearchBtn = styled.button`
+
+const HosPlace = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+  color: var(--Red-Red04, #FF6969);
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+const BackBtn = styled.button`
     display: flex;
     font-size: 19px;
     justify-content: center;
     align-items: center;
-    color: #FF6969;
     background: none;
     border: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
 `;
-const SearchIcon = ({ icon }) => (
-    <SearchBtn>
-        <FontAwesomeIcon icon={icon} />
-    </SearchBtn>
-);
 
-const SearchInput = styled.input`
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: #9C9CA1;
-    font-family: SUIT;
-    font-size: 12px;
-    font-weight: 500;
-    &::placeholder {
-        color: rgba(255, 105, 105, 0.40);
-    }
-`;
+const Header = () => {
+    const navigate = useNavigate();
 
-const Header = ({ onSearchChange }) => {
+    const goBack = () => {
+        navigate(-1);
+    };
+
+    const { id } = useParams();
+    const hospital = dummyReservation.find((hospital) => hospital.id === parseInt(id));
+
     return (
         <Wrapper>
             <HeaderBox>
-                <Search>
-                    <SearchInput
-                        placeholder="검색어를 입력하세요."
-                        onChange={onSearchChange}
-                    />
-                    <SearchIcon icon={faMagnifyingGlassSolid} />
-                </Search>
+              <BackBtn onClick={goBack}>
+                  <BackBtnSVG />
+              </BackBtn>
+              <Search>
+                <HosPlace>
+                  <VectorIcon />
+                  <p>{hospital.name}</p>
+                </HosPlace>
+              </Search>
             </HeaderBox>
         </Wrapper>
     );
