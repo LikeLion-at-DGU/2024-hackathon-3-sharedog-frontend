@@ -207,6 +207,30 @@ export const CompleteBtn = styled.button`
   }
 `;
 
+export const PlusBtn = styled.button`
+  display: flex;
+  width: 112px;
+  padding: 11.868px 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 22.252px;
+  border: 1px solid var(--Red-Red04, #ff6969);
+  background: #fff;
+  color: var(--Red-Red04, #ff6969);
+  text-align: center;
+  font-family: SUIT;
+  font-size: 11.868px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 11.868px */
+  letter-spacing: 0.012px;
+
+  &:hover {
+    background: var(--Red-Red04, #ff6969);
+    color: var(--Gray-White, #fff);
+  }
+`;
+
 // EditMyPageSVG: SVG 아이콘 컴포넌트 내보내기
 export {
   EditMyPageSVG,

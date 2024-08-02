@@ -16,7 +16,7 @@ import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
 import React, { useState } from "react";
 
-const PetEdit = () => {
+const PetRegister = () => {
   // 선택된 성별을 상태로 관리
   const [selectedGender, setSelectedGender] = useState("");
 
@@ -27,7 +27,7 @@ const PetEdit = () => {
 
   return (
     <>
-      <Header title="반려견 정보 수정하기" />
+      <Header title="반려견 정보 등록하기" />
       <Wrapper>
         <MyInfo>
           <ProfileImg>
@@ -70,4 +70,4 @@ const PetEdit = () => {
   );
 };
 
-export default PetEdit;
+export default PetRegister;

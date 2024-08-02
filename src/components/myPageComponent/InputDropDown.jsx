@@ -59,8 +59,8 @@ export const DropDownSelect = styled.select`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  color: #9C9CA1;
-  color: var(--Gray-Gray01, #9C9CA1);
+  color: #9c9ca1;
+  color: var(--Gray-Gray01, #9c9ca1);
   font-family: SUIT;
   font-size: 12px;
   font-style: normal;
@@ -77,12 +77,15 @@ const InputDropDown = ({ title, inputtext, value, options = [], onChange }) => {
         <InPutText>{title}</InPutText>
         <DropDown>
           <DropDownSelect value={value} onChange={onChange}>
-            <option value="" disabled>{inputtext}</option>
-            {options.length > 0 && options.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.label}
-              </option>
-            ))}
+            <option value="" disabled>
+              {inputtext}
+            </option>
+            {options.length > 0 &&
+              options.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
           </DropDownSelect>
           <DropDownSVG />
         </DropDown>
