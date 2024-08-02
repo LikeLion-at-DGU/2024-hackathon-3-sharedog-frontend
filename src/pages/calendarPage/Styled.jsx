@@ -114,6 +114,7 @@ export const NextBtn = styled.div`
   gap: 10px;
   align-self: stretch;
   width: 88%;
+  max-width: 528px;
 
   border-radius: 30px;
   background: rgba(156, 156, 161, 0.5);
