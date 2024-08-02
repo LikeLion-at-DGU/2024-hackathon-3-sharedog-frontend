@@ -24,7 +24,7 @@ const Body = styled.div`
     overflow-y: auto;
     padding-top:8vh;
     padding-bottom: 10vh; /* FooterCmt 높이만큼 padding 추가 */
-   
+
     
 `;
 
@@ -167,7 +167,7 @@ const FooterCmt= styled.div`
     align-items: center;
     width: 88%;//position:fixed;설정을 해놔서 부모 요소영향을 안받음 
     min-width: 316px;
-    max-width: 886px;//fixed하면 그위에 설정했던게 다날라가서 이거도 해야됨 
+    max-width: 520px;//fixed하면 그위에 설정했던게 다날라가서 이거도 해야됨 
     height: 34px;
     margin: 0 auto;
     border-radius: 20px;
