@@ -32,6 +32,10 @@ const MyPageMain = () => {
     navigate("/PetInfo"); // /PetEdit 경로로 이동
   };
 
+  const handleReservationClick = () => {
+    navigate("/ReservationList"); // /PetEdit 경로로 이동
+  };
+
   return (
     <>
       <Header title="마이페이지" />
@@ -62,9 +66,9 @@ const MyPageMain = () => {
               </GoBtn>
             </ItemDetail>
             헌혈 예약
-            <ItemDetail>
+            <ItemDetail onClick={handleReservationClick}>
               헌혈 예약 내역
-              <GoBtn>
+              <GoBtn onClick={handleReservationClick}>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>
