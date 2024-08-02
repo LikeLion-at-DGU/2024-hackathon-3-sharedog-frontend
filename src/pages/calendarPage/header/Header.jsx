@@ -10,7 +10,6 @@ import  VectorIcon  from '../../../assets/icons/Vector.svg?react';
 
 const Wrapper = styled.div`
     display: flex;
-
     width: 100%;
     height: 10vh;
 `;
