@@ -4,6 +4,7 @@ import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react"; // SVG 파�
 import ProfileMyPageSVG from "../../assets/icons/profileMyPage.svg?react"; // SVG 파일 가져오기
 import PictureMyPageSVG from "../../assets/icons/pictureMyPage.svg?react"; // SVG 파일 가져오기
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
+import React, { useState } from "react";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -66,38 +67,66 @@ export const EditBtn = styled.button`
 `;
 
 export const ProfileImg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px; /* 고정된 크기로 설정 */
+  height: 70px; /* 고정된 크기로 설정 */
   padding: 15.058px 15.83px;
-
-  border-radius: 32.047px;
-  border-style: none;
+  border-radius: 50%;
+  flex-shrink: 0;
   background: #eaeaec;
+  background-image: ${({ imageUrl }) =>
+    imageUrl ? `url(${imageUrl})` : "none"};
+  background-size: cover;
+  background-position: center;
+  overflow: hidden; /* 이미지가 요소의 경계를 넘어가지 않도록 */
 `;
 
 export const PictureImg = styled.div`
-  padding: 15.058px 15.83px;
-
-  border-radius: 32.047px;
-  border-style: none;
-  background: #eaeaec;
+  width: 20px;
+  height: 15px;
+  flex-shrink: 0;
 `;
 
 const ProfileMy = () => {
   const navigate = useNavigate(); // useNavigate 훅 초기화
 
-  const handleEditClick = () => {
-    navigate("/MyPageEdit"); // /mypageedit 경로로 이동
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [image, setImage] = useState(null);
+
+  const onChangeImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(file);
+      const imageUrl = URL.createObjectURL(file);
+      setUploadedImage(imageUrl);
+    }
   };
   return (
     <>
       <Wrapper>
         <ProfileContainer>
-          <ProfileImg>
-            <ProfileMyPageSVG />
+          <ProfileImg
+            style={{
+              backgroundImage: uploadedImage ? `url(${uploadedImage})` : "none",
+            }}
+          >
+            {!uploadedImage && <ProfileMyPageSVG />}
           </ProfileImg>
           황민영
         </ProfileContainer>
-        <EditBtn onClick={handleEditClick}>
-          <PictureMyPageSVG /> 프로필 사진 수정하기
+        <EditBtn>
+          <EditMyPageSVG />
+          <label htmlFor="imageUpload" style={{ cursor: "pointer" }}>
+            프로필 사진 수정하기
+          </label>
+          <input
+            type="file"
+            id="imageUpload"
+            style={{ display: "none" }}
+            onChange={onChangeImage}
+          />
         </EditBtn>
       </Wrapper>
     </>
