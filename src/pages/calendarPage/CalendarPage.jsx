@@ -57,13 +57,17 @@ const CalendarContainer = styled.div`
     text-align: center;
   }
 
-  .react-calendar__month-view__weekdays__weekday--weekend {
-    color: #5C80FF; /* 주말 요일의 색상도 변경 */
-  }
+ /* 토요일과 일요일에 대한 스타일을 설정합니다 */
+/* 첫 번째 .react-calendar__month-view__weekdays__weekday--weekend 요소 (토요일) 글자색 변경 */
+/* 첫 번째 .react-calendar__month-view__weekdays__weekday--weekend 요소 (토요일) 글자색 변경 */
+.react-calendar__month-view__weekdays__weekday--weekend abbr {
+    color: #5C80FF; /* 토요일의 글자색 */
+}
 
-  .react-calendar__month-view__weekdays__weekday--weekend:nth-child(1) {
-    color: #FF6969; /* 일요일 색상 변경 */
-  }
+/* 두 번째 .react-calendar__month-view__weekdays__weekday--weekend 요소 (일요일) 글자색 변경 */
+.react-calendar__month-view__weekdays__weekday--weekend:last-of-type abbr {
+    color: #FF6969; /* 일요일의 글자색 */
+}
 
   /* 이번 달 일자 */
   .react-calendar__tile {
@@ -94,7 +98,7 @@ const CalendarContainer = styled.div`
   /* 선택된 날짜의 배경색 변경 */
   .react-calendar__tile--active {
     background-color: #FF6969;
-    color: var(--Text, #333);
+    color: #FFFFFF;
     border-radius: 50%;
     font-family: SUIT;
     font-style: normal;
@@ -123,6 +127,14 @@ const CalendarContainer = styled.div`
 
 .react-calendar__navigation__arrow:active {
   background: none !important; /* 클릭 시 배경색 제거 */
+}
+
+.react-calendar__tile--holiday {
+  color: #FF6969;
+}
+
+.react-calendar__tile--holiday.react-calendar__tile--active {
+  color: #FFF; /* 클릭 시 공휴일 날짜의 글자 색상 설정 */
 }
 
   /* 일정 있는 날 표시 점 */
@@ -163,6 +175,18 @@ function CalendarPage() {
 
   // 마크된 날짜들 정의 (예시로 현재 날짜만 표시)
   const mark = [moment().format('YYYY-MM-DD')];
+
+  const holidays = [
+    '2024-01-01',
+    '2024-01-22',
+    '2024-03-01',
+    '2024-05-01',
+    '2024-08-15',
+    '2024-10-03',
+    '2024-10-09',
+    '2024-12-25',
+  ];
+
 
   // 달력에 필요한 값을 설정
   const value = selectedDate;
@@ -222,6 +246,16 @@ function CalendarPage() {
                   const month = moment(date).month();
                   const startMonth = now.month();
                   const endMonth = now.add(2, 'months').month();
+                  
+                  if (holidays.includes(moment(date).format('YYYY-MM-DD'))) {
+                    return 'react-calendar__tile--holiday';
+                  }
+
+                  const isSelected = moment(date).isSame(selectedDate, 'day');
+                  if (isSelected) {
+                    return 'react-calendar__tile--active';
+                  }
+
                   return (month < startMonth || month > endMonth) ? 'hide-month' : null;
                 }
                 return null;
