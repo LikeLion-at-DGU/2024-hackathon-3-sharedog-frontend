@@ -21,9 +21,13 @@ const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 88%;
+  width: 100%; /* 부모 컨테이너에 맞추기 */
+  max-width: 886px; /* 최대 너비 */
+  min-width: 316px; /* 최소 너비 */
   height: 8vh;
-  flex-shrink: 0;
+  margin: 0 auto; /* 중앙 정렬 */
+  padding: 0 16px; /* 가로 여백 추가 (옵션) */
+  box-sizing: border-box; /* 패딩과 보더를 너비에 포함시킴 */
 `;
 
 const BackBtn = styled.button`
