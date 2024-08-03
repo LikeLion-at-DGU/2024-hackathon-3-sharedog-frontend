@@ -28,7 +28,6 @@ const Home = () => {
     return (
         
     <Wrapper>
-
         <Bg>
             <Header/>
             <PetTestCard/>
