@@ -47,13 +47,13 @@ const TitleTxt = styled.div`
 const ProgressBarContainer = styled.div`
   width: 100%;
   height: 0.5vh;
-  background-color: #EFF1F3;
+  background-color: #eff1f3;
 `;
 
 const ProgressBar = styled.div`
   width: ${(props) => props.progress}%;
   height: 100%;
-  background-color: #FF6969;
+  background-color: #ff6969;
 `;
 
 const Header = ({ title, progress }) => {
@@ -70,7 +70,7 @@ const Header = ({ title, progress }) => {
           <BackBtnSVG />
         </BackBtn>
         <TitleTxt>{title}</TitleTxt>
-        <div style={{width: '11px'}}></div>
+        <div style={{ width: "11px" }}></div>
       </HeaderBox>
       <ProgressBarContainer>
         <ProgressBar progress={progress} />
