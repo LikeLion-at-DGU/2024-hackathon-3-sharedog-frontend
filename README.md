@@ -23,6 +23,9 @@ npm install axios
 npm install vite-plugin-svgr
 npm install @fortawesome/fontawesome-svg-core @fortawesome/free-regular-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 npm install swiper
+npm install react-calendar
+npm install moment
+npm add react-calendar
 ```
 
 ```

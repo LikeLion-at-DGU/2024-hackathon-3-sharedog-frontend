@@ -6,7 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import dummyReservation from '../../data/dummyReservation';
 import styled from "styled-components";
 import { Wrapper, Container, Title, Image, TextContent, HosInfo, HosName, HosDetail, HosPhone, NextBtn, Week, Time,
-  TimeSelect, TimeContainer, Am, AmText, Pm, PmText, TimeButton } from "./Styled";
+  TimeSelect, TimeContainer, Am, AmText, Pm, PmText, TimeButton, Color } from "./Styled";
 import VectorIcon from '../../assets/icons/Vector.svg?react';
 import PhoneIcon from '../../assets/icons/Phone.svg?react';
 import moment from 'moment';
@@ -288,7 +288,9 @@ function CalendarPage() {
               </Pm>
             </TimeContainer>
           </TimeSelect>
-          {/* <NextBtn onClick={() => navigate('/next-page')}>다음</NextBtn> */}
+          <Color>
+            <NextBtn onClick={() => navigate('/next-page')}>다음</NextBtn>
+          </Color>
         </Container>
       </Wrapper>
     </>
