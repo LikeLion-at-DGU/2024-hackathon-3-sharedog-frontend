@@ -56,7 +56,7 @@ const BloodReservation = () => {
         </RegionButtonsContainer>
         <HospitalContainer>
           {filteredHospitals.map(hospital => (
-            <HospitalCard key={hospital.id} to={`/calendar/${hospital.id}`}>
+            <HospitalCard key={hospital.id} to={`/calendarPage/${hospital.id}`}>
               <HospitalImage src={hospital.image} alt={`${hospital.name}_image`} />
               <HospitalInfo>
                 <h1>{hospital.name}</h1>
