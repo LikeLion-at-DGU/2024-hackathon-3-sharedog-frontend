@@ -12,6 +12,7 @@ import PhoneIcon from '../../assets/icons/Phone.svg?react';
 import moment from 'moment';
 import LeftSVG from "../../assets/icons/Left.svg?react";
 import RightSVG from "../../assets/icons/Right.svg?react";
+import { API } from '../../api';
 
 // styled-components를 사용하여 달력 스타일을 커스터마이즈
 const CalendarContainer = styled.div`
@@ -148,11 +149,11 @@ const CalendarContainer = styled.div`
   }
 `;
 
-function CalendarPage() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [activeTime, setActiveTime] = useState(null);
+const CalendarPage = () => {
+  const { id } = useParams(); // URL에서 병원 ID를 가져옵니다.
+  const navigate = useNavigate(); // 페이지 이동을 관리하는 훅입니다.
+  const [selectedDate, setSelectedDate] = useState(new Date()); // 선택된 날짜를 저장합니다.
+  const [activeTime, setActiveTime] = useState(null); // 선택된 시간을 저장합니다.
 
   // 더미 데이터에서 병원 정보를 찾는다
   const hospital = dummyReservation.find((hospital) => hospital.id === parseInt(id));
@@ -168,13 +169,8 @@ function CalendarPage() {
     console.log("월이 변경되었습니다.");
   };
 
-  // 선택된 날짜를 콘솔에 출력 (디버깅 용도)
-  useEffect(() => {
-    console.log("선택된 날짜:", selectedDate);
-  }, [selectedDate]);
-
   // 마크된 날짜들 정의 (예시로 현재 날짜만 표시)
-  const mark = [moment().format('YYYY-MM-DD')];
+  const mark = [moment().format('YYYY-MM-DD')]; // 현재 날짜를 마크된 날짜로 설정합니다.
 
   const holidays = [
     '2024-01-01',
@@ -193,13 +189,40 @@ function CalendarPage() {
 
   const getMinDate = () => {
     const now = moment();
-    return now.startOf('month').toDate();
+    return now.startOf('month').toDate(); // 현재 달의 시작 날짜
   };
 
   const getMaxDate = () => {
     const now = moment();
-    return now.add(2, 'months').endOf('month').toDate();
+    return now.add(2, 'months').endOf('month').toDate(); // 현재 달부터 두 달 후의 마지막 날짜
   };
+
+  const postData = async() => {
+    console.log("Sending data:", {
+      selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
+      activeTime
+    });
+
+    try {
+      const response = await API.post(`/api/hospital/${id}/reservation`, {
+        selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
+        activeTime
+      });
+      alert('성공');
+      console.log(response.data)
+      navigate('/reservation'); // 성공 후 다음 페이지로 이동
+    } catch(error) {
+      const errorMessage = error.response ? error.response.data : error.message;
+      console.error("Error details:", errorMessage);
+      alert(`오류 발생: ${errorMessage}`);
+    }
+  };
+
+  /*useEffect(() => {
+    postData();
+  }, []);*/
+
+  const isButtonDisabled = !selectedDate || !activeTime;
 
   return (
     <>
@@ -230,7 +253,7 @@ function CalendarPage() {
               tileContent={({ date, view }) => {
                 const html = [];
                 if (mark.includes(moment(date).format('YYYY-MM-DD'))) {
-                  html.push(<div className="dot"></div>);
+                  html.push(<div key={moment(date).format('YYYY-MM-DD')} className="dot"></div>);
                 }
                 return (
                   <div className="flex justify-center items-center absoluteDiv">
@@ -289,7 +312,9 @@ function CalendarPage() {
             </TimeContainer>
           </TimeSelect>
           <Color>
-            <NextBtn onClick={() => navigate('/next-page')}>다음</NextBtn>
+          <NextBtn disabled={isButtonDisabled} onClick={() => !isButtonDisabled && postData()}>
+            다음
+          </NextBtn>
           </Color>
         </Container>
       </Wrapper>

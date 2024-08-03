@@ -113,23 +113,22 @@ export const NextBtn = styled.div`
   align-self: stretch;
   width: 88%;
   max-width: 528px;
-
   border-radius: 30px;
-  background: rgba(156, 156, 161, 0.5);
-  color: #fff;
+  background: ${props => (props.disabled ? 'rgba(156, 156, 161, 0.5)' : '#FF6969')};
+  color: ${props => (props.disabled ? '#fff' : '#fff')};
   font-family: SUIT;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
-
-  position:fixed;
+  position: fixed;
   bottom: 12vh; 
   left: 0;
   right: 0;
   margin: 0 auto;
   z-index: 1000;
-`;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  `;
 
 export const Color = styled.div`//댓글달때 배경색
   background-color: #FAFAFC;
@@ -222,7 +221,10 @@ export const TimeContainer = styled.div`
   background: #FFF;
 `;
 
-export const TimeButton = styled.button`
+export const TimeButton = styled.button.attrs(props => ({
+  // 'active' 속성을 HTML 버튼에 전달하지 않도록 필터링
+  active: undefined
+}))`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,7 +237,8 @@ export const TimeButton = styled.button`
   transition: background-color 0.3s;
   margin: 0px 5px;
 
-  &:focus {
-    outline: none;
+  &:hover {
+    background: #FF6969;
+    color: #FFF;
   }
 `;
