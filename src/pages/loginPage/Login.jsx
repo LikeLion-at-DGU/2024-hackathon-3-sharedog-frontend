@@ -25,6 +25,11 @@ const Login = () => {
     navigate("/SignUp"); // 경로 확인
   };
 
+
+  const handleKakaoLogin = () => {
+    window.location.href = 'http://15.164.36.40/api/accounts/kakao/login';
+  };
+
   return (
     <Wrapper>
       <BackgroundImg />
@@ -43,7 +48,7 @@ const Login = () => {
           <NameText>포피 Poppy</NameText>
         </NameBox>
       </Content>
-      <KakaoLoginBtn>
+      <KakaoLoginBtn onClick={handleKakaoLogin}>
         <KakaoIconSVG /> 카카오 로그인
       </KakaoLoginBtn>
       <LoginBtn onClick={handleSignupClick}>이메일로 로그인</LoginBtn>

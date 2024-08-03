@@ -97,7 +97,7 @@ export const PetTestCard = () => ( //헌혈견 강아지 카드
     <OverlapContent>
             <PetTest>
                 <PetContent>
-                    <TestText>우리집강아지는<br/>헌혈견이 될 수 있을까?</TestText>
+                    <TestText>우리집 강아지는<br/>헌혈견이 될 수 있을까?</TestText>
                     <TestBtn to="https://smore.im/quiz/VzwYgfXd0X?tm=a39f8a80" >테스트 바로 가기 <GoTest/></TestBtn>
                 </PetContent>
                 <PetIcon/>
