@@ -12,17 +12,13 @@ import {
   GoMyPageSVG,
   GoBtn,
 } from "./Styled";
-import Header from "./header/Header";
+import Header2 from "./header/Header2";
 import React from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
+import ProfileMy from "../../components/myPageComponent/ProfileMy";
 
 const MyPageMain = () => {
   const navigate = useNavigate(); // useNavigate 훅 초기화
-
-  // Editbtn 클릭 핸들러
-  const handleEditClick = () => {
-    navigate("/MyPageEdit"); // /mypageedit 경로로 이동
-  };
 
   const handleManageClick = () => {
     navigate("/AccountManage"); // /mypageedit 경로로 이동
@@ -38,18 +34,9 @@ const MyPageMain = () => {
 
   return (
     <>
-      <Header title="마이페이지" />
+      <Header2 title="마이페이지" />
       <Wrapper>
-        <MyInfo>
-          <ProfileImg>
-            <ProfileMyPageSVG />
-          </ProfileImg>
-          <InfoBox>황민영</InfoBox>
-          <Editbtn onClick={handleEditClick}>
-            <EditMyPageSVG />
-            프로필 수정
-          </Editbtn>
-        </MyInfo>
+        <ProfileMy></ProfileMy>
         <InfoList>
           <InfoListItem>
             내 정보

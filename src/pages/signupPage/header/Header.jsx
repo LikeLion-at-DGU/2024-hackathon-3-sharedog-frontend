@@ -8,6 +8,10 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh; /* Adjusted height to fit the progress bar */
+  position: fixed;
+  z-index: 1000; /* 다른 요소들 위에 표시되도록 */
+  background-color: #fff; /* 헤더 배경색 */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* 헤더 하단에 그림자 추가 */
 `;
 
 const HeaderBox = styled.div`
@@ -44,18 +48,6 @@ const TitleTxt = styled.div`
   font-weight: 600;
 `;
 
-const ProgressBarContainer = styled.div`
-  width: 100%;
-  height: 0.5vh;
-  background-color: #EFF1F3;
-`;
-
-const ProgressBar = styled.div`
-  width: ${(props) => props.progress}%;
-  height: 100%;
-  background-color: #FF6969;
-`;
-
 const Header = ({ title, progress }) => {
   const navigate = useNavigate();
 
@@ -70,11 +62,8 @@ const Header = ({ title, progress }) => {
           <BackBtnSVG />
         </BackBtn>
         <TitleTxt>{title}</TitleTxt>
-        <div style={{width: '11px'}}></div>
+        <div style={{ width: "11px" }}></div>
       </HeaderBox>
-      <ProgressBarContainer>
-        <ProgressBar progress={progress} />
-      </ProgressBarContainer>
     </Wrapper>
   );
 };

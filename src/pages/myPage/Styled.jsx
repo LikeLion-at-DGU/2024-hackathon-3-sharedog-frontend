@@ -1,4 +1,3 @@
-// Styled.js 파일에서
 import styled, { css } from "styled-components";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react"; // SVG 파일 가져오기
 import ProfileMyPageSVG from "../../assets/icons/profileMyPage.svg?react"; // SVG 파일 가져오기
@@ -16,7 +15,7 @@ export const Wrapper = styled.div`
   font-size: 20px;
   font-family: SUIT, sans-serif;
   font-weight: 800;
-  padding-top: 20px; /* 상단 여백 추가 */
+  padding-top: 80px; /* 상단 여백 추가 */
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
@@ -73,19 +72,11 @@ export const Editbtn = styled.button`
 `;
 
 export const ProfileImg = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 16vw; // 적절한 크기로 설정
-  height: 16vw; // 적절한 크기로 설정
-  border-radius: 50%;
-  flex-shrink: 0;
+  padding: 15.058px 15.83px;
+
+  border-radius: 32.047px;
+  border-style: none;
   background: #eaeaec;
-  background-image: ${({ imageUrl }) =>
-    imageUrl ? `url(${imageUrl})` : "none"};
-  background-size: cover;
-  background-position: center;
-  overflow: hidden; // 이미지가 요소의 경계를 넘어가지 않도록
 `;
 
 export const PictureImg = styled.div`
@@ -96,7 +87,7 @@ export const PictureImg = styled.div`
 
 export const InfoList = styled.div`
   width: 80%;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -110,7 +101,7 @@ export const InfoList = styled.div`
 
 export const InfoList2 = styled.div`
   width: 80%;
-  min-height: 32vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -126,7 +117,6 @@ export const InfoListItem = styled.div`
   margin-top: 10px;
   width: 100%;
   display: flex;
-  height: 10vh;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
@@ -157,7 +147,6 @@ export const ItemDetail = styled.div`
 `;
 
 export const GoBtn = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   flex-shrink: 0;

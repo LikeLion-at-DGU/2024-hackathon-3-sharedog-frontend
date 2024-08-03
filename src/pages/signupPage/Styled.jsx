@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   align-items: center; /* 수평 중앙 정렬 */
+  margin-top: 80px;
 `;
 
 export const Field = styled.div`
@@ -32,7 +33,6 @@ export const InputField = styled.div`
   justify-content: center; /* 수직 중앙 정렬 */
   align-items: center;
   width: 100%;
-  height: 75vh;
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
@@ -77,6 +77,7 @@ export const CautionBox = styled.div`
   border-radius: 10px;
   background: rgba(255, 105, 105, 0.1);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
 `;
 
 export const CautionField = styled.div`
@@ -114,8 +115,9 @@ export const ProfileImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16vw; // 적절한 크기로 설정
-  height: 16vw; // 적절한 크기로 설정
+  width: 70px; /* 고정된 크기로 설정 */
+  height: 70px; /* 고정된 크기로 설정 */
+  padding: 15.058px 15.83px;
   border-radius: 50%;
   flex-shrink: 0;
   background: #eaeaec;
@@ -123,7 +125,7 @@ export const ProfileImg = styled.div`
     imageUrl ? `url(${imageUrl})` : "none"};
   background-size: cover;
   background-position: center;
-  overflow: hidden; // 이미지가 요소의 경계를 넘어가지 않도록
+  overflow: hidden; /* 이미지가 요소의 경계를 넘어가지 않도록 */
 `;
 
 export const PictureImg = styled.div`
@@ -134,13 +136,12 @@ export const PictureImg = styled.div`
 
 export const InPutBox = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: stretch;
   flex-shrink: 0;
-  gap: 10px;
 `;
 
 export const InPut = styled.div`

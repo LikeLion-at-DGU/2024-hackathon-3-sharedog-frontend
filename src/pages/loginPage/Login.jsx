@@ -1,41 +1,59 @@
 // 담당자: 최효은
-import styled from "styled-components";
 import React from "react";
-import LoginIConPNG from "../../assets/images/LoginIcon.png?react";
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center; /* 수직 중앙 정렬 */
-  width: 100%;
-  height: 100vh; /* 전체 화면 높이 */
-  position: relative; /* 자식 요소의 절대 위치를 위해 필요 */
-`;
-
-const BackgroundImg = styled.div`
-  width: 323px;
-  height: 351px;
-  background-image: url(${LoginIConPNG});
-  background-size: cover;
-  position: absolute; /* 부모 요소에 상대적으로 위치 */
-`;
-
-const Overlay = styled.div`
-  width: 323px;
-  height: 351px;
-  background: rgba(255, 255, 255, 0.6);
-  filter: blur(50px);
-  position: absolute; /* 부모 요소에 상대적으로 위치 */
-`;
+import {
+  Wrapper,
+  BackgroundImg,
+  Overlay,
+  TitleBold,
+  TitleDetail,
+  Content,
+  IconImg,
+  NameBox,
+  NameText,
+  AppIconSVG,
+  KakaoLoginBtn,
+  KakaoIconSVG,
+  LoginBtn,
+} from "./Styled";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  // Editbtn 클릭 핸들러
+  const handleSignupClick = () => {
+    navigate("/SignUp"); // 경로 확인
+  };
+
+
+  const handleKakaoLogin = () => {
+    window.location.href = 'http://15.164.36.40/api/accounts/kakao/login';
+  };
+
   return (
     <Wrapper>
       <BackgroundImg />
       <Overlay />
+      <Content>
+        <TitleBold>
+          반려견 헌혈
+          <br /> 신청
+          <TitleDetail>부터</TitleDetail> 관리
+          <TitleDetail>까지</TitleDetail> 한 번에
+        </TitleBold>
+        <NameBox>
+          <IconImg>
+            <AppIconSVG />
+          </IconImg>
+          <NameText>포피 Poppy</NameText>
+        </NameBox>
+      </Content>
+      <KakaoLoginBtn onClick={handleKakaoLogin}>
+        <KakaoIconSVG /> 카카오 로그인
+      </KakaoLoginBtn>
+      <LoginBtn onClick={handleSignupClick}>이메일로 로그인</LoginBtn>
     </Wrapper>
   );
 };
 
 export default Login;
-export { LoginIConPNG };

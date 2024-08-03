@@ -16,6 +16,7 @@ import InputHolder from "../../components/myPageComponent/InputHolder";
 import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
 import { useNavigate } from "react-router-dom";
+import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
 
 const PetEdit = () => {
   const navigate = useNavigate();
@@ -28,8 +29,6 @@ const PetEdit = () => {
   };
 
   const [selectedGender, setSelectedGender] = useState("");
-  const [image, setImage] = useState(null);
-  const [uploadedImage, setUploadedImage] = useState(null);
   const [petName, setPetName] = useState("");
   const [petAge, setPetAge] = useState("");
   const [petWeight, setPetWeight] = useState("");
@@ -49,15 +48,6 @@ const PetEdit = () => {
     setSelectedGender(newGender);
   };
 
-  const onChangeImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImage(file);
-      const imageUrl = URL.createObjectURL(file);
-      setUploadedImage(imageUrl);
-    }
-  };
-
   const isComplete = () => {
     return (
       petName.trim() !== "" &&
@@ -72,30 +62,7 @@ const PetEdit = () => {
     <>
       <Header title="반려견 정보 수정하기" />
       <Wrapper>
-        <MyInfo>
-          <ProfileImg
-            style={{
-              backgroundImage: uploadedImage ? `url(${uploadedImage})` : "none",
-            }}
-          >
-            {!uploadedImage && <ProfileMyPageSVG />}
-          </ProfileImg>
-          <InfoBox>멍멍이</InfoBox>
-          <Editbtn>
-            <PictureImg>
-              <PictureMyPageSVG />
-            </PictureImg>
-            <label htmlFor="imageUpload" style={{ cursor: "pointer" }}>
-              프로필 사진 등록하기
-            </label>
-            <input
-              type="file"
-              id="imageUpload"
-              style={{ display: "none" }}
-              onChange={onChangeImage}
-            />
-          </Editbtn>
-        </MyInfo>
+        <ProfileEdit></ProfileEdit>
         <InPutBox>
           <InputHolder
             title={"반려견 이름"}
