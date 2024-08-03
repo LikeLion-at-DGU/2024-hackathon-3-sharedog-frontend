@@ -19,6 +19,7 @@ import Modal from "../../components/myPageComponent/Modal";
 
 const AccountManage = () => {
   const navigate = useNavigate(); // useNavigate 훅 초기화
+
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 

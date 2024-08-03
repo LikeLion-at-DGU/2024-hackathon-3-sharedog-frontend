@@ -12,7 +12,7 @@ import {
   GoMyPageSVG,
   GoBtn,
 } from "./Styled";
-import Header from "./header/Header";
+import Header2 from "./header/Header2";
 import React from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
 import ProfileMy from "../../components/myPageComponent/ProfileMy";
@@ -34,7 +34,7 @@ const MyPageMain = () => {
 
   return (
     <>
-      <Header title="마이페이지" />
+      <Header2 title="마이페이지" />
       <Wrapper>
         <ProfileMy></ProfileMy>
         <InfoList>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
 import AlramBtnSVG from "../../../assets/icons/alramMyPage.svg?react";
 import { useNavigate } from "react-router-dom";
 
@@ -26,18 +25,6 @@ const HeaderBox = styled.div`
   flex-shrink: 0;
 `;
 
-const BackBtn = styled.button`
-  display: flex;
-  font-size: 19px;
-  justify-content: center;
-  align-items: center;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-`;
-
 const AlramBtn = styled.button`
   display: flex;
   font-size: 19px;
@@ -52,30 +39,21 @@ const AlramBtn = styled.button`
 
 const TitleTxt = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  flex-shrink: 0;
+  align-items: center;
   color: #000;
   text-align: center;
   font-family: SUIT;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
+  width: 100%; /* 또는 필요한 너비로 설정 */
 `;
 
-const Header = ({ title }) => {
-  const navigate = useNavigate();
-
-  const goBack = () => {
-    navigate(-1);
-  };
-
+const Header2 = ({ title }) => {
   return (
     <Wrapper>
       <HeaderBox>
-        <BackBtn onClick={goBack}>
-          <BackBtnSVG />
-        </BackBtn>
         <TitleTxt>{title}</TitleTxt>
         <AlramBtn>
           <AlramBtnSVG />
@@ -85,4 +63,4 @@ const Header = ({ title }) => {
   );
 };
 
-export default Header;
+export default Header2;
