@@ -117,7 +117,7 @@ const ProfileMy = () => {
           황민영
         </ProfileContainer>
         <EditBtn>
-          <EditMyPageSVG />
+          <PictureMyPageSVG />
           <label htmlFor="imageUpload" style={{ cursor: "pointer" }}>
             프로필 사진 수정하기
           </label>

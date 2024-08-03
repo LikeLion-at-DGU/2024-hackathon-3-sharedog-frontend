@@ -14,6 +14,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
   align-items: center; /* 수평 중앙 정렬 */
+  margin-top: 80px;
 `;
 
 export const Field = styled.div`
@@ -76,6 +77,7 @@ export const CautionBox = styled.div`
   border-radius: 10px;
   background: rgba(255, 105, 105, 0.1);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
 `;
 
 export const CautionField = styled.div`

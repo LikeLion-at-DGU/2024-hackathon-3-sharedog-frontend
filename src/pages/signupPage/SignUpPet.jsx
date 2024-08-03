@@ -7,7 +7,7 @@ import {
   CautionTitle,
   CautionField,
   Field,
-  InputField
+  InputField,
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -15,7 +15,7 @@ import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { API } from '../../api'; 
+import { API } from "../../api";
 
 const SignUpPet = () => {
   const navigate = useNavigate();
@@ -28,27 +28,27 @@ const SignUpPet = () => {
   const [isComplete, setIsComplete] = useState(false);
 
   const bloodOptions = [
-    { label: 'DEA 1-', value: 'DEA 1-' },
-    { label: 'DEA 1.1', value: 'DEA 1.1' },
-    { label: 'DEA 1.2', value: 'DEA 1.2' },
-    { label: 'DEA 3', value: 'DEA 3' },
-    { label: 'DEA 4', value: 'DEA 4' },
-    { label: 'DEA 5', value: 'DEA 5' },
-    { label: 'DEA 7', value: 'DEA 7' },
+    { label: "DEA 1-", value: "DEA 1-" },
+    { label: "DEA 1.1", value: "DEA 1.1" },
+    { label: "DEA 1.2", value: "DEA 1.2" },
+    { label: "DEA 3", value: "DEA 3" },
+    { label: "DEA 4", value: "DEA 4" },
+    { label: "DEA 5", value: "DEA 5" },
+    { label: "DEA 7", value: "DEA 7" },
   ];
 
   const postData = async () => {
     try {
-      const response = await API.post('/api/accounts/dogprofiles', {
+      const response = await API.post("/api/accounts/dogprofiles", {
         dogname,
         gender,
         dog_age,
         dog_weight,
-        dog_blood
+        dog_blood,
       });
-      console.log('서버 응답 데이터:', response.data);
+      console.log("서버 응답 데이터:", response.data);
     } catch (error) {
-      console.log('네트워크 오류:', error);
+      console.log("네트워크 오류:", error);
     }
   };
 
@@ -78,7 +78,9 @@ const SignUpPet = () => {
                 <CautionSVG />
                 <CautionTitle>
                   <h1>대표로 등록할 반려견 정보를 입력해주세요.</h1>
-                  <p>나중에 마이페이지에서 추가로 반려견 정보를 등록할 수 있어요!</p>
+                  <p>
+                    나중에 마이페이지에서 추가로 반려견 정보를 등록할 수 있어요!
+                  </p>
                 </CautionTitle>
               </CautionField>
             </CautionBox>
@@ -97,7 +99,7 @@ const SignUpPet = () => {
               />
               <InputHolder
                 title={"반려견 나이"}
-                inputtext={"반려견 나이를 선택해 주세요."}
+                inputtext={"반려견 나이를 입력해 주세요."}
                 value={dog_age}
                 onChange={(e) => setDog_Age(e.target.value)}
               />
@@ -116,11 +118,15 @@ const SignUpPet = () => {
               />
             </InPut>
           </InputField>
-          <CompleteBtn 
-              onClick={handleCompleteClick}
-              style={{ backgroundColor: isComplete ? '#FF6969' : 'rgba(156, 156, 161, 0.50)' }}
-            >
-              완료
+          <CompleteBtn
+            onClick={handleCompleteClick}
+            style={{
+              backgroundColor: isComplete
+                ? "#FF6969"
+                : "rgba(156, 156, 161, 0.50)",
+            }}
+          >
+            완료
           </CompleteBtn>
         </Field>
       </Wrapper>

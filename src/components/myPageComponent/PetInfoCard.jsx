@@ -27,7 +27,6 @@ export const PetInfoBox = styled.div`
   border: 1px solid var(--Color-Gray-Gray01, #eaeaea);
   background: #fff;
   padding: 20px;
-  gap: 15px;
 `;
 
 export const MainProfileBox = styled.div`
@@ -63,8 +62,8 @@ export const PetImg = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   background: var(--Gray-White, #fff);
 
