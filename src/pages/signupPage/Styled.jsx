@@ -114,8 +114,9 @@ export const ProfileImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 16vw; // 적절한 크기로 설정
-  height: 16vw; // 적절한 크기로 설정
+  width: 70px; /* 고정된 크기로 설정 */
+  height: 70px; /* 고정된 크기로 설정 */
+  padding: 15.058px 15.83px;
   border-radius: 50%;
   flex-shrink: 0;
   background: #eaeaec;
@@ -123,7 +124,7 @@ export const ProfileImg = styled.div`
     imageUrl ? `url(${imageUrl})` : "none"};
   background-size: cover;
   background-position: center;
-  overflow: hidden; // 이미지가 요소의 경계를 넘어가지 않도록
+  overflow: hidden; /* 이미지가 요소의 경계를 넘어가지 않도록 */
 `;
 
 export const PictureImg = styled.div`
