@@ -18,6 +18,7 @@ export const Container = styled.div`
   width: 88%;
   margin: 0 auto;
   font-family: SUIT;
+  padding-bottom: 10vh;
 `;
 
 export const Image = styled.img`
@@ -128,6 +129,20 @@ export const NextBtn = styled.div`
   right: 0;
   margin: 0 auto;
   z-index: 1000;
+`;
+
+export const Color = styled.div`//댓글달때 배경색
+  background-color: #FAFAFC;
+  box-shadow: 0px 4px 14px 0px rgba(47, 47, 47, 0.04); /* 새로운 그림자 효과 추가 */
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 9vh;
+  position:fixed;
+    bottom: 10vh;  // 푸터바로위에 위치하려고 푸터높이만큼 높임 
+    left: 0;
+    right: 0;
+    z-index: 999;
 `;
 
 export const Week = styled.div`
