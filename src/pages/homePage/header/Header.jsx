@@ -6,14 +6,14 @@ const Wrapper = styled.div`
   width: 85%;
   /* height: 10vh; */
   margin-top: 4vh;
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 const Profile = styled.div`
   display  :flex ;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 
 `;
 const ProfileName =styled.div`
