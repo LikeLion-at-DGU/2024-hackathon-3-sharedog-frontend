@@ -101,7 +101,7 @@ export const PetImg = styled.div`
   height: 60px;
   border-radius: 50%;
   overflow: hidden;
-  margin-right: 10px;
+  margin-right: 20px;
   background: var(--Gray-White, #fff);
   img {
     width: 100%;

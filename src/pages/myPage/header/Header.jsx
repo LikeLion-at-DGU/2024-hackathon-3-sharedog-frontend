@@ -1,4 +1,3 @@
-// Header.jsx
 import styled from "styled-components";
 import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
 import AlramBtnSVG from "../../../assets/icons/alramMyPage.svg?react";
@@ -8,6 +7,12 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 10vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* 다른 요소들 위에 표시되도록 */
+  background-color: #fff; /* 헤더 배경색 */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* 헤더 하단에 그림자 추가 */
 `;
 
 const HeaderBox = styled.div`
@@ -63,7 +68,7 @@ const Header = ({ title }) => {
         <BackBtn>
           <BackBtnSVG />
         </BackBtn>
-        <TitleTxt>{title}</TitleTxt> {/*props 수정*/}
+        <TitleTxt>{title}</TitleTxt>
         <AlramBtn>
           <AlramBtnSVG />
         </AlramBtn>
