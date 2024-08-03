@@ -155,3 +155,75 @@ export const Time = styled.div`
   margin-top: 2vh;
 `;
 
+export const TimeSelect = styled.div`
+  
+`;
+
+export const Am = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Pm = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const PmText = styled.div`
+  display: flex;
+  color: #000;
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: 1vh;
+`;
+
+export const AmText = styled.div`
+  display: flex;
+  color: #000;
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-right: 1vh;
+`;
+
+export const TimeContainer = styled.div`
+  display: flex;
+  height: 10vh;
+  margin-top: 2vh;
+  padding: 2vh 2vh;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 14.576px;
+  border: 1px solid var(--Color-Gray-Gray01, #EAEAEA);
+  background: #FFF;
+`;
+
+export const TimeButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  padding: 5px 15px;
+  border: 1px solid ${props => (props.active ? '#FF6969' : '#D9D9D9')};
+  background: ${props => (props.active ? 'rgba(255, 105, 105, 0.20)' : '#FFF')};
+  color: ${props => (props.active ? '#FF6969' : '#9C9CA1')};
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0px 5px;
+
+  &:focus {
+    outline: none;
+  }
+`;
