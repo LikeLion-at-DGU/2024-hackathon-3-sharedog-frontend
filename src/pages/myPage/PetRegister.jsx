@@ -18,7 +18,6 @@ import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
 import { useNavigate } from "react-router-dom";
 import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
-import PetEdit from "./PetEdit";
 
 const PetRegister = () => {
   const navigate = useNavigate();

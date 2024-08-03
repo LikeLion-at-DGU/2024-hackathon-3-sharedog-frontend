@@ -32,7 +32,6 @@ export const InputField = styled.div`
   justify-content: center; /* 수직 중앙 정렬 */
   align-items: center;
   width: 100%;
-  height: 75vh;
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일
@@ -135,13 +134,12 @@ export const PictureImg = styled.div`
 
 export const InPutBox = styled.div`
   width: 100%;
-  height: 60vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: stretch;
   flex-shrink: 0;
-  gap: 10px;
 `;
 
 export const InPut = styled.div`
