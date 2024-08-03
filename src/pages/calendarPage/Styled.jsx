@@ -154,3 +154,4 @@ export const Time = styled.div`
   line-height: normal;
   margin-top: 2vh;
 `;
+
