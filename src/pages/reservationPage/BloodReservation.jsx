@@ -1,13 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { Wrapper, RegionButtonsContainer, RegionButtons, RegionButton, HospitalContainer, HospitalCard, HospitalImage, HospitalInfo, HosPlace, VectorIcon } from './Styled';
 import Header from './header/Header';
-import dummyReservation from '../../data/dummyReservation';
+// import dummyReservation from '../../data/dummyReservation';
 import styled from "styled-components";
+
+import {API} from '../../api'; // API 모듈 임포트
 
 const BloodReservation = () => {
   const [selectedRegion, setSelectedRegion] = useState('전체');
   const [searchQuery, setSearchQuery] = useState('');
+  const [hospitals, setHospitals] = useState([]);//추가한거
+
+  useEffect(() => {
+    const fetchHospitals = async () => {
+      try {
+        const response = await API.get('/api/hospital/home'); // 엔드포인트에 맞게 수정하세요
+        setHospitals(response.data);
+        console.log("병원목록:",response.data);
+      } catch (error) {
+        console.error('병원 데이터를 가져오는 중 오류 발생:', error);
+      }
+    };
+
+    fetchHospitals();
+  }, []);
 
   const handleRegionClick = (region) => {
     setSelectedRegion(region);
@@ -17,7 +34,11 @@ const BloodReservation = () => {
     setSearchQuery(event.target.value);
   };
 
-  const filteredHospitals = dummyReservation.filter(hospital =>
+  // const filteredHospitals = dummyReservation.filter(hospital =>
+  //   (selectedRegion === '전체' || hospital.region === selectedRegion) &&
+  //   hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
+  // );
+  const filteredHospitals = hospitals.filter(hospital =>
     (selectedRegion === '전체' || hospital.region === selectedRegion) &&
     hospital.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
