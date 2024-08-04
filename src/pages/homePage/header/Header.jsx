@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import ExclamationSVG from '../../../assets/icons/exclamation.svg?react'
+
 const Wrapper = styled.div`
   display  :flex ;
   justify-content: space-between;
-  width: 85%;
+  width: 80%;
   /* height: 10vh; */
   margin-top: 4vh;
   /* border: 1px solid blue; */
@@ -52,27 +53,37 @@ const ProfileInfo = styled.div`
 `;
 const ProfileImg = styled.div` //이미지 
   display  :flex ;
-  width: 84px;
-  height: 84px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   background-color: gray;
+  overflow: hidden; /* 이미지가 div를 넘지 않도록 설정 */
+  border-radius: 2px solid red;
 
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지 비율을 유지하면서 꽉 차게 설정 */
+}
 `;
 
-const Header = () => { //props로 정보받아오는건 나중에 연결 
+const Header = ({ profile }) => { //props로 정보받아오는건 나중에 연결 
+  const imageUrl = profile?.profile_image.replace(`${import.meta.env.VITE_API_URL}/media/http%3A/`, 'http://');
     return (
       <Wrapper>
         <Profile>
           <ProfileName>
-            <Name>황민영</Name>
-            <DogName>| 루피</DogName>
+            <Name>{profile?.nickname || '닉네임'}</Name>
+            <DogName>| {profile?.dogs[0]?.dogname || '강아지 이름'}</DogName>
           </ProfileName>
           <ProfileInfo>
             <ExclamationSVG/>
             헌혈 가능 여부 인증이 필요해요!
             </ProfileInfo>
         </Profile>
-        <ProfileImg></ProfileImg>
+        <ProfileImg>
+        <img src={imageUrl} alt="Profile"/>
+        </ProfileImg>
         
       </Wrapper>
     );
