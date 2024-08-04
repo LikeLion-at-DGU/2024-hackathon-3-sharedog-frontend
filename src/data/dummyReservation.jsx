@@ -1,6 +1,25 @@
-import kuHos from '../assets/images/KuHos.jpg';
-import adeHos from '../assets/images/AdeHos.jpg';
-import seoulHos from '../assets/images/SeoulHos.jpg';
+import KuHos from '../assets/icons/KuHos.svg';
+import AdeHos from '../assets/icons/Ade.svg';
+import SeoulHos from '../assets/icons/SeoulHos.svg';
+import Ba from '../assets/icons/Ba.svg';
+import Bumu from '../assets/icons/Bumu.svg';
+import Ceum from '../assets/icons/Ceum.svg';
+import Cg from '../assets/icons/Cg.svg';
+import Chunan from '../assets/icons/Chunan.svg';
+import Chung from '../assets/icons/Chung.svg';
+import Dasom from '../assets/icons/Dasom.svg';
+import Eum from '../assets/icons/Eum.svg';
+import Gwanju from '../assets/icons/Gwanju.svg';
+import Iisan from '../assets/icons/Iisan.svg';
+import Jeju from '../assets/icons/Jeju.svg';
+import Ko from '../assets/icons/Ko.svg';
+import OneHealth from '../assets/icons/OneHealth.svg';
+import Peum from '../assets/icons/Peum.svg';
+import Rodem from '../assets/icons/Rodem.svg';
+import TheHue from '../assets/icons/TheHue.svg';
+import Tops from '../assets/icons/Tops.svg';
+import Yes from '../assets/icons/Yes.svg';
+
 
 const dummyReservation =[
   {
@@ -10,7 +29,7 @@ const dummyReservation =[
       "place": "서울 광진구 능동로 120 건국대학교 부속 동물병원 2층",
       "created_at": "2024-07-26T12:09:08.354438",
       "updated_at": "2024-07-26T12:09:08.354438",
-      "image": kuHos,
+      "image": KuHos,
       "phone": "02-450-3680"
   },
   {
@@ -20,7 +39,7 @@ const dummyReservation =[
       "place": "서울 관악구 관악로 1",
       "created_at": "2024-07-27T00:51:30.681353",
       "updated_at": "2024-07-27T00:51:30.681353",
-      "image": seoulHos,
+      "image": SeoulHos,
       "phone": "02-880-8661" 
   },
   {
@@ -30,7 +49,7 @@ const dummyReservation =[
     "place": "서울 강남구 논현로 813 1F, B1F",
     "created_at": "2024-07-27T01:38:30.681353",
     "updated_at": "2024-07-27T01:38:30.681353",
-    "image": adeHos,
+    "image": AdeHos,
     "phone": "0507-1340-4975"
   }, 
   {
@@ -40,7 +59,7 @@ const dummyReservation =[
     "place": "경기 고양시 일산서구 대화로 407",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Iisan,
     "phone": "031-924-7582"
   },
   {
@@ -50,7 +69,7 @@ const dummyReservation =[
     "place": "경기 양주시 고읍로 166",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Rodem,
     "phone": "031-847-7720"
   },
   {
@@ -60,7 +79,7 @@ const dummyReservation =[
     "place": "경기 화성시 동탄대로6길 15 2층 이음동물의료센터",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Eum,
     "phone": "031-847-7720"
   },
   {
@@ -70,7 +89,7 @@ const dummyReservation =[
     "place": "부산 동래구 온천장로 20 신화타워아파트 상가 1층",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": TheHue,
     "phone": "0507-1355-6060"
   },
   {
@@ -80,7 +99,7 @@ const dummyReservation =[
     "place": "부산 남구 수영로13번길 3",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Dasom,
     "phone": "051-632-7580"
   },
   {
@@ -90,7 +109,7 @@ const dummyReservation =[
     "place": "대구 수성구 달구벌대로 3223 1층, 시지 W 동물의료센터",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Cg,
     "phone": "053-721-7879"
   },
   {
@@ -100,7 +119,7 @@ const dummyReservation =[
     "place": "대구 달서구 월배로 166 탑스빌딩 1, 2층",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Tops,
     "phone": "053-637-7501"
   },
   {
@@ -110,7 +129,7 @@ const dummyReservation =[
     "place": "대구 달서구 와룡로 142 2층",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Ba,
     "phone": "053-571-0075"
   },
   {
@@ -120,7 +139,7 @@ const dummyReservation =[
     "place": "대구 수성구 달구벌대로 2354",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Bumu,
     "phone": "053-716-7585"
   },
   {
@@ -130,7 +149,7 @@ const dummyReservation =[
     "place": "울산 남구 삼산로 160",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Yes,
     "phone": "052-707-2475"
   },
   {
@@ -140,7 +159,7 @@ const dummyReservation =[
     "place": "울산 남구 북부순환도로 23 경민빌딩 1층 원헬스동물의료센터",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": OneHealth,
     "phone": "0507-1320-7975"
   },
   {
@@ -150,7 +169,7 @@ const dummyReservation =[
     "place": "경북 포항시 남구 효성로93번길 4 가동 1층",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Peum,
     "phone": "0507-1308-2475"
   },
   {
@@ -160,7 +179,7 @@ const dummyReservation =[
     "place": "충남 천안시 서북구 동서대로 165 프라지움 11차 2층",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Chunan,
     "phone": "041-415-0975"
   },
   {
@@ -170,7 +189,7 @@ const dummyReservation =[
     "place": "대전 유성구 대학로 99",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Chung,
     "phone": "042-821-6704"
   },
   {
@@ -180,7 +199,7 @@ const dummyReservation =[
     "place": "충북 청주시 서원구 사직대로 246 24시 청주 고려동물메디컬센터",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Ko,
     "phone": "0507-1342-5678"
   },
   {
@@ -190,7 +209,7 @@ const dummyReservation =[
     "place": "충북 청주시 흥덕구 2순환로 1112 2층 이음동물의료센터",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Ceum,
     "phone": "0507-1389-3135"
   },
   {
@@ -200,7 +219,7 @@ const dummyReservation =[
     "place": "광주 광산구 북문대로420번길 206",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Gwanju,
     "phone": "062-719-4275"
   },
   {
@@ -210,7 +229,7 @@ const dummyReservation =[
     "place": "제주 제주시 제주대학로 102 동물병원",
     "created_at": "2024-07-29T16:21:08.354438",
     "updated_at": "2024-07-29T16:21:08.354438",
-    "image": null,
+    "image": Jeju,
     "phone": "064-754-2114"
   }
 ];
