@@ -195,7 +195,7 @@ export const CompleteBtn = styled.button`
   display: flex;
   padding: 10px 47px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 1vh;
   align-items: center;
   gap: 10px;
   align-self: stretch;
@@ -208,22 +208,29 @@ export const CompleteBtn = styled.button`
   font-size: 16px;
   font-weight: 600;
   line-height: 140%; /* 22.4px */
+  cursor: ${({ isActive }) => (isActive ? "pointer" : "default")};
 
-  &[data-active="true"] {
-    background-color: #ff6969;
-  }
+  ${({ isActive }) =>
+    isActive &&
+    `
+      background-color: #ff6969;
+      &:hover {
+        background-color: #ff4d4d; /* hover 시 색상을 약간 더 어둡게 */
+      }
+  `}
 `;
 
 export const PlusBtn = styled.button`
   display: flex;
   width: 112px;
-  padding: 11.868px 0px;
-  margin: 10px;
+  padding: 10px;
+  margin-top: 2vh;
   justify-content: center;
   align-items: center;
   border-radius: 22.252px;
   border: 1px solid var(--Red-Red04, #ff6969);
   background: #fff;
+
   color: var(--Red-Red04, #ff6969);
   text-align: center;
   font-family: SUIT;
