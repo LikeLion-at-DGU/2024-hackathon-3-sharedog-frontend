@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CheckMyPageSVG from "../../assets/icons/checkMyPage.svg?react";
 import Check2MyPageSVG from "../../assets/icons/check2MyPage.svg?react";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react";
 import { useNavigate } from "react-router-dom";
-import dummyPetInfo from "../../data/dummyPetInfo";
+import { API } from "../../api"; // API import
 
 export const Wrapper = styled.div`
   display: flex;
@@ -120,6 +120,20 @@ export const Editbtn = styled.button`
 
 const PetInfoCard = () => {
   const navigate = useNavigate();
+  const [petInfo, setPetInfo] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await API.get("/api/users/dogprofiles");
+        setPetInfo(response.data);
+      } catch (error) {
+        console.error("데이터 가져오기 오류:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleEditClick = () => {
     navigate("/PetEdit");
@@ -127,7 +141,7 @@ const PetInfoCard = () => {
 
   return (
     <Wrapper>
-      {dummyPetInfo.map((pet) => (
+      {petInfo.map((pet) => (
         <PetInfoBox key={pet.id}>
           <MainProfileBox>
             {pet.status === "best" && (
@@ -139,11 +153,14 @@ const PetInfoCard = () => {
           </MainProfileBox>
           <InfoTextBox>
             <PetImg>
-              <img src={pet.image} alt={`${pet.name} Info`} />
+              <img
+                src={pet.image || "default_image_url"}
+                alt={`${pet.dogname} Info`}
+              />
             </PetImg>
             <InfoList>
               <NameBox>
-                {pet.name}
+                {pet.dogname}
                 <Editbtn onClick={handleEditClick}>
                   <EditMyPageSVG />
                   프로필 수정
@@ -155,15 +172,15 @@ const PetInfoCard = () => {
               </InfoListDetail>
               <InfoListDetail>
                 <Check2MyPageSVG />
-                <div>나이 | {pet.age}</div>
+                <div>나이 | {pet.dog_age}</div>
               </InfoListDetail>
               <InfoListDetail>
                 <Check2MyPageSVG />
-                <div>몸무게 | {pet.weight}</div>
+                <div>몸무게 | {pet.dog_weight}</div>
               </InfoListDetail>
               <InfoListDetail>
                 <Check2MyPageSVG />
-                <div>혈액형 | {pet.blood}</div>
+                <div>혈액형 | {pet.dog_blood}</div>
               </InfoListDetail>
             </InfoList>
           </InfoTextBox>
@@ -174,4 +191,3 @@ const PetInfoCard = () => {
 };
 
 export default PetInfoCard;
-export { CheckMyPageSVG, Check2MyPageSVG, EditMyPageSVG };

@@ -1,11 +1,5 @@
 import {
-  Editbtn,
-  InfoBox,
-  MyInfo,
   Wrapper,
-  EditMyPageSVG,
-  ProfileImg,
-  ProfileMyPageSVG,
   InfoList,
   InfoListItem,
   ItemDetail,
@@ -15,9 +9,27 @@ import {
 import Header2 from "./header/Header2";
 import React from "react";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
+import { useEffect, useState } from "react";
 import ProfileMy from "../../components/myPageComponent/ProfileMy";
+import { API } from "../../api"; // API 호출을 위한 모듈 임포트
 
 const MyPageMain = () => {
+  const [data, setData] = useState({ posts: [], profiles: [] });
+
+  const fetchData = async () => {
+    try {
+      const response = await API.get("/api/users/myprofile");
+      console.log("진우데이터:", response.data);
+      setData(response.data);
+    } catch (error) {
+      console.log("에러입니당:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const navigate = useNavigate(); // useNavigate 훅 초기화
 
   const handleManageClick = () => {
@@ -30,6 +42,10 @@ const MyPageMain = () => {
 
   const handleReservationClick = () => {
     navigate("/ReservationList"); // /PetEdit 경로로 이동
+  };
+
+  const handlePostClick = () => {
+    navigate("/MyPost"); // /PetEdit 경로로 이동
   };
 
   return (
@@ -60,7 +76,7 @@ const MyPageMain = () => {
               </GoBtn>
             </ItemDetail>
             커뮤니티
-            <ItemDetail>
+            <ItemDetail onClick={handlePostClick}>
               내가 쓴 글
               <GoBtn>
                 <GoMyPageSVG />

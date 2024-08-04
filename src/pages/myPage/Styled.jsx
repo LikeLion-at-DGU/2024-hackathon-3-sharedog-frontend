@@ -24,7 +24,7 @@ export const MyInfo = styled.div`
   height: 20vh;
   flex-shrink: 0;
   border-radius: 11.587px;
-  margin-top: 10px;
+  margin-top: 10vh;
 
   display: flex;
   flex-direction: column; /* 요소들을 수직 정렬 */
@@ -144,6 +144,19 @@ export const ItemDetail = styled.div`
   line-height: 160%; /* 21.5px */
   letter-spacing: -0.269px;
   flex: 1;
+`;
+
+export const EmailText = styled.div`
+  display: flex;
+  align-items: center;
+  color: var(--Gray-Gray01, #9c9ca1);
+  text-align: right;
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 180%; /* 21.6px */
+  letter-spacing: -0.24px;
 `;
 
 export const GoBtn = styled.div`

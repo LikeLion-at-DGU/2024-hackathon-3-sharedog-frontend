@@ -21,6 +21,7 @@ import BloodPostDetail from "./pages/bloodPostDetailPage/BloodPostDetail";
 import CalendarPage from "./pages/calendarPage/CalendarPage";
 import MapPage from "./pages/mapPage/Map";
 import StandardPage from "./pages/explainPage/Standard";
+import MyPost from "./pages/myPage/MyPost";
 
 import Auth from "./pages/loginPage/Auth";
 const router = createBrowserRouter([
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
       { path: "/map/:id", element: <MapPage /> }, //지도 화면
       { path: "/standard", element: <StandardPage /> }, //헌혈 기준 화면
       { path: "/auth/kakao/callback", element: <Auth /> },
+      { path: "/mypost", element: <MyPost /> }, //내가 쓴 글 화면
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
