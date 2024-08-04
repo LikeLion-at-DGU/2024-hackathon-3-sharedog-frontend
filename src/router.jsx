@@ -22,6 +22,7 @@ import CalendarPage from "./pages/calendarPage/CalendarPage";
 import MapPage from "./pages/mapPage/Map";
 import StandardPage from "./pages/explainPage/Standard";
 
+import Auth from "./pages/loginPage/Auth";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
       { path: "/calendarPage/:id", element: <CalendarPage /> }, //달력 화면
       { path: "/map/:id", element: <MapPage /> }, //지도 화면
       { path: "/standard", element: <StandardPage /> }, //헌혈 기준 화면
+      { path: "/auth/kakao/callback", element: <Auth /> },
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
