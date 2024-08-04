@@ -16,6 +16,12 @@ import {
   FaqBox,
   FaqContainer,
   FaqTitle,
+  QnABox,
+  QnATitle,
+  AnswerBox,
+  AnswerText,
+  StandardArrowSVG,
+  ArrowImg,
 } from "./Styled";
 import Header from "./header/Header";
 
@@ -76,6 +82,32 @@ const Standard = () => {
       <FaqContainer>
         <FaqBox>
           <FaqTitle>반려견 헌혈 FAQ</FaqTitle>
+          <QnABox>
+            <QnATitle>Q. 헌혈 시 혈액은 어느 정도 뽑나요?</QnATitle>
+            <AnswerBox>
+              <ArrowImg>
+                <StandardArrowSVG />
+              </ArrowImg>
+              <AnswerText>
+                헌혈은 한 번 진행할 때, 몸무게의 총 1%에 해당하는 혈액을
+                채혈해요.
+              </AnswerText>
+            </AnswerBox>
+            <QnATitle>
+              Q. 몸무게의 1%에 해당하는 혈액을 채혈하면, <br></br>몸무게 기준이
+              중요한가요?
+            </QnATitle>
+            <AnswerBox>
+              <ArrowImg>
+                <StandardArrowSVG />
+              </ArrowImg>
+              <AnswerText>
+                강아지는 사람처럼 체내에 혈액이 많지 않아요. 기준 몸무게에서
+                완전히 벗어나는 강아지의 경우, 무리가 갈 수 있기 때문에 몸무게
+                기준이 매우 중요해요!
+              </AnswerText>
+            </AnswerBox>
+          </QnABox>
         </FaqBox>
       </FaqContainer>
     </Wrapper>
