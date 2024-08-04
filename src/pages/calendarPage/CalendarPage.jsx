@@ -3,10 +3,8 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Header from './header/Header';
 import { useParams, useNavigate } from "react-router-dom";
-import dummyReservation from '../../data/dummyReservation';
 import styled from "styled-components";
-import { Wrapper, Container, Title, Image, TextContent, HosInfo, HosName, HosDetail, HosPhone, NextBtn, Week, Time,
-  TimeSelect, TimeContainer, Am, AmText, Pm, PmText, TimeButton, Color } from "./Styled";
+import { Wrapper, Container, Title, Image, TextContent, HosInfo, HosName, HosDetail, HosPhone, NextBtn, Week, Time, TimeSelect, TimeContainer, Am, AmText, Pm, PmText, TimeButton, Color } from "./Styled";
 import VectorIcon from '../../assets/icons/Vector.svg?react';
 import PhoneIcon from '../../assets/icons/Phone.svg?react';
 import moment from 'moment';
@@ -14,7 +12,6 @@ import LeftSVG from "../../assets/icons/Left.svg?react";
 import RightSVG from "../../assets/icons/Right.svg?react";
 import { API } from '../../api';
 
-// styled-components를 사용하여 달력 스타일을 커스터마이즈
 const CalendarContainer = styled.div`
   margin-top: 2vh;
   display: flex;
@@ -154,9 +151,21 @@ const CalendarPage = () => {
   const navigate = useNavigate(); // 페이지 이동을 관리하는 훅입니다.
   const [selectedDate, setSelectedDate] = useState(new Date()); // 선택된 날짜를 저장합니다.
   const [activeTime, setActiveTime] = useState(null); // 선택된 시간을 저장합니다.
+  const [hospital, setHospital] = useState(null); // 병원 정보를 저장할 상태를 추가합니다.
 
-  // 더미 데이터에서 병원 정보를 찾는다
-  const hospital = dummyReservation.find((hospital) => hospital.id === parseInt(id));
+  useEffect(() => {
+    const fetchHospital = async () => {
+      try {
+        const response = await API.get(`/api/hospital/home/${id}`); // 병원 상세 정보를 가져오는 API 호출
+        setHospital(response.data);
+        console.log("병원 정보:", response.data);
+      } catch (error) {
+        console.error('병원 데이터를 가져오는 중 오류 발생:', error);
+      }
+    };
+
+    fetchHospital();
+  }, [id]);
 
   // 날짜가 변경될 때 호출되는 함수
   const handleDateChange = newDate => {
@@ -183,7 +192,6 @@ const CalendarPage = () => {
     '2024-12-25',
   ];
 
-
   // 달력에 필요한 값을 설정
   const value = selectedDate;
 
@@ -197,30 +205,26 @@ const CalendarPage = () => {
     return now.add(2, 'months').endOf('month').toDate(); // 현재 달부터 두 달 후의 마지막 날짜
   };
 
-  const postData = async() => {
+  const postData = async () => {
     console.log("Sending data:", {
       selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
       activeTime
     });
 
     try {
-      const response = await API.post(`/api/hospital/${id}/reservation`, {
+      const response = await API.post(`/api/hospital/home/${id}/reservation`, {
         selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
         activeTime
       });
       alert('성공');
-      console.log(response.data)
+      console.log(response.data);
       navigate('/reservation'); // 성공 후 다음 페이지로 이동
-    } catch(error) {
+    } catch (error) {
       const errorMessage = error.response ? error.response.data : error.message;
       console.error("Error details:", errorMessage);
       alert(`오류 발생: ${errorMessage}`);
     }
   };
-
-  /*useEffect(() => {
-    postData();
-  }, []);*/
 
   const isButtonDisabled = !selectedDate || !activeTime;
 
@@ -229,16 +233,22 @@ const CalendarPage = () => {
       <Header/>
       <Wrapper>
         <Container>
-          <Image src={hospital.image} alt={hospital.name} />
-          <HosInfo>
-            <HosName>
-              <Title>{hospital.name}</Title>
-            </HosName>
-            <HosDetail>
-              <TextContent><VectorIcon /> {hospital.place}</TextContent>
-              <HosPhone><PhoneIcon /> {hospital.phone}</HosPhone>
-            </HosDetail>
-          </HosInfo>
+          {hospital ? (
+            <>
+              <Image src={hospital.image} alt={hospital.name} />
+              <HosInfo>
+                <HosName>
+                  <Title>{hospital.name}</Title>
+                </HosName>
+                <HosDetail>
+                  <TextContent><VectorIcon /> {hospital.place}</TextContent>
+                  <HosPhone><PhoneIcon /> {hospital.phone}</HosPhone>
+                </HosDetail>
+              </HosInfo>
+            </>
+          ) : (
+            <p>Loading...</p>
+          )}
           <Week>헌혈 희망 요일</Week>
           <CalendarContainer>
             <Calendar 
@@ -312,9 +322,9 @@ const CalendarPage = () => {
             </TimeContainer>
           </TimeSelect>
           <Color>
-          <NextBtn disabled={isButtonDisabled} onClick={() => !isButtonDisabled && postData()}>
-            다음
-          </NextBtn>
+            <NextBtn disabled={isButtonDisabled} onClick={() => !isButtonDisabled && postData()}>
+              다음
+            </NextBtn>
           </Color>
         </Container>
       </Wrapper>
