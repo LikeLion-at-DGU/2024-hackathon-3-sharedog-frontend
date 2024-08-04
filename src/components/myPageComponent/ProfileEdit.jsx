@@ -75,6 +75,7 @@ export const ProfileImg = styled.div`
   padding: 15.058px 15.83px;
   border-radius: 50%;
   flex-shrink: 0;
+  background: #eaeaec;
 
   background-image: ${({ imageUrl }) =>
     imageUrl ? `url(${imageUrl})` : "none"};

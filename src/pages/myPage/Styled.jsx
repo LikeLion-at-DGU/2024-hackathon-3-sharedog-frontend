@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   font-size: 20px;
   font-family: SUIT, sans-serif;
   font-weight: 800;
-  padding-top: 80px; /* 상단 여백 추가 */
+  padding-top: 12vh; /* 상단 여백 추가 */
 `;
 
 // MyInfo: 프로필 정보를 감싸는 박스 스타일

@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   font-size: 20px;
   font-family: SUIT, sans-serif;
   font-weight: 800;
-  padding-top: 80px; /* 상단 여백 추가 */
+  padding-top: 10vh; /* 상단 여백 추가 */
 `;
 
 export const DropDownBox = styled.div`
