@@ -242,7 +242,7 @@ const CalendarPage = () => {
                 </HosName>
                 <HosDetail>
                   <TextContent><VectorIcon /> {hospital.place}</TextContent>
-                  <HosPhone><PhoneIcon /> {hospital.phone}</HosPhone>
+                  <HosPhone><PhoneIcon /> {hospital.tel_num}</HosPhone>
                 </HosDetail>
               </HosInfo>
             </>
