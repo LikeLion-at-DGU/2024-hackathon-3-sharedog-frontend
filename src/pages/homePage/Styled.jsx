@@ -157,57 +157,6 @@ background: rgba(234, 234, 234, 0.70);
 `;
 
 //지역별 긴급헌혈 현황 파트 ----------------------
-
-export const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
-
-    return (
-       
-        <Wrapper>
-             <NavLink to={`/bloodPost/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* 링크 추가 */}
-            <ContentWrapper>
-                <Header>
-                    <TagWrapper>
-                        <Badge>{bloodType}</Badge>
-                        <Tag>{region}</Tag>
-                    </TagWrapper>
-                    
-                    <DateText>{date}</DateText>
-                </Header>
-                
-                <Title>{title} <Writer>| {writer}</Writer></Title>
-                
-                <Body $hasImage={!!image}>
-                    {/* 이미지가 있을때는 출력하기 */}
-                    {image && (
-                        <ImageWrapper>
-                        <img src={image} alt={title} />
-                        {/* {removePortFromURL(image)} */}
-                        </ImageWrapper>
-                    )}
-                    <Content $hasImage={!!image}>{content}</Content>
-                </Body>
-            </ContentWrapper>
-            </NavLink>
-            <Footer>
-                <FooterIcon>
-                    <LikeCount>
-                         {/* 클릭 시 아이콘 변경 */}
-                        <HeartIcon
-                            icon={isLiked ? faHeartSolid : faHeartRegular}
-                            onClick={handleLikeToggle} // onClick 핸들러 추가
-                        />
-                        {likeCount}
-                        
-                    </LikeCount>
-                    <CommentCount>
-                        <CommentIcon icon={faCommentDotsRegular} />    
-                        {commentsCount}
-                    </CommentCount>
-                </FooterIcon>
-                
-            </Footer>
-            
-        </Wrapper>
-  
-    );
-};
+export const HomePostTitle=styled.div`
+    
+`;
