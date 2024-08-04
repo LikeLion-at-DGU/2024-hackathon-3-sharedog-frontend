@@ -144,7 +144,7 @@ const PetInfoCard = () => {
       {petInfo.map((pet) => (
         <PetInfoBox key={pet.id}>
           <MainProfileBox>
-            {pet.status === "best" && (
+            {pet.kingdog && (
               <>
                 <CheckMyPageSVG />
                 <MainProfile>대표 프로필</MainProfile>

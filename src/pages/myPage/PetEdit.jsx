@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import {
-  InfoBox,
-  MyInfo,
   Wrapper,
-  ProfileImg,
-  ProfileMyPageSVG,
   InPutBox,
   CompleteBtn,
-  PictureImg,
-  PictureMyPageSVG,
-  Editbtn,
+  RadioGroup,
+  RadioLabel,
+  RadioButton,
+  RadioBox,
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -64,12 +61,19 @@ const PetEdit = () => {
       <Wrapper>
         <ProfileEdit></ProfileEdit>
         <InPutBox>
-          <InputHolder
-            title={"반려견 이름"}
-            inputtext={"반려견 이름을 입력해 주세요."}
-            value={petName}
-            onChange={(e) => setPetName(e.target.value)}
-          />
+          <RadioGroup>
+            대표 프로필 지정
+            <RadioBox>
+              <RadioLabel>
+                <RadioButton name="profile" value="Yes" />
+                지정할래요
+              </RadioLabel>
+              <RadioLabel>
+                <RadioButton name="profile" value="No" />
+                괜찮아요
+              </RadioLabel>
+            </RadioBox>
+          </RadioGroup>
           <Select
             title={"반려견 성별"}
             value={selectedGender}

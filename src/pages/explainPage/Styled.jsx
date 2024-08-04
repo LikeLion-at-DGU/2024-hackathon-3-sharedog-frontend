@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Check2MyPageSVG from "../../assets/icons/check2MyPage.svg?react";
 import PinkLineSVG from "../../assets/icons/pinkLine.svg?react";
+import StandardArrowSVG from "../../assets/icons/StandardArrow.svg?react";
 
 export const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 80vh;
   font-size: 20px;
   align-items: center;
   flex-direction: column;
@@ -132,7 +132,7 @@ export const Line = styled.div`
   width: 100%;
   height: 1px;
   background: rgba(234, 234, 234, 0.7);
-  margin-top: 10px;
+  margin: 3vh;
 `;
 
 export const FaqContainer = styled.div`
@@ -140,7 +140,7 @@ export const FaqContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 90%;
-  margin-top: 3vh;
+  height: auto;
 `;
 
 export const FaqBox = styled.div`
@@ -148,22 +148,24 @@ export const FaqBox = styled.div`
   width: 100%;
   align-items: center;
   padding: 3vh;
+  margin-bottom: 5vh;
   align-self: stretch;
   flex-direction: column;
-
   border-radius: 12px;
   border: 1px solid var(--Color-Gray-Gray01, #eaeaea);
   background: var(--Gray-White, #fff);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.03);
+  overflow: hidden; // 내용이 넘치지 않도록 추가
+  word-break: break-word; // 단어가 박스를 넘지 않도록 추가
+  box-sizing: border-box; // padding 포함 크기 계산
 `;
 
 export const FaqTitle = styled.div`
   display: flex;
-  width: 141px;
   padding: 7px 12px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  margin-bottom: 3vh;
 
   border-radius: 30px;
   background: rgba(255, 165, 165, 0.7);
@@ -176,4 +178,48 @@ export const FaqTitle = styled.div`
   line-height: 100%; /* 14px */
 `;
 
-export { Check2MyPageSVG, PinkLineSVG };
+export const QnABox = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2vh;
+  align-items: flex-start;
+  align-self: stretch;
+`;
+
+export const QnATitle = styled.div`
+  color: var(--Gray-Gray03, #3a3a3c);
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.5; /* 12px */
+  margin-bottom: 1vh;
+`;
+
+export const AnswerBox = styled.div`
+  display: inline-flex;
+  align-items: flex-start;
+  flex-direction: row;
+`;
+
+export const ArrowImg = styled.div`
+  width: 13px;
+  height: 13px;
+  margin-right: 1vh;
+`;
+
+export const AnswerText = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 4vh;
+
+  color: var(--Gray-Gray02, #636366);
+  font-family: SUIT;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 16.8px */
+`;
+
+export { Check2MyPageSVG, PinkLineSVG, StandardArrowSVG };

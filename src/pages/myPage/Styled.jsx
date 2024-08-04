@@ -195,7 +195,7 @@ export const CompleteBtn = styled.button`
   display: flex;
   padding: 10px 47px;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 1vh;
   align-items: center;
   gap: 10px;
   align-self: stretch;
@@ -208,22 +208,29 @@ export const CompleteBtn = styled.button`
   font-size: 16px;
   font-weight: 600;
   line-height: 140%; /* 22.4px */
+  cursor: ${({ isActive }) => (isActive ? "pointer" : "default")};
 
-  &[data-active="true"] {
-    background-color: #ff6969;
-  }
+  ${({ isActive }) =>
+    isActive &&
+    `
+      background-color: #ff6969;
+      &:hover {
+        background-color: #ff4d4d; /* hover 시 색상을 약간 더 어둡게 */
+      }
+  `}
 `;
 
 export const PlusBtn = styled.button`
   display: flex;
   width: 112px;
-  padding: 11.868px 0px;
-  margin: 10px;
+  padding: 10px;
+  margin-top: 2vh;
   justify-content: center;
   align-items: center;
   border-radius: 22.252px;
   border: 1px solid var(--Red-Red04, #ff6969);
   background: #fff;
+
   color: var(--Red-Red04, #ff6969);
   text-align: center;
   font-family: SUIT;
@@ -236,6 +243,81 @@ export const PlusBtn = styled.button`
   &:hover {
     background: var(--Red-Red04, #ff6969);
     color: var(--Gray-White, #fff);
+  }
+`;
+
+export const RadioGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  color: var(--Graysclae-Gray700, #191f28);
+  font-family: SUIT;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 19.6px */
+  letter-spacing: -0.28px;
+`;
+
+export const RadioBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10vh;
+  margin-top: 1vh;
+
+  color: var(--Graysclae-Gray700, #191f28);
+  font-family: SUIT;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 19.6px */
+  letter-spacing: -0.28px;
+`;
+
+export const RadioLabel = styled.label`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-size: 16px;
+  font-weight: 700;
+
+  color: var(--Gray-Gray03, #3a3a3c);
+  font-family: SUIT;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 19.6px */
+  letter-spacing: -0.28px;
+
+  color: var(--Grayscale-Gray700, #222b39);
+  cursor: pointer;
+
+  input {
+    margin-right: 8px;
+  }
+`;
+
+export const RadioButton = styled.input.attrs({ type: "radio" })`
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ff6969;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+
+  &:checked::before {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: #ff6969;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
