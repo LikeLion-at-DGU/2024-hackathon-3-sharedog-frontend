@@ -1,5 +1,6 @@
 import {
-    Wrapper,Bg,ContentWrapper,PetTestCard,InfoCard,InfoCardWrapper,Line,
+    Wrapper,Bg,ContentWrapper,PetTestCard,InfoCard,InfoCardWrapper,
+    Line,HomePostTitle,PetSlider
 } from './Styled';
 import Header from './header/Header';
 import React from 'react';
@@ -25,12 +26,14 @@ const Home = () => {
     useEffect(()=> {
         fetchData();
     }, []);
+    console.log("헤더에 들어갈데이터:",data.profiles[0]);//나중에 지우기
+    console.log("슬라이드 데이터:",data.posts);
     return (
         
     <Wrapper>
         <Bg>
-            <Header/>
-            <PetTestCard/>
+            <Header profile={data.profiles[0]} />
+            <PetSlider/>
         </Bg>
         <ContentWrapper>
             <InfoCardWrapper>
@@ -39,8 +42,8 @@ const Home = () => {
                 <InfoCard icon={Home3} text="헌혈 혜택" />
             </InfoCardWrapper>
             <Line/>
-            
-            <Slider />
+            <HomePostTitle>지역별 긴급헌혈 현황</HomePostTitle>
+            <Slider post={data.posts} />
         </ContentWrapper>
     </Wrapper>
 
