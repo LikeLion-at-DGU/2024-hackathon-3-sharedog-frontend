@@ -45,7 +45,7 @@ const dummyReservation = [
     id: 3,
     name: "에이드 동물병원",
     region: "서울",
-    place: "서울 강남구 논현로 813 1F, B1F",
+    place: "서울 강남구 논현로 813 지하1,1층",
     created_at: "2024-07-27T01:38:30.681353",
     updated_at: "2024-07-27T01:38:30.681353",
     image: AdeHos,
