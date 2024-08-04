@@ -13,9 +13,10 @@ import {
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
+import { API } from "../../api"; // API import
 
 const MyPageEdit = () => {
   const navigate = useNavigate();
@@ -32,6 +33,22 @@ const MyPageEdit = () => {
 
   const isComplete = () => nickname !== "" && phone !== "";
 
+  const [profiles, setProfiles] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await API.get("/api/users/myprofile");
+      console.log("진우데이터:", response.data);
+      setProfiles(response.data); // 데이터 배열로 설정
+    } catch (error) {
+      console.error("에러입니당:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header title="프로필 수정" />
@@ -43,12 +60,6 @@ const MyPageEdit = () => {
             inputtext={"닉네임을 입력해 주세요."}
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
-          />
-          <InputHolder
-            title={"전화번호"}
-            inputtext={"전화번호를 입력해 주세요."}
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
           />
           <BtnBox>
             <CompleteBtn
