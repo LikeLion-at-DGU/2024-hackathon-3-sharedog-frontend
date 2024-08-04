@@ -84,9 +84,8 @@ export const HospitalCard = styled.div`
 `;
 
 export const HospitalImage = styled.img`
-  width: 22vw;
-  height: 14vw;
-  aspect-ratio: 10 / 6; /* 비율에 맞게 조정 */
+  width: 103px;
+  height: 68px;
   object-fit: cover;
   margin-right: 20px;
 `;
