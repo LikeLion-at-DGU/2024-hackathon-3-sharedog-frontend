@@ -86,6 +86,7 @@ export const HospitalCard = styled.div`
 export const HospitalImage = styled.img`
   width: 103px;
   height: 68px;
+  object-fit: cover;
   margin-right: 20px;
 `;
 
