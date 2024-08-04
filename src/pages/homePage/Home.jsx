@@ -39,6 +39,7 @@ const Home = () => {
                 <InfoCard icon={Home3} text="헌혈 혜택" />
             </InfoCardWrapper>
             <Line/>
+            
             <Slider />
         </ContentWrapper>
     </Wrapper>

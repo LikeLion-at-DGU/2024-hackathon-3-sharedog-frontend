@@ -15,7 +15,7 @@ export const MapBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 90px;
+  margin-top: 13vh;
   margin-bottom: 10px;
   flex-shrink: 0;
   border-radius: 6px;
