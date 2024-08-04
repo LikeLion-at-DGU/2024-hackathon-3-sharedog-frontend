@@ -15,6 +15,7 @@ const Auth = () => {
     if (code) {
       fetchAccessToken(code);
     }
+    setupAxiosInterceptors();
   }, [code]);
 
   const fetchAccessToken = async (authCode) => {
@@ -102,19 +103,61 @@ const Auth = () => {
     }
   };
 
+  const refreshToken = async () => {
+    const refreshToken = localStorage.getItem('refresh');
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/accounts/token/refresh/`, {
+        refresh: refreshToken,
+      });
+
+      const { access } = response.data;
+      localStorage.setItem('access', access);
+      setJwtToken((prev) => ({ ...prev, access }));
+      return access;
+    } catch (error) {
+      console.error('Failed to refresh token:', error);
+      setLoginError(`Failed to refresh token: ${error.message}`);
+      logout();
+    }
+  };
+
+  const setupAxiosInterceptors = () => {
+    axios.interceptors.response.use(
+      response => response,
+      async (error) => {
+        const originalRequest = error.config;
+        if (error.response.status === 401 && !originalRequest._retry) {
+          originalRequest._retry = true;
+          const newAccessToken = await refreshToken();
+          axios.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
+          return axios(originalRequest);
+        }
+        return Promise.reject(error);
+      }
+    );
+  };
+
+  const logout = () => {
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    setJwtToken({ access: '', refresh: '' });
+    navigate('/login');
+  };
+
   return (
     <div>
       {code ? <p>인증 코드: {code}</p> : <p>인증 코드가 URL에 없습니다.</p>}
       {accessToken && <p>Access Token: {accessToken}</p>}
       {jwtToken.access && <p>JWT Access Token: {jwtToken.access}</p>}
       {jwtToken.refresh && <p>JWT Refresh Token: {jwtToken.refresh}</p>}
-      {loginError && <p style={{ color: 'red' }}>로그인 실패: {loginError}</p>}
+      {loginError && <p style={{ color: 'red' }}> 각종에러입니다: {loginError}</p>}
       {userInfo && (
         <div>
           <h3>사용자 정보:</h3>
-          <p>이름: {userInfo.username}</p>
+          <p>프로필 이미지: {userInfo.profile_image}</p>
+          <p>닉네임: {userInfo.nickname}</p>
+          <p>username: {userInfo.username}</p>
           <p>이메일: {userInfo.email}</p>
-          {/* 추가적인 사용자 정보가 있다면 여기에 표시 */}
         </div>
       )}
     </div>
