@@ -19,7 +19,7 @@ import SignUpPet from "./pages/signupPage/SignUpPet";
 import SignUpSplash from "./pages/signupSplashPage/SignUpSplash";
 import BloodPostDetail from "./pages/bloodPostDetailPage/BloodPostDetail";
 import CalendarPage from "./pages/calendarPage/CalendarPage";
-
+import Auth from "./pages/loginPage/Auth";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,6 +43,7 @@ const router = createBrowserRouter([
       { path: "/signuppet", element: <SignUpPet /> },
       { path: "/signupsplash", element: <SignUpSplash /> },
       { path: "/calendarPage/:id", element: <CalendarPage /> },
+      { path:"/auth/kakao/callback", element:<Auth />} ,
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
