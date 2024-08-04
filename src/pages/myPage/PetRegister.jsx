@@ -12,7 +12,7 @@ import InputHolder from "../../components/myPageComponent/InputHolder";
 import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
 import { useNavigate } from "react-router-dom";
-import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
+import ProfilePet from "../../components/myPageComponent/ProfilePet";
 import { API } from "../../api";
 import React, { useState, useEffect } from "react";
 
@@ -111,7 +111,7 @@ const PetRegister = () => {
     <>
       <Header title="반려견 정보 등록하기" />
       <Wrapper>
-        <ProfileEdit />
+        <ProfilePet />
         <InPutBox>
           <RadioGroup>
             대표 프로필 지정
