@@ -44,7 +44,7 @@ export const HosInfo = styled.div`
 `;
 
 export const HosName = styled.div`
-  width: 80%;
+  width: 88%;
   height: 6vh;
   display: flex;
   align-items: center;
