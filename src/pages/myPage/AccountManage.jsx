@@ -1,21 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Editbtn,
-  InfoBox,
-  MyInfo,
   Wrapper,
-  EditMyPageSVG,
-  ProfileImg,
-  ProfileMyPageSVG,
   InfoList2,
   InfoListItem,
   ItemDetail,
   GoMyPageSVG,
   GoBtn,
+  EmailText,
 } from "./Styled";
 import Header from "./header/Header";
 import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
 import Modal from "../../components/myPageComponent/Modal";
+import { API } from "../../api"; // API import
 
 const AccountManage = () => {
   const navigate = useNavigate(); // useNavigate 훅 초기화
@@ -30,29 +26,50 @@ const AccountManage = () => {
     setShowDeleteModal(false);
   };
 
+  const [profiles, setProfiles] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await API.get("/api/users/myprofile");
+      console.log("진우데이터:", response.data);
+      setProfiles(response.data); // 데이터 배열로 설정
+    } catch (error) {
+      console.error("에러입니당:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header title="계정 관리" />
       <Wrapper>
-        <InfoList2>
-          <InfoListItem>
-            계정 정보
-            <ItemDetail>카카오 로그인</ItemDetail>
-            계정 관리
-            <ItemDetail onClick={handleLogoutClick}>
-              로그아웃
-              <GoBtn onClick={handleLogoutClick}>
-                <GoMyPageSVG />
-              </GoBtn>
-            </ItemDetail>
-            <ItemDetail onClick={handleDeleteClick}>
-              회원 탈퇴
-              <GoBtn onClick={handleDeleteClick}>
-                <GoMyPageSVG />
-              </GoBtn>
-            </ItemDetail>
-          </InfoListItem>
-        </InfoList2>
+        {profiles.map((profile, index) => (
+          <InfoList2 key={index}>
+            <InfoListItem>
+              계정 정보
+              <ItemDetail>
+                카카오 로그인
+                <EmailText>{profile.email}</EmailText>
+              </ItemDetail>
+              계정 관리
+              <ItemDetail onClick={handleLogoutClick}>
+                로그아웃
+                <GoBtn onClick={handleLogoutClick}>
+                  <GoMyPageSVG />
+                </GoBtn>
+              </ItemDetail>
+              <ItemDetail onClick={handleDeleteClick}>
+                회원 탈퇴
+                <GoBtn onClick={handleDeleteClick}>
+                  <GoMyPageSVG />
+                </GoBtn>
+              </ItemDetail>
+            </InfoListItem>
+          </InfoList2>
+        ))}
       </Wrapper>
 
       {showLogoutModal && (

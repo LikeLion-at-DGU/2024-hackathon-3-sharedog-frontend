@@ -1,6 +1,7 @@
-/*global kakao*/
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Modal from 'react-modal';
+import styled from "styled-components";
 import {
   InfoBox,
   InfoCheck,
@@ -13,18 +14,42 @@ import {
   Line,
   CautionBox,
   ReservationBtn,
+  ModalWrapper,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalText,
+  ModalButton
 } from "./Styled";
 import Header from "../../pages/myPage/header/Header";
 import Check2MyPageSVG from "../../assets/icons/check2MyPage.svg?react";
 import dummyReservation from "../../data/dummyReservation";
+import Arrow from "../../assets/icons/Arrow.svg";
+import Complete from "../../assets/icons/Complete.svg";
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* 오버레이의 z-index 설정 */
+`;
 
 const Map = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const reservation = dummyReservation.find((res) => res.id === parseInt(id));
   const [coordinates, setCoordinates] = useState({
     lat: 37.5665,
     lng: 126.978,
   });
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [overlayIsVisible, setOverlayIsVisible] = useState(false);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -65,6 +90,15 @@ const Map = () => {
     };
   }, [reservation]);
 
+  const openModal = () => {
+    setModalIsOpen(true);
+    setOverlayIsVisible(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setOverlayIsVisible(false);
+  };
+
   return (
     <>
       <Header title={"예약 정보 확인"} />
@@ -104,12 +138,46 @@ const Map = () => {
               <Text2>혈액검사-채혈-안정까지 약 1시간 40분 소요돼요.</Text2>
             </InfoBox2>
           </CautionBox>
-          <ReservationBtn>헌혈 예약하기</ReservationBtn>
+          <ReservationBtn onClick={openModal}>헌열 예약하기</ReservationBtn>
         </InfoCheck>
       </Wrapper>
+
+      {overlayIsVisible && (
+        <ModalOverlay>
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Reservation Completed"
+            overlayClassName="overlay"
+            style={{
+              content: {
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+                border: 'none',
+                background: 'none',
+                zIndex: 1001, // 모달 컨텐츠가 오버레이보다 위에 오도록 설정
+              }
+            }}
+          >
+            <ModalWrapper>
+              <ModalHeader> 예약이 완료되었어요!</ModalHeader>
+              <ModalBody>
+                <img src={Complete} alt="예약 완료" style={{ width: '50px', height: '50px' }} />
+              </ModalBody>
+              <ModalFooter>
+                <ModalButton onClick={() => navigate('/reservationlist')}>헌열 예약 내역<img src={Arrow} alt="예약 내역 보기"/></ModalButton>
+              </ModalFooter>
+            </ModalWrapper>
+          </Modal>
+        </ModalOverlay>
+      )}
     </>
   );
 };
 
 export default Map;
-export { Check2MyPageSVG };

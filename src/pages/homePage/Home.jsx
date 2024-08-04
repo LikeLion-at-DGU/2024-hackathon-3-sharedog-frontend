@@ -1,17 +1,25 @@
 import {
-    Wrapper,Bg,ContentWrapper,PetTestCard,InfoCard,InfoCardWrapper,
-    Line,HomePostTitle,PetSlider
-} from './Styled';
-import Header from './header/Header';
-import React from 'react';
-import { API } from '../../api'; // API 호출을 위한 모듈 임포트
-import { useEffect, useState } from 'react';
-import Home1 from '../../assets/icons/Home1.svg?react';
-import Home2 from '../../assets/icons/Home2.svg?react';
-import Home3 from '../../assets/icons/Home3.svg?react';
-import Slider from './Slider';
+  Wrapper,
+  Bg,
+  ContentWrapper,
+  PetTestCard,
+  InfoCard,
+  InfoCardWrapper,
+    
+  Line,HomePostTitle,PetSlider
+} from "./Styled";
+import Header from "./header/Header";
+import React from "react";
+import { API } from "../../api"; // API 호출을 위한 모듈 임포트
+import { useEffect, useState } from "react";
+import Home1 from "../../assets/icons/Home1.svg?react";
+import Home2 from "../../assets/icons/Home2.svg?react";
+import Home3 from "../../assets/icons/Home3.svg?react";
+import Slider from "./Slider";
+import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
+
 const Home = () => {
-    const [data, setData] = useState({ posts: [], profiles: [] });
+  const [data, setData] = useState({ posts: [], profiles: [] });
 
     const fetchData = async () =>{
         try{
@@ -46,10 +54,7 @@ const Home = () => {
             <Slider post={data.posts} />
         </ContentWrapper>
     </Wrapper>
-
-);
-    
+  );
 };
 
 export default Home;
-    

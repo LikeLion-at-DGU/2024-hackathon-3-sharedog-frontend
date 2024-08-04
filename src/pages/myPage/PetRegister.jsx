@@ -1,16 +1,11 @@
-import React, { useState } from "react";
 import {
-  InfoBox,
-  MyInfo,
   Wrapper,
-  ProfileImg,
-  ProfileMyPageSVG,
   InPutBox,
   CompleteBtn,
-  PictureImg,
-  PictureMyPageSVG,
-  PetFootMyPageSVG,
-  Editbtn,
+  RadioGroup,
+  RadioLabel,
+  RadioButton,
+  RadioBox,
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -18,22 +13,20 @@ import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
 import { useNavigate } from "react-router-dom";
 import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
+import { API } from "../../api";
+import React, { useState, useEffect } from "react";
 
 const PetRegister = () => {
   const navigate = useNavigate();
 
-  // Editbtn 클릭 핸들러
-  const handleInfoClick = () => {
-    if (isComplete()) {
-      navigate("/petinfo"); // 경로 확인
-    }
-  };
-
-  const [selectedGender, setSelectedGender] = useState("");
-  const [petName, setPetName] = useState("");
-  const [petAge, setPetAge] = useState("");
-  const [petWeight, setPetWeight] = useState("");
-  const [petBloodType, setPetBloodType] = useState("");
+  const [gender, setGender] = useState("");
+  const [dogname, setDogname] = useState("");
+  const [dog_age, setDogAge] = useState("");
+  const [dog_weight, setDogWeight] = useState("");
+  const [dog_blood, setDogBlood] = useState("");
+  const [dog_image, setDogImage] = useState(null);
+  const [kingdog, setKingdog] = useState(""); // 수정된 부분
+  const [isComplete, setIsComplete] = useState(false);
 
   const bloodOptions = [
     { label: "DEA 1-", value: "DEA 1-" },
@@ -46,17 +39,72 @@ const PetRegister = () => {
   ];
 
   const handleGenderChange = (newGender) => {
-    setSelectedGender(newGender);
+    setGender(newGender);
   };
 
-  const isComplete = () => {
+  const handleImageChange = (e) => {
+    setDogImage(e.target.files[0]);
+    console.log("Image changed:", e.target.files[0]);
+  };
+
+  const handleKingdogChange = (e) => {
+    setKingdog(e.target.value);
+    console.log("Kingdog changed:", e.target.value);
+  };
+
+  const isCompleteCheck = () => {
     return (
-      petName.trim() !== "" &&
-      selectedGender.trim() !== "" &&
-      petAge.trim() !== "" &&
-      petWeight.trim() !== "" &&
-      petBloodType.trim() !== ""
+      dogname.trim() !== "" &&
+      gender.trim() !== "" &&
+      dog_age.trim() !== "" &&
+      dog_weight.trim() !== "" &&
+      dog_blood.trim() !== "" &&
+      kingdog.trim() !== "" // 수정된 부분
     );
+  };
+
+  const postData = async () => {
+    const formData = new FormData();
+    formData.append("dogname", dogname);
+    formData.append("gender", gender);
+    formData.append("dog_age", dog_age);
+    formData.append("dog_weight", dog_weight);
+    formData.append("dog_blood", dog_blood);
+    formData.append("kingdog", kingdog);
+    if (dog_image) {
+      formData.append("dog_image", dog_image);
+    }
+
+    try {
+      const response = await API.post("/api/users/dogprofiles", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log("서버 응답 데이터:", response.data);
+      console.log("전송한 데이터:", {
+        dogname,
+        gender,
+        dog_age,
+        dog_weight,
+        dog_blood,
+        kingdog,
+        dog_image,
+      });
+      navigate("/petinfo");
+    } catch (error) {
+      console.log("네트워크 오류:", error);
+    }
+  };
+
+  useEffect(() => {
+    setIsComplete(isCompleteCheck());
+  }, [dogname, gender, dog_age, dog_weight, dog_blood, kingdog, dog_image]);
+
+  const handleCompleteClick = () => {
+    if (isComplete) {
+      postData();
+    }
   };
 
   return (
@@ -65,46 +113,67 @@ const PetRegister = () => {
       <Wrapper>
         <ProfileEdit />
         <InPutBox>
+          <RadioGroup>
+            대표 프로필 지정
+            <RadioBox>
+              <RadioLabel>
+                <RadioButton
+                  name="profile"
+                  value="Yes"
+                  checked={kingdog === "Yes"}
+                  onChange={handleKingdogChange}
+                />
+                지정할래요
+              </RadioLabel>
+              <RadioLabel>
+                <RadioButton
+                  name="profile"
+                  value="No"
+                  checked={kingdog === "No"}
+                  onChange={handleKingdogChange}
+                />
+                괜찮아요
+              </RadioLabel>
+            </RadioBox>
+          </RadioGroup>
           <InputHolder
             title={"반려견 이름"}
             inputtext={"반려견 이름을 입력해 주세요."}
-            value={petName}
-            onChange={(e) => setPetName(e.target.value)}
+            value={dogname}
+            onChange={(e) => setDogname(e.target.value)}
           />
           <Select
             title={"반려견 성별"}
-            value={selectedGender}
+            value={gender}
             onChange={handleGenderChange}
           />
           <InputHolder
             title={"반려견 나이"}
             inputtext={"반려견 나이를 입력해 주세요."}
-            value={petAge}
-            onChange={(e) => setPetAge(e.target.value)}
+            value={dog_age}
+            onChange={(e) => setDogAge(e.target.value)}
           />
           <InputHolder
             title={"반려견 몸무게"}
             inputtext={"반려견 몸무게를 입력해 주세요."}
-            value={petWeight}
-            onChange={(e) => setPetWeight(e.target.value)}
+            value={dog_weight}
+            onChange={(e) => setDogWeight(e.target.value)}
           />
           <InputDropDown
             title={"반려견 혈액형"}
             inputtext={"반려견 혈액형을 선택해 주세요."}
             options={bloodOptions}
-            value={petBloodType}
-            onChange={(e) => setPetBloodType(e.target.value)}
+            value={dog_blood}
+            onChange={(e) => setDogBlood(e.target.value)}
           />
           <CompleteBtn
             style={{
               borderRadius: "30px",
-              background: isComplete()
-                ? "var(--Red-Red04, #FF6969)"
-                : "rgba(156, 156, 161, 0.5)",
+              background: isComplete ? "#FF6969" : "rgba(156, 156, 161, 0.5)",
               color: "#fff",
             }}
-            disabled={!isComplete()}
-            onClick={handleInfoClick}
+            disabled={!isComplete}
+            onClick={handleCompleteClick}
           >
             완료
           </CompleteBtn>

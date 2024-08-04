@@ -26,6 +26,7 @@ npm install swiper
 npm install react-calendar
 npm install moment
 npm add react-calendar
+npm install react-modal
 ```
 
 ```
