@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       { path: "/signuppet", element: <SignUpPet /> },
       { path: "/signupsplash", element: <SignUpSplash /> },
       { path: "/calendarPage/:id", element: <CalendarPage /> },
-      { path: "/map", element: <MapPage /> },
+      { path: "/map/:id", element: <MapPage /> },
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
