@@ -128,4 +128,52 @@ export const DottedLine = styled.div`
   border-left: 2px dotted #ff6969;
 `;
 
+export const Line = styled.div`
+  width: 100%;
+  height: 1px;
+  background: rgba(234, 234, 234, 0.7);
+  margin-top: 10px;
+`;
+
+export const FaqContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-top: 3vh;
+`;
+
+export const FaqBox = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 3vh;
+  align-self: stretch;
+  flex-direction: column;
+
+  border-radius: 12px;
+  border: 1px solid var(--Color-Gray-Gray01, #eaeaea);
+  background: var(--Gray-White, #fff);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.03);
+`;
+
+export const FaqTitle = styled.div`
+  display: flex;
+  width: 141px;
+  padding: 7px 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+
+  border-radius: 30px;
+  background: rgba(255, 165, 165, 0.7);
+
+  color: #fff;
+  font-family: SUIT;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 100%; /* 14px */
+`;
+
 export { Check2MyPageSVG, PinkLineSVG };

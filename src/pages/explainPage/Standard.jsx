@@ -10,10 +10,12 @@ import {
   TitleText2,
   NumberCircle,
   Check2MyPageSVG,
-  PinkLineSVG,
   LineBox,
   NumberContainer,
-  DottedLine, // 새로 추가된 컴포넌트 임포트
+  Line,
+  FaqBox,
+  FaqContainer,
+  FaqTitle,
 } from "./Styled";
 import Header from "./header/Header";
 
@@ -40,7 +42,6 @@ const Standard = () => {
               </NumberContainer>
               <TitleText>몸무게</TitleText>
             </TitleContainer>
-
             <TitleText2>
               <LineBox></LineBox>
               25kg 이상이어야 해요.
@@ -71,6 +72,12 @@ const Standard = () => {
           </TitleBox>
         </ExplainDetailBox>
       </ExplainBox>
+      <Line></Line>
+      <FaqContainer>
+        <FaqBox>
+          <FaqTitle>반려견 헌혈 FAQ</FaqTitle>
+        </FaqBox>
+      </FaqContainer>
     </Wrapper>
   );
 };
