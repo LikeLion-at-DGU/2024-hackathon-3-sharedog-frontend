@@ -21,7 +21,7 @@ const Body = styled.div`
     width: 88%;
     /* height: 80vh; */
     height: 80vh; /* 80vh에서 FooterCmt 높이를 제외 */
-    flex: 1;
+    /* flex: 1; */
     overflow-y: auto;
     padding-top:8vh;
     padding-bottom: 10vh; /* FooterCmt 높이만큼 padding 추가 */
@@ -30,7 +30,7 @@ const Body = styled.div`
 `;
 
 const Content = styled.div`
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   flex-direction: column;
   overflow-y: auto; // 이 영역만 스크롤 가능
