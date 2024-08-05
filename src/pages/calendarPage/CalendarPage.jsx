@@ -143,16 +143,16 @@ const CalendarContainer = styled.div`
 `;
 
 const CalendarPage = () => {
-  const { id } = useParams(); // URL에서 병원 ID를 가져옵니다.
-  const navigate = useNavigate(); // 페이지 이동을 관리하는 훅입니다.
-  const [selectedDate, setSelectedDate] = useState(new Date()); // 선택된 날짜를 저장합니다.
-  const [activeTime, setActiveTime] = useState(null); // 선택된 시간을 저장합니다.
-  const [hospital, setHospital] = useState(null); // 병원 정보를 저장할 상태를 추가합니다.
+  const { id } = useParams(); 
+  const navigate = useNavigate(); 
+  const [selectedDate, setSelectedDate] = useState(new Date()); 
+  const [activeTime, setActiveTime] = useState(null); 
+  const [hospital, setHospital] = useState(null); 
 
   useEffect(() => {
     const fetchHospital = async () => {
       try {
-        const response = await API.get(`/api/hospital/home/${id}`); // 병원 상세 정보를 가져오는 API 호출
+        const response = await API.get(`/api/hospital/home/${id}`);
         setHospital(response.data);
         console.log("병원 정보:", response.data);
       } catch (error) {
@@ -163,19 +163,11 @@ const CalendarPage = () => {
     fetchHospital();
   }, [id]);
 
-  // 날짜가 변경될 때 호출되는 함수
   const handleDateChange = newDate => {
     setSelectedDate(newDate);
   };
 
-  // 월 변경 처리 함수
-  const handleMonthChange = () => {
-    // 여기에 월 변경 시 필요한 로직을 작성하세요.
-    console.log("월이 변경되었습니다.");
-  };
-
-  // 마크된 날짜들 정의 (예시로 현재 날짜만 표시)
-  const mark = [moment().format('YYYY-MM-DD')]; // 현재 날짜를 마크된 날짜로 설정합니다.
+  const mark = [moment().format('YYYY-MM-DD')]; 
 
   const holidays = [
     '2024-01-01',
@@ -187,19 +179,6 @@ const CalendarPage = () => {
     '2024-10-09',
     '2024-12-25',
   ];
-
-  // 달력에 필요한 값을 설정
-  const value = selectedDate;
-
-  const getMinDate = () => {
-    const now = moment();
-    return now.startOf('month').toDate(); // 현재 달의 시작 날짜
-  };
-
-  const getMaxDate = () => {
-    const now = moment();
-    return now.add(2, 'months').endOf('month').toDate(); // 현재 달부터 두 달 후의 마지막 날짜
-  };
 
   const postData = async () => {
     console.log("전송할 데이터:", {
@@ -247,11 +226,10 @@ const CalendarPage = () => {
           <CalendarContainer>
             <Calendar 
               onChange={handleDateChange} 
-              onDrillDown={handleMonthChange}
-              value={value}
+              value={selectedDate}
               formatDay={(local, date) => moment(date).format("D")}
-              nextLabel={<RightSVG/>}  // 실제 아이콘으로 대체 가능
-              prevLabel={<LeftSVG/>} // 실제 아이콘으로 대체 가능
+              nextLabel={<RightSVG/>} 
+              prevLabel={<LeftSVG/>} 
               next2Label={null}
               prev2Label={null}
               tileContent={({ date }) => {
@@ -262,25 +240,14 @@ const CalendarPage = () => {
                   </div>
                 );
               }}
-              minDate={getMinDate()}
-              maxDate={getMaxDate()}
+              minDate={moment().toDate()}
+              maxDate={moment().add(2, 'months').endOf('month').toDate()}
               tileClassName={({ date, view }) => {
-                if (view === 'month') {
-                  const now = moment();
-                  const month = moment(date).month();
-                  const startMonth = now.month();
-                  const endMonth = now.add(2, 'months').month();
-                  
-                  if (holidays.includes(moment(date).format('YYYY-MM-DD'))) {
-                    return 'react-calendar__tile--holiday';
-                  }
-
-                  const isSelected = moment(date).isSame(selectedDate, 'day');
-                  if (isSelected) {
-                    return 'react-calendar__tile--active';
-                  }
-
-                  return (month < startMonth || month > endMonth) ? 'hide-month' : null;
+                if (view === 'month' && holidays.includes(moment(date).format('YYYY-MM-DD'))) {
+                  return 'react-calendar__tile--holiday';
+                }
+                if (moment(date).isSame(selectedDate, 'day')) {
+                  return 'react-calendar__tile--active';
                 }
                 return null;
               }}
@@ -292,7 +259,7 @@ const CalendarPage = () => {
               <Am>
                 <AmText>오전</AmText>
                 <TimeButton 
-                  active={activeTime === '10:00'} 
+                  active={activeTime === '오전 10시'} 
                   onClick={() => setActiveTime('오전 10시')}>
                   10:00
                 </TimeButton>
@@ -300,12 +267,12 @@ const CalendarPage = () => {
               <Pm>
                 <PmText>오후</PmText>
                 <TimeButton 
-                  active={activeTime === '13:00'} 
+                  active={activeTime === '오후 13시'} 
                   onClick={() => setActiveTime('오후 13시')}>
                   13:00
                 </TimeButton>
                 <TimeButton 
-                  active={activeTime === '15:00'} 
+                  active={activeTime === '오후 15시'} 
                   onClick={() => setActiveTime('오후 15시')}>
                   15:00
                 </TimeButton>
