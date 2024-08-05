@@ -29,6 +29,13 @@ const BloodPostDetail = () => {
     }
   };
 
+  const handleAddComment = (newComment) => {
+    setPost((prevPost) => ({
+      ...prevPost,
+      comments: [...prevPost.comments, newComment]
+    }));
+  };
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -72,7 +79,7 @@ const BloodPostDetail = () => {
           <div>Loading...</div>
         )}
       </S.Body>
-      <S.CommentSend key={post.comments.id} comment={post.comments} />
+      <S.CommentSend postId={id} onAddComment={handleAddComment} />
     </S.Wrapper>
   );
 };

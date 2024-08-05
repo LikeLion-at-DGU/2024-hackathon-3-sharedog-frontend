@@ -275,6 +275,7 @@ const FilterWrapper = styled.div`
     gap: 2vw;
     margin-bottom: 15px;
     @media (max-width: 470px) {
+        
         overflow-x: auto;
     white-space: nowrap;
         width: 100%;
@@ -284,9 +285,9 @@ const FilterWrapper = styled.div`
 `;
 
 const FilterButton = styled.button`
-    background-color: ${({ active }) => (active ? '#FF6969' : '#FFF')};
-    color: ${({ active }) => (active ? '#FFF' : '#3A3A3C')};
-    border: 1px solid #EAEAEA;
+    background-color: ${({ active }) => (active ? 'rgba(255, 105, 105, 0.20)' : '#FFF')};
+    color: ${({ active }) => (active ? '#FF6969' : '#9C9CA1')};
+    border: 1px solid ${({ active }) => (active ? '#FF6969' : '#9C9CA1')};
     border-radius: 20px;
     padding: 5px 10px;
     cursor: pointer;

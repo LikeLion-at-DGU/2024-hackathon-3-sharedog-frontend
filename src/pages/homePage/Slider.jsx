@@ -94,6 +94,7 @@ const Tag=styled.div` //혈액형,지역태그
   font-size: 7px;
   font-weight: 500;
   background:  #FF6969;
+  border: 1px solid #FF6969;
 `;
 const ContentTitle=styled.div` //혈액형,지역태그 
   display: flex;
@@ -140,8 +141,10 @@ const Slider = ({ post }) => {
           <Slide>
             <ContentBox>
               <TagBox>
-                <Tag>{slide.blood}</Tag>
-                <Tag>{slide.region}</Tag>
+              <Tag style={{ color: '#FF6969', backgroundColor: '#FFF' }}>
+                {slide.region}</Tag>
+                <Tag style={{ color: '#FFF', backgroundColor: 'var(--Red-Red04, #FF6969)' }}>
+                {slide.blood}</Tag>
               </TagBox>
               <ContentTitle>{slide.title}</ContentTitle>
               <ContentText>{slide.content}</ContentText>
