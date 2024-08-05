@@ -293,7 +293,7 @@ const CalendarPage = () => {
                 <AmText>오전</AmText>
                 <TimeButton 
                   active={activeTime === '10:00'} 
-                  onClick={() => setActiveTime('10:00')}>
+                  onClick={() => setActiveTime('오전 10시')}>
                   10:00
                 </TimeButton>
               </Am>
@@ -301,12 +301,12 @@ const CalendarPage = () => {
                 <PmText>오후</PmText>
                 <TimeButton 
                   active={activeTime === '13:00'} 
-                  onClick={() => setActiveTime('13:00')}>
+                  onClick={() => setActiveTime('오후 13시')}>
                   13:00
                 </TimeButton>
                 <TimeButton 
                   active={activeTime === '15:00'} 
-                  onClick={() => setActiveTime('15:00')}>
+                  onClick={() => setActiveTime('오후 15시')}>
                   15:00
                 </TimeButton>
               </Pm>
