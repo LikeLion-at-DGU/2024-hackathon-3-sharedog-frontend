@@ -1,6 +1,6 @@
 // 스플래시 페이지 담당자: 이동건 
 import {
-  Wrap,Box,Logo,Slogan,Title,
+  Wrap,Box,Logo,Slogan,Title,CopyRight,
 } from './Styled';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -20,9 +20,11 @@ const Splash = () => {
     
       <Box>
         <Logo/>
-        <Slogan>반려견 헌혈,<br/><br/>신청부터 관리까지 한 번에</Slogan>
-        <Title>포피 ForPpy</Title>
+        <Title>나눠주개</Title>
+        <Slogan>반려견 헌혈 및 수혈까지 편리하게!</Slogan>
+
       </Box>
+      <CopyRight>COPYRIGHT.나눠주개.ALL RIGHTSRESERVED.</CopyRight>
   </Wrap>
   )
 };

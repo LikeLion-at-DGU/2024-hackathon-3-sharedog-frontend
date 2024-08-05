@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import CheckMyPageSVG from "../../assets/icons/checkMyPage.svg?react";
 import Check2MyPageSVG from "../../assets/icons/check2MyPage.svg?react";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react";
-import { useNavigate } from "react-router-dom";
-import { API } from "../../api"; // API import
 
 export const Wrapper = styled.div`
   display: flex;
@@ -54,7 +52,7 @@ export const InfoTextBox = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 10px;
 `;
 
 export const PetImg = styled.div`
@@ -125,12 +123,10 @@ const PetInfoCard = ({
   dog_age,
   dog_weight,
   dog_blood,
+  dog_image,
   kingdog,
-  image,
   onEditClick,
 }) => {
-  
-
   return (
     <Wrapper>
       <PetInfoBox>
@@ -144,7 +140,10 @@ const PetInfoCard = ({
         </MainProfileBox>
         <InfoTextBox>
           <PetImg>
-            <img src={image || "default_image_url"} alt={`${dogname} Info`} />
+            <img
+              src={dog_image || "default_image_url"}
+              alt={`${dogname} Info`}
+            />
           </PetImg>
           <InfoList>
             <NameBox>

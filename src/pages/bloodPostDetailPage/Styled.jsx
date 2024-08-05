@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLocationArrow , } 
     from "@fortawesome/free-solid-svg-icons";
 // import CmtSend from '../../assets/icons/cmtSend.svg?react'
+import {API} from '../../api'
 const Wrapper = styled.div`
     display  :flex ;
     flex-direction: column;
@@ -237,18 +238,32 @@ const SendProfile = styled.div`//댓글프로필
 `;
 
 
-const CommentSend  = ({comment}) => {
-    const [inputValue, setInputValue] = useState('');
-  
-    const handleInputChange = (event) => {
-      setInputValue(event.target.value);
-    };
-  
+const CommentSend = ({ postId, onAddComment }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSendComment = async () => {
+    if (inputValue.trim() === '') return;
+
+    try {
+      const response = await API.post(`/api/community/posts/${postId}/comments`, {
+        content: inputValue
+      });
+      onAddComment(response.data);
+      setInputValue('');
+    } catch (error) {
+      console.error('Error sending comment:', error);
+    }
+  };
+
     return (
       <Color>
       <FooterCmt>
         <SendProfile>
-          <img src={comment.profileImageUrl} alt={comment.writer} />
+        <img src="https://via.placeholder.com/23" alt="profile" />
         </SendProfile>
         <FooterCmtContent>
           <Input
@@ -257,7 +272,7 @@ const CommentSend  = ({comment}) => {
             value={inputValue}
             onChange={handleInputChange}
           />
-          <IconWrapper $active={inputValue.length > 0}>
+          <IconWrapper $active={inputValue.length > 0} onClick={handleSendComment}>
             <FontAwesomeIcon icon={faLocationArrow} />
           </IconWrapper>
         </FooterCmtContent>
