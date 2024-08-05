@@ -19,12 +19,12 @@ const ContentWrapper = styled.div`
   gap: 9px;
 `;
 
-const MyPost = () => {
+const CommentPost = () => {
   const [posts, setPosts] = useState([]);
 
   const fetchData = async () => {
     try {
-      const response = await API.get("/api/users/myposts");
+      const response = await API.get("/api/users/commentposts");
       console.log("내 데이터:", response.data);
       setPosts(response.data); // 수정된 부분
     } catch (error) {
@@ -38,7 +38,7 @@ const MyPost = () => {
 
   return (
     <>
-      <Header title="내가 쓴 글" />
+      <Header title="댓글 단 글" />
       <Wrapper>
         <ContentWrapper>
           {/* 게시물 카드 목록 */}
@@ -64,4 +64,4 @@ const MyPost = () => {
   );
 };
 
-export default MyPost;
+export default CommentPost;

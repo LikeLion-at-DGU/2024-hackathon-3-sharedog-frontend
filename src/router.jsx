@@ -22,6 +22,8 @@ import CalendarPage from "./pages/calendarPage/CalendarPage";
 import MapPage from "./pages/mapPage/Map";
 import StandardPage from "./pages/explainPage/Standard";
 import MyPost from "./pages/myPage/MyPost";
+import CommentPost from "./pages/myPage/CommentPost";
+import LikePost from "./pages/myPage/LikePost";
 
 import Auth from "./pages/loginPage/Auth";
 const router = createBrowserRouter([
@@ -51,6 +53,8 @@ const router = createBrowserRouter([
       { path: "/standard", element: <StandardPage /> }, //헌혈 기준 화면
       { path: "/auth/kakao/callback", element: <Auth /> },
       { path: "/mypost", element: <MyPost /> }, //내가 쓴 글 화면
+      { path: "/commentpost", element: <CommentPost /> }, //내가 댓글 단 글 화면
+      { path: "/likepost", element: <LikePost /> }, //내가 좋아요 한 글 화면
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
