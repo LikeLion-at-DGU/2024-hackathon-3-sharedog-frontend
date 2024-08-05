@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react";
 import ProfileMyPageSVG from "../../assets/icons/profileMyPage.svg?react";
 import PictureMyPageSVG from "../../assets/icons/pictureMyPage.svg?react";
+import PetFootMyPage from "../../assets/icons/petFootMyPage.svg?react";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -103,7 +104,7 @@ const ProfilePet = ({ dog_image, onImageChange }) => {
     <Wrapper>
       <ProfileContainer>
         <ProfileImg imageUrl={uploadedImage}>
-          {!uploadedImage && <ProfileMyPageSVG />}
+          {!uploadedImage && <PetFootMyPage />}
         </ProfileImg>
       </ProfileContainer>
       <EditBtn>
@@ -124,4 +125,4 @@ const ProfilePet = ({ dog_image, onImageChange }) => {
 };
 
 export default ProfilePet;
-export { EditMyPageSVG, ProfileMyPageSVG, PictureMyPageSVG };
+export { EditMyPageSVG, ProfileMyPageSVG, PictureMyPageSVG, PetFootMyPage };

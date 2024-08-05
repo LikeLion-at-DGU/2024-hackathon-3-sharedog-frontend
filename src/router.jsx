@@ -33,7 +33,6 @@ import TestSecond from "./pages/testPage/TestSecond";
 // import TestSixth from "./pages/testPage/TestSixth";
 // import TestFinal from "./pages/testPage/TestFinal";
 
-
 import Auth from "./pages/loginPage/Auth";
 const router = createBrowserRouter([
   {
@@ -71,7 +70,7 @@ const router = createBrowserRouter([
       // { path: "/testFifith", element: <TestFifth /> }, //테스트 5번째 페이지
       // { path: "/testSixth", element: <TestSixth /> }, //테스트 6번째 페이지
       // { path: "/testFinal", element: <TestFinal /> } //테스트 마지막 페이지
-      { path:"/PetEdit/:id", element:<PetEdit />},/* 경로 추가 */
+      { path: "/PetEdit/:id", element: <PetEdit /> } /* 경로 추가 */,
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
