@@ -95,6 +95,8 @@ return (
                 bloodType={post.blood}
                 region={post.region}
                 writer={post.writer}
+                is_liked={post.is_liked}
+
                 />
             ))}
         </Wrapper>
