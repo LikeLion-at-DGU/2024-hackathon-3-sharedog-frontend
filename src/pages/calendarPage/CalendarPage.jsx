@@ -202,23 +202,21 @@ const CalendarPage = () => {
   };
 
   const postData = async () => {
-    console.log("Sending data:", {
+    console.log("전송할 데이터:", {
       selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
       activeTime
     });
-
+  
     try {
       const response = await API.post(`/api/hospital/home/${id}/reservation`, {
         selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
         activeTime
       });
-      alert('성공');
       console.log(response.data);
-      navigate('/reservation'); // 성공 후 다음 페이지로 이동
+      navigate(`/map/${id}?date=${moment(selectedDate).format('YYYY-MM-DD')}&time=${activeTime}`);
     } catch (error) {
       const errorMessage = error.response ? error.response.data : error.message;
-      console.error("Error details:", errorMessage);
-      alert(`오류 발생: ${errorMessage}`);
+      console.error("오류 상세:", errorMessage);
     }
   };
 

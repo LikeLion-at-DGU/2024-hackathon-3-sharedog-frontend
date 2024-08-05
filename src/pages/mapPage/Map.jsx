@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import Modal from 'react-modal';
 import styled from "styled-components";
+import { API } from '../../api';
+import moment from 'moment';
 import {
   InfoBox,
   InfoCheck,
@@ -23,7 +25,6 @@ import {
 } from "./Styled";
 import Header from "../../pages/myPage/header/Header";
 import Check2MyPageSVG from "../../assets/icons/check2MyPage.svg?react";
-import dummyReservation from "../../data/dummyReservation";
 import Arrow from "../../assets/icons/Arrow.svg";
 import Complete from "../../assets/icons/Complete.svg";
 
@@ -37,57 +38,77 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000; /* 오버레이의 z-index 설정 */
+  z-index: 1000;
 `;
 
 const Map = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const reservation = dummyReservation.find((res) => res.id === parseInt(id));
-  const [coordinates, setCoordinates] = useState({
-    lat: 37.5665,
-    lng: 126.978,
-  });
+  const location = useLocation(); // useLocation 훅을 사용하여 쿼리 파라미터를 읽습니다.
+  const [reservation, setReservation] = useState(null);
+  const [coordinates, setCoordinates] = useState({ lat: 37.5665, lng: 126.978 });
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [overlayIsVisible, setOverlayIsVisible] = useState(false);
 
+  // URL 쿼리 파라미터에서 날짜와 시간을 읽어옵니다.
+  const query = new URLSearchParams(location.search);
+  const selectedDate = query.get('date'); // 'date' 파라미터
+  const activeTime = query.get('time'); // 'time' 파라미터
+
+  // 예약 정보를 API로부터 가져오는 useEffect
   useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src =
-      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=e5718ae687c4da0a13de876ff02803a6&libraries=services&autoload=false";
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      kakao.maps.load(() => {
-        if (kakao.maps.services) {
-          const geocoder = new kakao.maps.services.Geocoder();
-
-          geocoder.addressSearch(reservation.place, (result, status) => {
-            if (status === kakao.maps.services.Status.OK) {
-              const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-              setCoordinates({ lat: result[0].y, lng: result[0].x });
-
-              const container = document.getElementById("map");
-              const options = {
-                center: coords,
-                level: 3,
-              };
-              const map = new kakao.maps.Map(container, options);
-
-              const marker = new kakao.maps.Marker({
-                position: coords,
-              });
-              marker.setMap(map);
-            }
-          });
-        }
-      });
+    const fetchReservation = async () => {
+      try {
+        const response = await API.get(`/api/hospital/home/${id}`);
+        setReservation(response.data);
+      } catch (error) {
+        console.error('예약 데이터를 가져오는 중 오류 발생:', error);
+      }
     };
 
-    return () => {
-      document.head.removeChild(script);
-    };
+    fetchReservation();
+  }, [id]);
+
+  // 예약 정보가 업데이트될 때 지도 로드 및 표시
+  useEffect(() => {
+    if (reservation) {
+      const script = document.createElement("script");
+      script.async = true;
+      script.src =
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=e5718ae687c4da0a13de876ff02803a6&libraries=services&autoload=false";
+      document.head.appendChild(script);
+
+      script.onload = () => {
+        kakao.maps.load(() => {
+          if (kakao.maps.services) {
+            const geocoder = new kakao.maps.services.Geocoder();
+
+            geocoder.addressSearch(reservation.place, (result, status) => {
+              if (status === kakao.maps.services.Status.OK) {
+                const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                setCoordinates({ lat: result[0].y, lng: result[0].x });
+
+                const container = document.getElementById("map");
+                const options = {
+                  center: coords,
+                  level: 3,
+                };
+                const map = new kakao.maps.Map(container, options);
+
+                const marker = new kakao.maps.Marker({
+                  position: coords,
+                });
+                marker.setMap(map);
+              }
+            });
+          }
+        });
+      };
+
+      return () => {
+        document.head.removeChild(script);
+      };
+    }
   }, [reservation]);
 
   const openModal = () => {
@@ -98,6 +119,10 @@ const Map = () => {
     setModalIsOpen(false);
     setOverlayIsVisible(false);
   };
+
+  if (!reservation) {
+    return <p>로딩 중...</p>; // 예약 정보가 로딩 중일 때 표시할 내용
+  }
 
   return (
     <>
@@ -113,7 +138,7 @@ const Map = () => {
             </InfoBox2>
             <InfoBox2>
               <Text1>일시</Text1>
-              <Text2>{new Date(reservation.created_at).toLocaleString()}</Text2>
+              <Text2>{selectedDate} {activeTime}</Text2>
             </InfoBox2>
             <InfoBox2>
               <Text1>장소</Text1>
