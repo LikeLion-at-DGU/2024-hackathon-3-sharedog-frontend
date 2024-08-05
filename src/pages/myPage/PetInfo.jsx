@@ -61,7 +61,7 @@ const PetInfo = () => {
             dog_weight={dog.dog_weight}
             dog_blood={dog.dog_blood}
             kingdog={dog.kingdog}
-            image={dog.image}
+            dog_image={dog.dog_image}
             onEditClick={() => handleEditClick(dog.id)}
             setDogname={setDogname}
             setGender={setGender}

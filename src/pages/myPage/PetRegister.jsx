@@ -24,7 +24,8 @@ const PetRegister = () => {
   const [dog_weight, setDogWeight] = useState("");
   const [dog_blood, setDogBlood] = useState("");
   const [dog_image, setDogImage] = useState(null);
-  const [kingdog, setKingdog] = useState("");
+  const [dog_image_url, setDogImageUrl] = useState(null); // 이미지 미리보기용 URL 상태 추가
+  const [kingdog, setKingdog] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
   const bloodOptions = [
@@ -38,17 +39,23 @@ const PetRegister = () => {
   ];
 
   const handleGenderChange = (newGender) => setGender(newGender);
-  const handleImageChange = (e) => setDogImage(e.target.files[0]);
-  const handleKingdogChange = (e) => setKingdog(e.target.value);
+
+  const handleImageChange = (file) => {
+    setDogImage(file); // 파일 객체 자체를 상태로 저장
+    setDogImageUrl(URL.createObjectURL(file)); // 미리보기용 URL 설정
+  };
+  const handleKingdogChange = (e) => {
+    setKingdog(e.target.value === "Yes");
+  };
 
   const isCompleteCheck = () => {
     return (
-      dogname.trim() !== "" &&
-      gender.trim() !== "" &&
-      dog_age.trim() !== "" &&
-      dog_weight.trim() !== "" &&
-      dog_blood.trim() !== "" &&
-      kingdog.trim() !== ""
+      dogname.trim() !== "" && // dogname이 빈 문자열이 아닌지 확인
+      gender.trim() !== "" && // gender가 빈 문자열이 아닌지 확인
+      !isNaN(dog_age) && // dog_age가 숫자이며 NaN이 아닌지 확인
+      !isNaN(dog_weight) && // dog_weight가 숫자이며 NaN이 아닌지 확인
+      dog_blood.trim() !== "" && // dog_blood가 빈 문자열이 아닌지 확인
+      typeof kingdog === "boolean" // kingdog가 불리언인지 확인
     );
   };
 
@@ -61,11 +68,11 @@ const PetRegister = () => {
     formData.append("dog_blood", dog_blood);
     formData.append("kingdog", kingdog);
     if (dog_image) {
-      formData.append("dog_image", dog_image);
+      formData.append("dog_image", dog_image); // 이미지 파일을 FormData에 추가
     }
 
     try {
-      const response = await API.post("/api/users/dogprofiles", formData, {
+      const response = await API.put("/api/users/dogprofiles", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("서버 응답 데이터:", response.data);
@@ -98,7 +105,10 @@ const PetRegister = () => {
     <>
       <Header title="반려견 정보 등록하기" />
       <Wrapper>
-        <ProfilePet />
+        <ProfilePet
+          dog_image={dog_image_url}
+          onImageChange={handleImageChange}
+        />
         <InPutBox>
           <RadioGroup>
             대표 프로필 지정
@@ -107,7 +117,7 @@ const PetRegister = () => {
                 <RadioButton
                   name="profile"
                   value="Yes"
-                  checked={kingdog === "Yes"}
+                  checked={kingdog === true}
                   onChange={handleKingdogChange}
                 />
                 지정할래요
@@ -116,7 +126,7 @@ const PetRegister = () => {
                 <RadioButton
                   name="profile"
                   value="No"
-                  checked={kingdog === "No"}
+                  checked={kingdog === false}
                   onChange={handleKingdogChange}
                 />
                 괜찮아요
@@ -138,13 +148,13 @@ const PetRegister = () => {
             title={"반려견 나이"}
             inputtext={"반려견 나이를 입력해 주세요."}
             value={dog_age}
-            onChange={(e) => setDogAge(e.target.value)}
+            onChange={(e) => setDogAge(Number(e.target.value))}
           />
           <InputHolder
             title={"반려견 몸무게"}
             inputtext={"반려견 몸무게를 입력해 주세요."}
             value={dog_weight}
-            onChange={(e) => setDogWeight(e.target.value)}
+            onChange={(e) => setDogWeight(Number(e.target.value))}
           />
           <InputDropDown
             title={"반려견 혈액형"}
