@@ -48,80 +48,46 @@ import { API } from '../../api';
 //     urlObj.port = ''; // 포트 번호 제거
 //     return urlObj.href; // 수정된 URL 반환
 //   };
-  
-const BloodPostCard= ({ id,image, title, content, date, commentsCount, likes, bloodType, region, writer })=> {
-    
-    const [isLiked, setIsLiked] = useState(false);
-    const [likeCount, setLikeCount] = useState(likes); // 수정됨: 현재 게시글의 좋아요 수를 저장
-    const handleLikeToggle = async () => {
-        try {
-            console.log('Post ID:', id); // 추가된 콘솔 로그
-            // 수정됨: 좋아요 수 업데이트 로직
-            const newLikeCount = isLiked ? likeCount - 1 : likeCount + 1; // 좋아요 상태에 따라 증가 또는 감소
-            setLikeCount(newLikeCount); // 좋아요 수를 로컬 상태에 즉시 반영
-            setIsLiked(!isLiked); // 좋아요 상태를 토글
 
-            // 수정됨: 서버에 좋아요 상태 업데이트 요청
-            await API.post(`/api/community/posts/${id}/likes`, { isLiked: !isLiked });
-        } catch (error) {
-            console.error('Error updating like status:', error);
-            // 수정됨: 에러 발생 시 상태 복구
-            setLikeCount(likeCount); // 상태 복구
-            setIsLiked(isLiked); // 상태 복구
-        }
-    };
-
+const BloodPostCard = ({ id, image, title, content, date, commentsCount, likes, bloodType, region, writer,is_liked }) => {
     return (
-       
         <Wrapper>
-             <NavLink to={`/bloodPost/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* 링크 추가 */}
-            <ContentWrapper>
-                <Header>
-                    <TagWrapper>
-                        <Badge>{bloodType}</Badge>
+            <NavLink to={`/bloodPost/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}> {/* 링크 추가 */}
+                <ContentWrapper>
+                    <Header>
+                        <TagWrapper>
                         <Tag>{region}</Tag>
-                    </TagWrapper>
-                    
-                    <DateText>{date}</DateText>
-                </Header>
-                
-                <Title>{title} <Writer>| {writer}</Writer></Title>
-                
-                <Body $hasImage={!!image}>
-                    {/* 이미지가 있을때는 출력하기 */}
-                    {image && (
-                        <ImageWrapper>
-                        <img src={image} alt={title} />
-                        {/* {removePortFromURL(image)} */}
-                        </ImageWrapper>
-                    )}
-                    <Content $hasImage={!!image}>{content}</Content>
-                </Body>
-            </ContentWrapper>
+                            <Badge>{bloodType}</Badge>
+                            
+                        </TagWrapper>
+                        <DateText>{date}</DateText>
+                    </Header>
+                    <Title>{title} <Writer>| {writer}</Writer></Title>
+                    <Body $hasImage={!!image}>
+                        {/* 이미지가 있을때는 출력하기 */}
+                        {image && (
+                            <ImageWrapper>
+                                <img src={image} alt={title} />
+                            </ImageWrapper>
+                        )}
+                        <Content $hasImage={!!image}>{content}</Content>
+                    </Body>
+                </ContentWrapper>
             </NavLink>
             <Footer>
                 <FooterIcon>
                     <LikeCount>
-                         {/* 클릭 시 아이콘 변경 */}
-                        <HeartIcon
-                            icon={isLiked ? faHeartSolid : faHeartRegular}
-                            onClick={handleLikeToggle} // onClick 핸들러 추가
-                        />
-                        {likeCount}
-                        
+                        {/* 클릭 기능을 제거하고 상태에 따라 아이콘을 렌더링 */}
+                        <HeartIcon icon={is_liked ? faHeartSolid : faHeartRegular} />
+                        {likes}
                     </LikeCount>
                     <CommentCount>
-                        <CommentIcon icon={faCommentDotsRegular} />    
+                        <CommentIcon icon={faCommentDotsRegular} />
                         {commentsCount}
                     </CommentCount>
                 </FooterIcon>
-                
             </Footer>
-            
         </Wrapper>
-  
     );
-    
 }
-
 export default BloodPostCard;
