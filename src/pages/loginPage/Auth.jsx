@@ -41,13 +41,20 @@ const Auth = () => {
         fetchUserInfo(data.access_token);
         sendTokenToBackend(data.access_token);
       } else {
-        console.error('Error fetching access token:', data);
-        setLoginError(`Error fetching access token: ${data.error_description}`);
-        throw new Error(data.error_description || 'Failed to fetch access token');
+        console.error('Access Token 가져오기 에러:', data);
+        if (data.error === 'invalid_grant') {
+          console.warn('인증 코드가 유효하지 않거나 만료되었습니다.');
+        }
+        setLoginError(`Access Token 가져오기 에러: ${data.error_description}`);
       }
     } catch (error) {
-      console.error('Error fetching access token:', error);
-      setLoginError(`Error fetching access token: ${error.message}`);
+      console.error('Access Token 가져오기 에러:', error);
+      // if (error.message.includes('invalid_grant')) {
+      //   console.warn('인증 코드가 유효하지 않거나 만료되었습니다.');
+      // } else {
+      //   setLoginError(`Access Token 가져오기 에러: ${error.message}`);
+      // }
+      //상관없는 에러라 그냥 표시안되게함 
     }
   };
 
@@ -79,6 +86,8 @@ const Auth = () => {
       localStorage.setItem('refresh', refresh);
       setJwtToken({ access, refresh });
 
+
+    
       // 사용자 상태 확인
       checkUserStatus(access);
       // 백엔드 사용자 정보 호출
