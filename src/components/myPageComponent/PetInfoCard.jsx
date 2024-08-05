@@ -102,6 +102,7 @@ export const InfoListDetail = styled.div`
 `;
 
 export const Editbtn = styled.button`
+  width: 90px;
   display: flex;
   align-items: center;
   padding: 2px 4px;
