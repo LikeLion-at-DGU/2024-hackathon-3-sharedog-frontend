@@ -6,6 +6,7 @@ import SplashLogo  from '../../assets/icons/SplashLogo.svg?react';
 
 export const Wrap = styled.div`
     display  :flex ;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -50,3 +51,14 @@ export const Title = styled.div`
     line-height: 30px; //93.75% 
 `;
 
+export const CopyRight = styled.div`
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    color: #FFF;
+    font-family: SUIT;
+    font-size: 10px;
+    font-weight: 500;
+    bottom: 20px;
+`;
