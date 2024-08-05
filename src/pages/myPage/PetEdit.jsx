@@ -75,6 +75,12 @@ const PetEdit = () => {
               </RadioLabel>
             </RadioBox>
           </RadioGroup>
+          <InputHolder
+            title={"반려견 이름"}
+            inputtext={"반려견 이름을 입력해 주세요."}
+            value={dogname}
+            onChange={(e) => setDogname(e.target.value)}
+          />
           <Select
             title={"반려견 성별"}
             value={selectedGender}
