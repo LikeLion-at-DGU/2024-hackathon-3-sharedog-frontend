@@ -24,6 +24,7 @@ const BloodPostDetail = () => {
 
       // 서버에 좋아요 상태 업데이트 요청
       await API.post(`/api/community/posts/${id}/likes`, { isLiked: !isLiked });
+      
     } catch (error) {
       console.error('Error updating like status:', error);
       setLikeCount(isLiked ? likeCount - 1 : likeCount + 1); // 에러 발생 시 상태 복구

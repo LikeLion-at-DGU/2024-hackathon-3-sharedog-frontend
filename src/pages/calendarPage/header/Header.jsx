@@ -1,12 +1,10 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import BackBtnSVG from "../../../assets/icons/backMyPage.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import dummyReservation from "../../../data/dummyReservation";
-
 import  VectorIcon  from '../../../assets/icons/Vector.svg?react';
+import { API } from '../../../api';
 
 const Wrapper = styled.div`
     display: flex;
@@ -64,32 +62,48 @@ const BackBtn = styled.button`
 `;
 
 const Header = () => {
-    const navigate = useNavigate();
+  const [hospital, setHospital] = useState(null); // 병원 정보를 저장할 상태
+  const { id } = useParams(); // URL에서 병원 ID를 가져옵니다.
+  const navigate = useNavigate();
 
-    const goBack = () => {
-        navigate(-1);
-    };
+  useEffect(() => {
+      const fetchHospital = async () => {
+          try {
+              const response = await API.get(`/api/hospital/home/${id}`); // 병원 상세 정보를 가져오는 API 호출
+              setHospital(response.data);
+              console.log("병원 정보:", response.data);
+          } catch (error) {
+              console.error('병원 데이터를 가져오는 중 오류 발생:', error);
+          }
+      };
 
-    const { id } = useParams();
-    const hospital = dummyReservation.find((hospital) => hospital.id === parseInt(id));
+      fetchHospital();
+  }, [id]);
 
-    return (
-        <Wrapper>
-            <HeaderBox>
-              <BackBtn onClick={goBack}>
-                  <BackBtnSVG />
-              </BackBtn>
-              <Search>
+  const goBack = () => {
+      navigate(-1);
+  };
+
+  if (!hospital) {
+      return <p>Loading...</p>; // 병원 정보가 로딩 중일 때 표시할 내용
+  }
+
+  return (
+      <Wrapper>
+        <HeaderBox>
+            <BackBtn onClick={goBack}>
+                <BackBtnSVG />
+            </BackBtn>
+            <Search>
                 <HosPlace>
-                  <VectorIcon />
-                  <p>{hospital.name}</p>
+                    <VectorIcon />
+                    <p>{hospital.name}</p>
                 </HosPlace>
-              </Search>
-              <div></div>
-            </HeaderBox>
-        </Wrapper>
-    );
-
+            </Search>
+            <div></div>
+        </HeaderBox>
+      </Wrapper>
+  );
 };
 
 export default Header;

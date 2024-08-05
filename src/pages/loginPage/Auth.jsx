@@ -79,8 +79,10 @@ const Auth = () => {
       localStorage.setItem('refresh', refresh);
       setJwtToken({ access, refresh });
 
-      fetchBackendUserInfo(access); // 백엔드 사용자 정보 호출
-      // navigate('/signuppet'); // 로그인 성공 후 리디렉션
+      // 사용자 상태 확인
+      checkUserStatus(access);
+      // 백엔드 사용자 정보 호출
+      fetchBackendUserInfo(access);
     } catch (error) {
       console.error('Error sending token to backend:', error);
       setLoginError(`Error sending token to backend: ${error.message}`);
@@ -100,6 +102,26 @@ const Auth = () => {
     } catch (error) {
       console.error('Failed to fetch backend user info:', error);
       setLoginError(`Failed to fetch backend user info: ${error.message}`);
+    }
+  };
+
+  const checkUserStatus = async (accessToken) => {
+    try {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/accounts/check-status`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
+      const { has_dog_info } = response.data;
+      if (has_dog_info) {
+        navigate('/home');
+      } else {
+        navigate('/signuppet');
+      }
+    } catch (error) {
+      console.error('Failed to check user status:', error);
+      setLoginError(`Failed to check user status: ${error.message}`);
     }
   };
 
@@ -154,8 +176,8 @@ const Auth = () => {
       {userInfo && (
         <div>
           <h3>사용자 정보:</h3>
-          <p>프로필 이미지: {userInfo.profile_image}</p>
-          <p>닉네임: {userInfo.nickname}</p>
+          <p>프로필 이미지: {userInfo.user_profile.profile_image}</p>
+          <p>닉네임: {userInfo.user_profile.nickname}</p>
           <p>username: {userInfo.username}</p>
           <p>이메일: {userInfo.email}</p>
         </div>
