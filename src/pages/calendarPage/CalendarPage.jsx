@@ -35,8 +35,8 @@ const CalendarContainer = styled.div`
     line-height: normal;
   }
 
-    /* 년-월 영역 클릭 비활성화 */
-    .react-calendar__navigation {
+  /* 년-월 영역 클릭 비활성화 */
+  .react-calendar__navigation {
     pointer-events: none;
   }
 
@@ -55,17 +55,13 @@ const CalendarContainer = styled.div`
     text-align: center;
   }
 
- /* 토요일과 일요일에 대한 스타일을 설정합니다 */
-/* 첫 번째 .react-calendar__month-view__weekdays__weekday--weekend 요소 (토요일) 글자색 변경 */
-/* 첫 번째 .react-calendar__month-view__weekdays__weekday--weekend 요소 (토요일) 글자색 변경 */
-.react-calendar__month-view__weekdays__weekday--weekend abbr {
+  .react-calendar__month-view__weekdays__weekday--weekend abbr {
     color: #5C80FF; /* 토요일의 글자색 */
-}
+  }
 
-/* 두 번째 .react-calendar__month-view__weekdays__weekday--weekend 요소 (일요일) 글자색 변경 */
-.react-calendar__month-view__weekdays__weekday--weekend:last-of-type abbr {
+  .react-calendar__month-view__weekdays__weekday--weekend:last-of-type abbr {
     color: #FF6969; /* 일요일의 글자색 */
-}
+  }
 
   /* 이번 달 일자 */
   .react-calendar__tile {
@@ -113,27 +109,27 @@ const CalendarContainer = styled.div`
   }
 
   .react-calendar__navigation__arrow {
-  background: none !important; /* 기본 배경색 제거 */
-  border: none; /* 기본 테두리 제거 */
-  cursor: pointer; /* 커서 변경 */
-  pointer-events: auto; /* 화살표 버튼은 클릭 가능하게 설정 */
-}
+    background: none !important; /* 기본 배경색 제거 */
+    border: none; /* 기본 테두리 제거 */
+    cursor: pointer; /* 커서 변경 */
+    pointer-events: auto; /* 화살표 버튼은 클릭 가능하게 설정 */
+  }
 
-.react-calendar__navigation__arrow:hover {
-  background: none !important; /* 호버 시 배경색 제거 */
-}
+  .react-calendar__navigation__arrow:hover {
+    background: none !important; /* 호버 시 배경색 제거 */
+  }
 
-.react-calendar__navigation__arrow:active {
-  background: none !important; /* 클릭 시 배경색 제거 */
-}
+  .react-calendar__navigation__arrow:active {
+    background: none !important; /* 클릭 시 배경색 제거 */
+  }
 
-.react-calendar__tile--holiday {
-  color: #FF6969;
-}
+  .react-calendar__tile--holiday {
+    color: #FF6969;
+  }
 
-.react-calendar__tile--holiday.react-calendar__tile--active {
-  color: #FFF; /* 클릭 시 공휴일 날짜의 글자 색상 설정 */
-}
+  .react-calendar__tile--holiday.react-calendar__tile--active {
+    color: #FFF; /* 클릭 시 공휴일 날짜의 글자 색상 설정 */
+  }
 
   /* 일정 있는 날 표시 점 */
   .dot {
@@ -206,23 +202,21 @@ const CalendarPage = () => {
   };
 
   const postData = async () => {
-    console.log("Sending data:", {
+    console.log("전송할 데이터:", {
       selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
       activeTime
     });
-
+  
     try {
       const response = await API.post(`/api/hospital/home/${id}/reservation`, {
         selectedDate: moment(selectedDate).format('YYYY-MM-DD'),
         activeTime
       });
-      alert('성공');
       console.log(response.data);
-      navigate('/reservation'); // 성공 후 다음 페이지로 이동
+      navigate(`/map/${id}?date=${moment(selectedDate).format('YYYY-MM-DD')}&time=${activeTime}`);
     } catch (error) {
       const errorMessage = error.response ? error.response.data : error.message;
-      console.error("Error details:", errorMessage);
-      alert(`오류 발생: ${errorMessage}`);
+      console.error("오류 상세:", errorMessage);
     }
   };
 
@@ -260,14 +254,11 @@ const CalendarPage = () => {
               prevLabel={<LeftSVG/>} // 실제 아이콘으로 대체 가능
               next2Label={null}
               prev2Label={null}
-              tileContent={({ date, view }) => {
-                const html = [];
-                if (mark.includes(moment(date).format('YYYY-MM-DD'))) {
-                  html.push(<div key={moment(date).format('YYYY-MM-DD')} className="dot"></div>);
-                }
+              tileContent={({ date }) => {
+                const isMarked = mark.includes(moment(date).format('YYYY-MM-DD'));
                 return (
                   <div className="flex justify-center items-center absoluteDiv">
-                    {html}
+                    {isMarked && <div className="dot" />}
                   </div>
                 );
               }}
