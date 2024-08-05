@@ -8,6 +8,9 @@ const Wrapper = styled.div`
   /* height: 10vh; */
   margin-top: 4vh;
   /* border: 1px solid blue; */
+  @media (min-height: 800px) {
+    margin-top: 6vh;
+  }
 `;
 
 const Profile = styled.div`

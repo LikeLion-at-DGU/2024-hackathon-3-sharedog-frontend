@@ -118,74 +118,60 @@ export const Editbtn = styled.button`
   line-height: 100%;
 `;
 
-const PetInfoCard = () => {
+const PetInfoCard = ({
+  dogname,
+  gender,
+  dog_age,
+  dog_weight,
+  dog_blood,
+  kingdog,
+  image,
+  onEditClick,
+}) => {
   const navigate = useNavigate();
-  const [petInfo, setPetInfo] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await API.get("/api/users/dogprofiles");
-        setPetInfo(response.data);
-      } catch (error) {
-        console.error("데이터 가져오기 오류:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleEditClick = () => {
-    navigate("/PetEdit");
-  };
 
   return (
     <Wrapper>
-      {petInfo.map((pet) => (
-        <PetInfoBox key={pet.id}>
-          <MainProfileBox>
-            {pet.kingdog && (
-              <>
-                <CheckMyPageSVG />
-                <MainProfile>대표 프로필</MainProfile>
-              </>
-            )}
-          </MainProfileBox>
-          <InfoTextBox>
-            <PetImg>
-              <img
-                src={pet.image || "default_image_url"}
-                alt={`${pet.dogname} Info`}
-              />
-            </PetImg>
-            <InfoList>
-              <NameBox>
-                {pet.dogname}
-                <Editbtn onClick={handleEditClick}>
-                  <EditMyPageSVG />
-                  프로필 수정
-                </Editbtn>
-              </NameBox>
-              <InfoListDetail>
-                <Check2MyPageSVG />
-                <div>성별 | {pet.gender}</div>
-              </InfoListDetail>
-              <InfoListDetail>
-                <Check2MyPageSVG />
-                <div>나이 | {pet.dog_age}</div>
-              </InfoListDetail>
-              <InfoListDetail>
-                <Check2MyPageSVG />
-                <div>몸무게 | {pet.dog_weight}</div>
-              </InfoListDetail>
-              <InfoListDetail>
-                <Check2MyPageSVG />
-                <div>혈액형 | {pet.dog_blood}</div>
-              </InfoListDetail>
-            </InfoList>
-          </InfoTextBox>
-        </PetInfoBox>
-      ))}
+      <PetInfoBox>
+        <MainProfileBox>
+          {kingdog && (
+            <>
+              <CheckMyPageSVG />
+              <MainProfile>대표 프로필</MainProfile>
+            </>
+          )}
+        </MainProfileBox>
+        <InfoTextBox>
+          <PetImg>
+            <img src={image || "default_image_url"} alt={`${dogname} Info`} />
+          </PetImg>
+          <InfoList>
+            <NameBox>
+              {dogname}
+              <Editbtn onClick={onEditClick}>
+                <EditMyPageSVG />
+                프로필 수정
+              </Editbtn>
+            </NameBox>
+            <InfoListDetail>
+              <Check2MyPageSVG />
+              <div>성별 | {gender}</div>
+            </InfoListDetail>
+            <InfoListDetail>
+              <Check2MyPageSVG />
+              <div>나이 | {dog_age}</div>
+            </InfoListDetail>
+            <InfoListDetail>
+              <Check2MyPageSVG />
+              <div>몸무게 | {dog_weight}</div>
+            </InfoListDetail>
+            <InfoListDetail>
+              <Check2MyPageSVG />
+              <div>혈액형 | {dog_blood}</div>
+            </InfoListDetail>
+          </InfoList>
+        </InfoTextBox>
+      </PetInfoBox>
     </Wrapper>
   );
 };
