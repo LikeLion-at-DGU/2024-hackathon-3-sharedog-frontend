@@ -1,20 +1,17 @@
-// Styled.js 파일에서
-import styled, { css } from "styled-components";
-import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react"; // SVG 파일 가져오기
-import ProfileMyPageSVG from "../../assets/icons/profileMyPage.svg?react"; // SVG 파일 가져오기
-import PictureMyPageSVG from "../../assets/icons/pictureMyPage.svg?react"; // SVG 파일 가져오기
-import { useNavigate } from "react-router-dom"; // useNavigate 훅 가져오기
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import PictureMyPageSVG from "../../assets/icons/pictureMyPage.svg?react";
+import { useLocation } from "react-router-dom";
 
 export const Wrapper = styled.div`
   display: flex;
-  align-items: center; /* 수평 중앙 정렬 */
-  flex-direction: column; /* 요소들을 수직 정렬 */
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   font-size: 20px;
   font-family: SUIT, sans-serif;
   font-weight: 800;
-  padding-top: 10px; /* 상단 여백 추가 */
+  padding-top: 10px;
 `;
 
 export const ProfileContainer = styled.div`
@@ -26,17 +23,15 @@ export const ProfileContainer = styled.div`
   border: solid 1px rgba(234, 234, 234, 0.8);
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-
   color: var(--Grayscale-Gray700, #222b39);
   font-family: SUIT;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 160%; /* 28.8px */
+  line-height: 160%;
   letter-spacing: -0.36px;
 `;
 
@@ -49,14 +44,11 @@ export const EditBtn = styled.button`
   border: solid 1px rgba(234, 234, 234, 0.8);
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-
   border-radius: 0px 0px 12px 12px;
   background: rgba(255, 105, 105, 0.15);
-
   color: var(--Red-Red04, #ff6969);
   font-family: SUIT;
   font-size: 12px;
@@ -70,69 +62,53 @@ export const ProfileImg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 70px; /* 고정된 크기로 설정 */
-  height: 70px; /* 고정된 크기로 설정 */
+  width: 70px;
+  height: 70px;
   padding: 15.058px 15.83px;
   border-radius: 50%;
   flex-shrink: 0;
   background: #eaeaec;
-
-  background-image: ${({ imageUrl }) =>
-    imageUrl ? `url(${imageUrl})` : "none"};
+  background-image: ${({ imageUrl }) => (imageUrl ? `url(${imageUrl})` : "")};
   background-size: cover;
   background-position: center;
-  overflow: hidden; /* 이미지가 요소의 경계를 넘어가지 않도록 */
+  overflow: hidden;
 `;
 
-export const PictureImg = styled.div`
-  width: 20px;
-  height: 15px;
-  flex-shrink: 0;
-`;
+const ProfileEdit = ({ onImageChange }) => {
+  const location = useLocation();
+  const [uploadedImage, setUploadedImage] = useState(
+    location.state?.profileImage || ""
+  ); // 기본 이미지 URL
 
-const ProfileMy = () => {
-  const navigate = useNavigate(); // useNavigate 훅 초기화
-
-  const [uploadedImage, setUploadedImage] = useState(null);
-  const [image, setImage] = useState(null);
-
-  const onChangeImage = (e) => {
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImage(file);
       const imageUrl = URL.createObjectURL(file);
       setUploadedImage(imageUrl);
+      onImageChange(file); // 부모 컴포넌트로 파일 전달
     }
   };
+
   return (
-    <>
-      <Wrapper>
-        <ProfileContainer>
-          <ProfileImg
-            style={{
-              backgroundImage: uploadedImage ? `url(${uploadedImage})` : "none",
-            }}
-          >
-            {!uploadedImage && <ProfileMyPageSVG />}
-          </ProfileImg>
-          황민영
-        </ProfileContainer>
-        <EditBtn>
-          <PictureMyPageSVG />
-          <label htmlFor="imageUpload" style={{ cursor: "pointer" }}>
-            프로필 사진 수정하기
-          </label>
-          <input
-            type="file"
-            id="imageUpload"
-            style={{ display: "none" }}
-            onChange={onChangeImage}
-          />
-        </EditBtn>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <ProfileContainer>
+        <ProfileImg imageUrl={uploadedImage} />
+      </ProfileContainer>
+      <EditBtn>
+        <PictureMyPageSVG />
+        <label htmlFor="imageUpload" style={{ cursor: "pointer" }}>
+          프로필 사진 수정하기
+        </label>
+        <input
+          type="file"
+          id="imageUpload"
+          style={{ display: "none" }}
+          onChange={handleImageChange}
+          accept="image/*"
+        />
+      </EditBtn>
+    </Wrapper>
   );
 };
 
-export default ProfileMy;
-export { EditMyPageSVG, ProfileMyPageSVG, PictureMyPageSVG };
+export default ProfileEdit;

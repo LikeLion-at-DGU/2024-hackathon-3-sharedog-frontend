@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import CompleteMyPageSVG from "../../assets/icons/completeMyPage.svg?react";
 import NotCompleteMyPageSVG from "../../assets/icons/notCompleteMyPage.svg?react";
-import dummyReservationMy from "../../data/dummyReservationMy";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -185,13 +185,15 @@ export const BloodBtn2 = styled.button`
   border-style: none;
 `;
 
-const ReservationCard = () => {
+const ReservationCard = ({ reservations = [] }) => {
   const [statuses, setStatuses] = useState(
-    dummyReservationMy.map((reservation) => ({
-      id: reservation.id,
-      completed: reservation.blood === "yes",
-      status: reservation.blood === "yes" ? "yes" : "none", // none, yes, not
-    }))
+    Array.isArray(reservations)
+      ? reservations.map((reservation) => ({
+          id: reservation.id,
+          completed: reservation.blood === "yes",
+          status: reservation.blood === "yes" ? "yes" : "none", // none, yes, not
+        }))
+      : []
   );
 
   const handleComplete = (id, status) => {
@@ -202,68 +204,78 @@ const ReservationCard = () => {
 
   return (
     <Wrapper>
-      {dummyReservationMy.map((reservation) => {
-        const currentStatus = statuses.find(
-          (res) => res.id === reservation.id
-        ).status;
+      {Array.isArray(reservations) &&
+        reservations.map((reservation) => {
+          const currentStatus = statuses.find(
+            (res) => res.id === reservation.id
+          ).status;
 
-        return (
-          <ReservationCardContainer key={reservation.id}>
-            <DateBox>
-              {reservation.date}
-              {currentStatus === "yes" && (
-                <StatusYes>
-                  <CompleteMyPageSVG />
-                  헌혈 완료
-                </StatusYes>
-              )}
-              {currentStatus === "not" && (
-                <StatusNot>
-                  <NotCompleteMyPageSVG />
-                  헌혈 미완료
-                </StatusNot>
-              )}
-            </DateBox>
-            <CardBox>
-              <InfoContainer>
-                <PetImg>
-                  <img
-                    src={reservation.image}
-                    alt={`${reservation.name} Info`}
-                  />
-                </PetImg>
-                <InfoList>
-                  <InfoItem>{reservation.hospital}</InfoItem>
-                  <InfoItem>
-                    <InfoLabel>이름:</InfoLabel>
-                    <InfoValue>{reservation.name}</InfoValue>
-                  </InfoItem>
-                  <InfoItem>
-                    <InfoLabel>일시:</InfoLabel>
-                    <InfoValue>{reservation.date}</InfoValue>
-                  </InfoItem>
-                </InfoList>
-              </InfoContainer>
-              {reservation.schedule === "over" && currentStatus === "none" && (
-                <BtnBox>
-                  <BloodBtn1
-                    onClick={() => handleComplete(reservation.id, "not")}
-                  >
-                    헌혈 미완료
-                  </BloodBtn1>
-                  <BloodBtn2
-                    onClick={() => handleComplete(reservation.id, "yes")}
-                  >
+          return (
+            <ReservationCardContainer key={reservation.id}>
+              <DateBox>
+                {reservation.dateHead}
+                {currentStatus === "yes" && (
+                  <StatusYes>
+                    <CompleteMyPageSVG />
                     헌혈 완료
-                  </BloodBtn2>
-                </BtnBox>
-              )}
-            </CardBox>
-          </ReservationCardContainer>
-        );
-      })}
+                  </StatusYes>
+                )}
+                {currentStatus === "not" && (
+                  <StatusNot>
+                    <NotCompleteMyPageSVG />
+                    헌혈 미완료
+                  </StatusNot>
+                )}
+              </DateBox>
+              <CardBox>
+                <InfoContainer>
+                  <PetImg>
+                    <img
+                      src={reservation.dog.dog_image}
+                      alt={`${reservation.dog.dogname} Info`}
+                    />
+                  </PetImg>
+                  <InfoList>
+                    <InfoItem>{reservation.hospital}</InfoItem>
+                    <InfoItem>
+                      <InfoLabel>이름:</InfoLabel>
+                      <InfoValue>{reservation.dog.dogname}</InfoValue>
+                    </InfoItem>
+                    <InfoItem>
+                      <InfoLabel>일시:</InfoLabel>
+                      <InfoValue>{reservation.dateContent}</InfoValue>
+                    </InfoItem>
+                    <InfoItem>
+                      <InfoLabel>시간:</InfoLabel>
+                      <InfoValue>{reservation.activeTime}</InfoValue>
+                    </InfoItem>
+                  </InfoList>
+                </InfoContainer>
+                {reservation.schedule === "over" &&
+                  currentStatus === "none" && (
+                    <BtnBox>
+                      <BloodBtn1
+                        onClick={() => handleComplete(reservation.id, "not")}
+                      >
+                        헌혈 미완료
+                      </BloodBtn1>
+                      <BloodBtn2
+                        onClick={() => handleComplete(reservation.id, "yes")}
+                      >
+                        헌혈 완료
+                      </BloodBtn2>
+                    </BtnBox>
+                  )}
+              </CardBox>
+            </ReservationCardContainer>
+          );
+        })}
     </Wrapper>
   );
+};
+
+ReservationCard.propTypes = {
+  reservations: PropTypes.array,
 };
 
 export default ReservationCard;

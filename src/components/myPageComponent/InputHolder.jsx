@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import AlertSVG from "../../assets/icons/Alert.svg?react"; // SVG 파일 가져오기
 
 export const Wrapper = styled.div`
   display: flex;
@@ -77,3 +78,4 @@ const InputHolder = ({ title, inputtext, value, onChange }) => {
 };
 
 export default InputHolder;
+export { AlertSVG };
