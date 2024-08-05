@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faLocationArrow , } 
     from "@fortawesome/free-solid-svg-icons";
 // import CmtSend from '../../assets/icons/cmtSend.svg?react'
+import {API} from '../../api'
 const Wrapper = styled.div`
     display  :flex ;
     flex-direction: column;
@@ -20,7 +21,7 @@ const Body = styled.div`
     width: 88%;
     /* height: 80vh; */
     height: 80vh; /* 80vh에서 FooterCmt 높이를 제외 */
-    flex: 1;
+    /* flex: 1; */
     overflow-y: auto;
     padding-top:8vh;
     padding-bottom: 10vh; /* FooterCmt 높이만큼 padding 추가 */
@@ -29,7 +30,7 @@ const Body = styled.div`
 `;
 
 const Content = styled.div`
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   flex-direction: column;
   overflow-y: auto; // 이 영역만 스크롤 가능
@@ -237,18 +238,32 @@ const SendProfile = styled.div`//댓글프로필
 `;
 
 
-const CommentSend  = ({comment}) => {
-    const [inputValue, setInputValue] = useState('');
-  
-    const handleInputChange = (event) => {
-      setInputValue(event.target.value);
-    };
-  
+const CommentSend = ({ postId, onAddComment }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSendComment = async () => {
+    if (inputValue.trim() === '') return;
+
+    try {
+      const response = await API.post(`/api/community/posts/${postId}/comments`, {
+        content: inputValue
+      });
+      onAddComment(response.data);
+      setInputValue('');
+    } catch (error) {
+      console.error('Error sending comment:', error);
+    }
+  };
+
     return (
       <Color>
       <FooterCmt>
         <SendProfile>
-          <img src={comment.profileImageUrl} alt={comment.writer} />
+        <img src="https://via.placeholder.com/23" alt="profile" />
         </SendProfile>
         <FooterCmtContent>
           <Input
@@ -257,7 +272,7 @@ const CommentSend  = ({comment}) => {
             value={inputValue}
             onChange={handleInputChange}
           />
-          <IconWrapper $active={inputValue.length > 0}>
+          <IconWrapper $active={inputValue.length > 0} onClick={handleSendComment}>
             <FontAwesomeIcon icon={faLocationArrow} />
           </IconWrapper>
         </FooterCmtContent>

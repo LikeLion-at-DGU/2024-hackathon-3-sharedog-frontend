@@ -22,10 +22,9 @@ import CalendarPage from "./pages/calendarPage/CalendarPage";
 import MapPage from "./pages/mapPage/Map";
 import StandardPage from "./pages/explainPage/Standard";
 import MyPost from "./pages/myPage/MyPost";
-
-import TestFirst from "./pages/testPage/TestFirst";
 import CommentPost from "./pages/myPage/CommentPost";
 import LikePost from "./pages/myPage/LikePost";
+import TestFirst from "./pages/testPage/TestFirst";
 import TestSecond from "./pages/testPage/TestSecond";
 // import TestThird from "./pages/testPage/TestThird";
 // import TestFourth from "./pages/testPage/TestFourth";
@@ -34,6 +33,7 @@ import TestSecond from "./pages/testPage/TestSecond";
 // import TestFinal from "./pages/testPage/TestFinal";
 
 import Auth from "./pages/loginPage/Auth";
+
 const router = createBrowserRouter([
   {
     path: "/",

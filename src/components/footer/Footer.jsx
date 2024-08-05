@@ -28,7 +28,7 @@ const Footer = () => {
         />
         <S.FooterIcon
           Svg={location.pathname === "/bloodPost" ? FillBlood : BloodIcon}
-          label="긴급헌혈"
+          label="긴급수혈"
           to="/bloodPost"
         />
         <S.FooterIcon
