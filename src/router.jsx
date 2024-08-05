@@ -51,6 +51,7 @@ const router = createBrowserRouter([
       { path: "/standard", element: <StandardPage /> }, //헌혈 기준 화면
       { path: "/auth/kakao/callback", element: <Auth /> },
       { path: "/mypost", element: <MyPost /> }, //내가 쓴 글 화면
+      { path:"/PetEdit/:id", element:<PetEdit />},/* 경로 추가 */
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
