@@ -272,13 +272,13 @@ export const HomeFullBtn = styled.div`
 //지역 필터 ------------------------------------
 const FilterWrapper = styled.div`
     display: flex;
-    gap: 10px;
+    gap: 2vw;
     margin-bottom: 15px;
     @media (max-width: 470px) {
         overflow-x: auto;
     white-space: nowrap;
         width: 100%;
-        justify-content: space-between;
+        gap: 3vw;
     }
 
 `;
