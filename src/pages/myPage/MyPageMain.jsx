@@ -48,6 +48,14 @@ const MyPageMain = () => {
     navigate("/MyPost"); // /PetEdit 경로로 이동
   };
 
+  const handleCommentClick = () => {
+    navigate("/CommentPost"); // /PetEdit 경로로 이동
+  };
+
+  const handleLikeClick = () => {
+    navigate("/LikePost"); // /PetEdit 경로로 이동
+  };
+
   return (
     <>
       <Header2 title="마이페이지" />
@@ -82,13 +90,13 @@ const MyPageMain = () => {
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>
-            <ItemDetail>
+            <ItemDetail onClick={handleLikeClick}>
               좋아요 한 글
               <GoBtn>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>
-            <ItemDetail>
+            <ItemDetail onClick={handleCommentClick}>
               댓글 단 글
               <GoBtn>
                 <GoMyPageSVG />

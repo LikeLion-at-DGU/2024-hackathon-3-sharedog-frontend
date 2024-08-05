@@ -23,6 +23,17 @@ import MapPage from "./pages/mapPage/Map";
 import StandardPage from "./pages/explainPage/Standard";
 import MyPost from "./pages/myPage/MyPost";
 
+import TestFirst from "./pages/testPage/TestFirst";
+import CommentPost from "./pages/myPage/CommentPost";
+import LikePost from "./pages/myPage/LikePost";
+// import TestSecond from "./pages/testPage/TestSecond";
+// import TestThird from "./pages/testPage/TestThird";
+// import TestFourth from "./pages/testPage/TestFourth";
+// import TestFifth from "./pages/testPage/TestFifth";
+// import TestSixth from "./pages/testPage/TestSixth";
+// import TestFinal from "./pages/testPage/TestFinal";
+
+
 import Auth from "./pages/loginPage/Auth";
 const router = createBrowserRouter([
   {
@@ -51,6 +62,16 @@ const router = createBrowserRouter([
       { path: "/standard", element: <StandardPage /> }, //헌혈 기준 화면
       { path: "/auth/kakao/callback", element: <Auth /> },
       { path: "/mypost", element: <MyPost /> }, //내가 쓴 글 화면
+      { path: "/commentpost", element: <CommentPost /> }, //내가 댓글 단 글 화면
+      { path: "/likepost", element: <LikePost /> }, //내가 좋아요 한 글 화면
+      { path: "/testFirst", element: <TestFirst /> }, //테스트 1번째 페이지
+       
+      // { path: "/testSecond", element: <TestSecond /> }, //테스트 2번째 페이지
+      // { path: "/testThird", element: <TestThird /> }, //테스트 3번째 페이지
+      // { path: "/testFourth", element: <TestFourth /> }, //테스트 4번째 페이지
+      // { path: "/testFifith", element: <TestFifth /> }, //테스트 5번째 페이지
+      // { path: "/testSixth", element: <TestSixth /> }, //테스트 6번째 페이지
+      // { path: "/testFinal", element: <TestFinal /> } //테스트 마지막 페이지
       { path:"/PetEdit/:id", element:<PetEdit />},/* 경로 추가 */
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
