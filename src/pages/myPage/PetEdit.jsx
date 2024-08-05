@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Wrapper,
   InPutBox,
@@ -12,25 +12,43 @@ import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
 import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
 import ProfilePet from "../../components/myPageComponent/ProfilePet";
 
 const PetEdit = () => {
   const navigate = useNavigate();
-
-  // Editbtn 클릭 핸들러
-  const handleInfoClick = () => {
-    if (isComplete()) {
-      navigate("/petinfo"); // 경로 확인
-    }
-  };
+  const { id } = useParams(); // URL 파라미터에서 id 가져오기
 
   const [selectedGender, setSelectedGender] = useState("");
   const [petName, setPetName] = useState("");
   const [petAge, setPetAge] = useState("");
   const [petWeight, setPetWeight] = useState("");
   const [petBloodType, setPetBloodType] = useState("");
+
+  useEffect(() => {
+    // id를 사용하여 서버에서 반려견 정보를 가져와서 상태를 업데이트
+    const fetchData = async () => {
+      try {
+        const response = await API.get(`/api/users/dogprofiles/${id}`);
+        const data = response.data;
+        setPetName(data.dogname);
+        setSelectedGender(data.gender);
+        setPetAge(data.dog_age);
+        setPetWeight(data.dog_weight);
+        setPetBloodType(data.dog_blood);
+      } catch (error) {
+        console.error("데이터 가져오기 오류:", error);
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  const handleInfoClick = () => {
+    if (isComplete()) {
+      navigate("/petinfo");
+    }
+  };
 
   const bloodOptions = [
     { label: "DEA 1-", value: "DEA 1-" },
