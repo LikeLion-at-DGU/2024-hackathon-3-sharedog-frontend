@@ -21,30 +21,6 @@ const PetInfo = () => {
     navigate("/PetRegister");
   };
 
-  // 서버에 데이터 전송
-  const postData = async () => {
-    try {
-      const response = await API.post("/api/users/dogprofiles", {
-        dogname,
-        gender,
-        dog_age,
-        dog_weight,
-        dog_blood,
-      });
-      console.log("서버 응답 데이터:", response.data);
-      console.log("전송한 데이터:", {
-        dogname,
-        gender,
-        dog_age,
-        dog_weight,
-        dog_blood,
-      });
-      navigate("/petinfo");
-    } catch (error) {
-      console.error("네트워크 오류:", error);
-    }
-  };
-
   // 모든 필드가 입력되었는지 확인
   useEffect(() => {
     if (dogname && gender && dog_age && dog_weight && dog_blood) {
@@ -60,13 +36,17 @@ const PetInfo = () => {
       try {
         const response = await API.get("/api/users/dogprofiles");
         setDogInfo(response.data);
-        console.log("가져온 데이터:", response.data);
+        console.log("가져온 데이터 petinfo:", response.data);
       } catch (error) {
         console.error("데이터 가져오기 오류:", error);
       }
     };
     fetchData();
   }, []);
+
+  const handleEditClick = (id) => {
+    navigate(`/PetEdit/${id}`);
+  };
 
   return (
     <>
@@ -80,6 +60,9 @@ const PetInfo = () => {
             dog_age={dog.dog_age}
             dog_weight={dog.dog_weight}
             dog_blood={dog.dog_blood}
+            kingdog={dog.kingdog}
+            image={dog.image}
+            onEditClick={() => handleEditClick(dog.id)}
             setDogname={setDogname}
             setGender={setGender}
             setDogAge={setDogAge}
