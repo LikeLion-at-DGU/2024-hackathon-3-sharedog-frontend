@@ -115,7 +115,6 @@ const ProfilePet = () => {
           >
             {!uploadedImage && <ProfileMyPageSVG />}
           </ProfileImg>
-          황민영
         </ProfileContainer>
         <EditBtn>
           <PictureMyPageSVG />

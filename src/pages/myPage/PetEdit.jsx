@@ -14,6 +14,7 @@ import InputDropDown from "../../components/myPageComponent/InputDropDown";
 import Select from "../../components/myPageComponent/Select";
 import { useNavigate } from "react-router-dom";
 import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
+import ProfilePet from "../../components/myPageComponent/ProfilePet";
 
 const PetEdit = () => {
   const navigate = useNavigate();
@@ -59,7 +60,7 @@ const PetEdit = () => {
     <>
       <Header title="반려견 정보 수정하기" />
       <Wrapper>
-        <ProfileEdit></ProfileEdit>
+        <ProfilePet></ProfilePet>
         <InPutBox>
           <RadioGroup>
             대표 프로필 지정

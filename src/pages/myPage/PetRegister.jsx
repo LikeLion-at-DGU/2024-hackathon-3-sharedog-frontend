@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Wrapper,
   InPutBox,
@@ -14,18 +15,16 @@ import Select from "../../components/myPageComponent/Select";
 import { useNavigate } from "react-router-dom";
 import ProfilePet from "../../components/myPageComponent/ProfilePet";
 import { API } from "../../api";
-import React, { useState, useEffect } from "react";
 
 const PetRegister = () => {
   const navigate = useNavigate();
-
   const [gender, setGender] = useState("");
   const [dogname, setDogname] = useState("");
   const [dog_age, setDogAge] = useState("");
   const [dog_weight, setDogWeight] = useState("");
   const [dog_blood, setDogBlood] = useState("");
   const [dog_image, setDogImage] = useState(null);
-  const [kingdog, setKingdog] = useState(""); // 수정된 부분
+  const [kingdog, setKingdog] = useState("");
   const [isComplete, setIsComplete] = useState(false);
 
   const bloodOptions = [
@@ -38,19 +37,9 @@ const PetRegister = () => {
     { label: "DEA 7", value: "DEA 7" },
   ];
 
-  const handleGenderChange = (newGender) => {
-    setGender(newGender);
-  };
-
-  const handleImageChange = (e) => {
-    setDogImage(e.target.files[0]);
-    console.log("Image changed:", e.target.files[0]);
-  };
-
-  const handleKingdogChange = (e) => {
-    setKingdog(e.target.value);
-    console.log("Kingdog changed:", e.target.value);
-  };
+  const handleGenderChange = (newGender) => setGender(newGender);
+  const handleImageChange = (e) => setDogImage(e.target.files[0]);
+  const handleKingdogChange = (e) => setKingdog(e.target.value);
 
   const isCompleteCheck = () => {
     return (
@@ -59,7 +48,7 @@ const PetRegister = () => {
       dog_age.trim() !== "" &&
       dog_weight.trim() !== "" &&
       dog_blood.trim() !== "" &&
-      kingdog.trim() !== "" // 수정된 부분
+      kingdog.trim() !== ""
     );
   };
 
@@ -77,9 +66,7 @@ const PetRegister = () => {
 
     try {
       const response = await API.post("/api/users/dogprofiles", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("서버 응답 데이터:", response.data);
       console.log("전송한 데이터:", {
