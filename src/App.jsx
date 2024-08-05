@@ -33,10 +33,9 @@ const Layout = () => {
   const hideHeaderFooter = location.pathname === '/' 
         || location.pathname === '/login' || location.pathname === '/signupsplash' 
         || location.pathname === '/signup' || location.pathname === '/SignUpPet'
-        || location.pathname === '/testFirst' || location.pathname === '/testSecond';
-        // || location.pathname === '/testThird' || location.pathname === '/testFourth'
-        // || location.pathname === '/testFifth' || location.pathname === '/testSixth'
-        // || location.pathname === '/testFinal';
+        || location.pathname === '/testFirst' || location.pathname === '/testSecond'
+        || location.pathname === '/testThird' || location.pathname === '/testFourth'
+        || location.pathname === '/testFifth' || location.pathname === '/testSixth';
 
   return (
     <Wrapper>

@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Test2SVG from '../../assets/icons/test2.svg?react';
 import Test3SVG from '../../assets/icons/test3.svg?react';
 import { Wrapper } from './Styled';
+import { API } from '../../api';
 
 const Title = styled.div`
   color: var(--Gray-Gray03, #3A3A3C);
@@ -73,16 +74,32 @@ const SVGContainer = styled.div`
   }
 `;
 
-const TestFirst = () => {
+const TestSecond = () => {
   const navigate = useNavigate();
   const [activeSVG, setActiveSVG] = useState(null); // 클릭된 SVG를 추적할 상태
 
-  const handleFooterClick = () => {
-    navigate('/testThrird'); // 페이지 네비게이션
-  };
-
   const handleSVGClick = (id) => {
     setActiveSVG(id); // 클릭된 SVG의 ID를 상태에 저장
+  };
+
+  const sendDataToAPI = async () => {
+    try {
+      const response = await API.post('/api/sizetests', {
+        size: activeSVG === 'test2' ? '소형견' : '대형견' // activeSVG 값에 따라 size 설정
+      });
+      console.log('API 요청 성공:', response.data);
+    } catch (error) {
+      console.error('API 요청 실패:', error);
+    }
+  };
+
+  const handleFooterClick = () => {
+    if (activeSVG) {
+      sendDataToAPI();
+      navigate('/testThird');
+    } else {
+      alert('견종을 선택해주세요.'); // 견종 선택이 안되었을 때의 예외 처리
+    }
   };
 
   return (
@@ -115,11 +132,11 @@ const TestFirst = () => {
       </Wrapper>
       <Footer 
         btnColor={activeSVG ? "#FF6969" : "#C4C4C4"} // 상태에 따라 버튼 색깔 변경
-        buttonText="테스트 시작하기"
+        buttonText="다음"
         onClick={handleFooterClick} // 클릭 핸들러 전달
       />
     </>
   );
 };
 
-export default TestFirst;
+export default TestSecond;
