@@ -128,7 +128,7 @@ const PetInfoCard = ({
   image,
   onEditClick,
 }) => {
-  const navigate = useNavigate();
+  
 
   return (
     <Wrapper>
