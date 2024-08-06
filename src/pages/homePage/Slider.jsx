@@ -136,24 +136,30 @@ const Slider = ({ post }) => {
       }}
         navigation={true}
       >
-        {post.map((slide) => (
-          <SwiperSlide key={slide.id}>
-          <Slide>
-            <ContentBox>
-              <TagBox>
-              <Tag style={{ color: '#FF6969', backgroundColor: '#FFF' }}>
-                {slide.region}</Tag>
-                <Tag style={{ color: '#FFF', backgroundColor: 'var(--Red-Red04, #FF6969)' }}>
-                {slide.blood}</Tag>
-              </TagBox>
-              <ContentTitle>{slide.title}</ContentTitle>
-              <ContentText>{slide.content}</ContentText>
-            </ContentBox>
-            {slide.image_1 && <SlideImg src={slide.image_1} alt={slide.title} />}
-            
-          </Slide>
-        </SwiperSlide>
-        ))}
+        {post.map((slide) => {
+          console.log("Image URL:", slide.image_1); // 여기에 콘솔 로그 추가
+          return (
+            <SwiperSlide key={slide.id}>
+              <Slide>
+                <ContentBox>
+                  <TagBox>
+                    <Tag style={{ color: '#FF6969', backgroundColor: '#FFF' }}>
+                      {slide.region}
+                    </Tag>
+                    <Tag
+                      style={{ color: '#FFF', backgroundColor: 'var(--Red-Red04, #FF6969)' }}
+                    >
+                      {slide.blood}
+                    </Tag>
+                  </TagBox>
+                  <ContentTitle>{slide.title}</ContentTitle>
+                  <ContentText>{slide.content}</ContentText>
+                </ContentBox>
+                {slide.image_1[0].image_1 && <SlideImg src={slide.image_1[0].image_1} alt={slide.title} />}
+              </Slide>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </SampleSlider>
   );
