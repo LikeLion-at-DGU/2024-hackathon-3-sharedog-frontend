@@ -8,7 +8,7 @@ import {
   Line,
   Text,
   ImgBox,
-  ImgPlusBtn,
+  ImgPlusDiv,
   PictureMyPageSVG,
   PostBtn,
 } from "./Styled";
@@ -52,33 +52,38 @@ const PostWrite = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     // 필드 검증
     if (!title.trim() || !content.trim() || !region || !blood) {
       alert("모든 필드를 올바르게 입력해주세요.");
       return;
     }
-
-    const postData = {
-      region,
-      blood,
-      title,
-      content,
-      // 이미지 추가
-      // image: images,  // 필요시 추가
-    };
-
-    console.log("보내는 데이터:", postData); // 보낸 데이터 로그
-
+  
+    const formData = new FormData();
+    formData.append("region", region);
+    formData.append("blood", blood);
+    formData.append("title", title);
+    formData.append("content", content);
+    images.forEach((image, index) => {
+      formData.append(`image_${index + 1}`, image); // 이미지를 개별적으로 추가
+    });
+  
+    console.log("보내는 데이터:", formData); // 보낸 데이터 로그
+  
     try {
-      const response = await API.post("/api/community/posts", postData);
+      const response = await API.post("/api/community/posts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       if (response.status === 201) {
         // POST 요청 성공 상태 코드 확인
         alert("Post 성공 :)");
-        navigate("/"); // 홈페이지로 이동
+        navigate("/bloodPost"); // 긴급헌혈목록으로 이동
       } else {
         alert("Post 실패 :(");
-        console.log("게시글 등록 실패:", response.data);
+        navigate("/bloodPost");
+        console.log("보내진데이터 :", response.data);
       }
     } catch (error) {
       alert("Post 실패 :(");
@@ -133,7 +138,7 @@ const PostWrite = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               // input 포커스 스타일 수정
-              style={{ borderColor: title ? "#000000" : "initial" }}
+              style={{ borderColor: title ? "#9C9CA1" : "initial" }}
             />
 
             <Text>내용</Text>
@@ -142,7 +147,7 @@ const PostWrite = () => {
               value={content}
               onChange={(e) => setContent(e.target.value)}
               // textarea 포커스 스타일 수정
-              style={{ borderColor: content ? "#000000" : "initial" }}
+              style={{ borderColor: content ? "#9C9CA1" : "initial" }}
             />
           </FormContainer>
           <Text>이미지</Text>
@@ -150,17 +155,18 @@ const PostWrite = () => {
             이미지 파일 (JPG, PNG, GIF)을 최대 3개를 첨부할 수 있어요.
             <div style={{ display: "flex" }}>
               {uploadedImages.map((image, index) => (
-                <ImgPlusBtn
+                <ImgPlusDiv
                   key={index}
                   style={{ backgroundImage: `url(${image.url})` }}
                 />
               ))}
               {uploadedImages.length < 3 && (
-                <ImgPlusBtn>
+                <label htmlFor="imageUpload" style={{ cursor: "pointer" }}>
+                <ImgPlusDiv>
                   <PictureMyPageSVG />
-                  <label htmlFor="imageUpload" style={{ cursor: "pointer" }}>
+                  
                     첨부하기
-                  </label>
+                  
                   <input
                     type="file"
                     id="imageUpload"
@@ -168,7 +174,8 @@ const PostWrite = () => {
                     onChange={onChangeImage}
                     multiple
                   />
-                </ImgPlusBtn>
+                </ImgPlusDiv>
+                </label>
               )}
             </div>
           </ImgBox>
@@ -180,6 +187,7 @@ const PostWrite = () => {
                 ? "rgba(255, 105, 105, 1)" // rgba 색상으로 설정
                 : "rgba(128, 128, 128, 0.5)", // 비활성화된 버튼 색상도 rgba로 설정
             }}
+            onClick={handleSubmit}
           >
             등록
           </PostBtn>

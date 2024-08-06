@@ -14,15 +14,16 @@ import ProfileMy from "../../components/myPageComponent/ProfileMy";
 import { API } from "../../api"; // API 호출을 위한 모듈 임포트
 
 const MyPageMain = () => {
-  const [data, setData] = useState({ posts: [], profiles: [] });
+  const [profile, setProfile] = useState({ nickname: "", profile_image: "" });
 
   const fetchData = async () => {
     try {
       const response = await API.get("/api/users/myprofile");
-      console.log("진우데이터:", response.data);
-      setData(response.data);
+      console.log("gydms데이터:", response.data);
+      const profileData = response.data[0]; // 데이터 배열에서 첫 번째 요소를 사용
+      setProfile(profileData);
     } catch (error) {
-      console.log("에러입니당:", error);
+      console.log("에러:", error);
     }
   };
 
@@ -33,34 +34,37 @@ const MyPageMain = () => {
   const navigate = useNavigate(); // useNavigate 훅 초기화
 
   const handleManageClick = () => {
-    navigate("/AccountManage"); // /mypageedit 경로로 이동
+    navigate("/AccountManage"); // /AccountManage 경로로 이동
   };
 
   const handlePetClick = () => {
-    navigate("/PetInfo"); // /PetEdit 경로로 이동
+    navigate("/PetInfo"); // /PetInfo 경로로 이동
   };
 
   const handleReservationClick = () => {
-    navigate("/ReservationList"); // /PetEdit 경로로 이동
+    navigate("/ReservationList"); // /ReservationList 경로로 이동
   };
 
   const handlePostClick = () => {
-    navigate("/MyPost"); // /PetEdit 경로로 이동
+    navigate("/MyPost"); // /MyPost 경로로 이동
   };
 
   const handleCommentClick = () => {
-    navigate("/CommentPost"); // /PetEdit 경로로 이동
+    navigate("/CommentPost"); // /CommentPost 경로로 이동
   };
 
   const handleLikeClick = () => {
-    navigate("/LikePost"); // /PetEdit 경로로 이동
+    navigate("/LikePost"); // /LikePost 경로로 이동
   };
+
+  // 프로필 이미지 URL 수정
+  const profileImage = profile.profile_image || "";
 
   return (
     <>
       <Header2 title="마이페이지" />
       <Wrapper>
-        <ProfileMy></ProfileMy>
+        <ProfileMy name={profile.nickname} profileImage={profileImage} />
         <InfoList>
           <InfoListItem>
             내 정보
@@ -86,19 +90,19 @@ const MyPageMain = () => {
             커뮤니티
             <ItemDetail onClick={handlePostClick}>
               내가 쓴 글
-              <GoBtn>
+              <GoBtn onClick={handlePostClick}>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>
             <ItemDetail onClick={handleLikeClick}>
               좋아요 한 글
-              <GoBtn>
+              <GoBtn onClick={handleLikeClick}>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>
             <ItemDetail onClick={handleCommentClick}>
               댓글 단 글
-              <GoBtn>
+              <GoBtn onClick={handleCommentClick}>
                 <GoMyPageSVG />
               </GoBtn>
             </ItemDetail>

@@ -321,6 +321,21 @@ export const RadioButton = styled.input.attrs({ type: "radio" })`
   }
 `;
 
+export const AlertBox = styled.div`
+  height: 16px;
+  align-self: stretch;
+
+  color: var(--Semantic-Error, #ff6565);
+  font-family: SUIT;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 16px */
+  letter-spacing: -0.2px;
+
+  padding: 10px;
+`;
+
 // EditMyPageSVG: SVG 아이콘 컴포넌트 내보내기
 export {
   EditMyPageSVG,

@@ -20,12 +20,12 @@ const DropdownContainer = styled.div`
   flex-direction: row;
 `;
 
-const DropdownButton = styled.button`
-  border-radius: 30px;
+const DropdownButton = styled.div`
+  border-radius: 12px;
   border: 1px solid #d9d9d9;
   background: #fff;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 150px;
   height: 29px;
