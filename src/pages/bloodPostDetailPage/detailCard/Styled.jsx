@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Wrapper = styled.div`
     width: 100%;
+    min-height: 200px;
     /* height: 80vh;
     flex: 1;
     overflow-y: auto; */
@@ -16,7 +17,8 @@ const Wrapper = styled.div`
 const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
+    min-height: 173px;
     display: flex;
     width: 90%;
     margin: 0 auto;
@@ -73,6 +75,10 @@ const Tag = styled.div`
 
 // DateText: 작성일 표시
 const DateText = styled.div`
+display: flex;
+gap:4px;
+align-items: center;
+text-align: center;
  font-size: 10px;
  font-family: 'SUIT', sans-serif;
  font-weight: 500;
@@ -138,7 +144,7 @@ const Content = styled.p`
     width: ${props => (props.hasImage ? '70%' : '100%')};
     /* height: 52px; */
     overflow: hidden;
-
+    align-items: center;
     font-family: 'SUIT', sans-serif;
     font-weight: 500;
     font-size: 10px;
@@ -155,7 +161,7 @@ const Footer = styled.div`
     width: 100%;
     height: 27px;
     align-items: center;
-
+    
     /* margin-top: 12px; */
     border-radius: 0px 0px 8px 8px;
     background: rgba(255, 105, 105, 0.08);

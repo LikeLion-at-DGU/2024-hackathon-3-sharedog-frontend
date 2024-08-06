@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import PictureMyPageSVG from "../../assets/icons/pictureMyPage.svg?react"; // SVG 파일 가져오기
 
@@ -57,15 +58,19 @@ export const Input = styled.input`
   align-items: center;
 
   border-radius: 12px;
-  border: 1px solid #eff1f3;
+  border: 1px solid #EFF1F3;
   background: var(--Grayscale-White, #fff);
 
-  color: var(--Gray-Gray01, #9c9ca1);
+  color: var(--Gray-Gray01, #9C9CA1);
   font-family: SUIT;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  &:focus {
+    border-color: #EFF1F3; /* 포커스 되었을 때의 보더 색상 설정 */
+    outline: none; /* 포커스 시 생기는 기본 아웃라인 제거 */
+  }
 `;
 
 export const TextArea = styled.textarea`
@@ -86,6 +91,10 @@ export const TextArea = styled.textarea`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  &:focus {
+    border-color: #eff1f3; /* 포커스 되었을 때의 보더 색상 설정 */
+    outline: none; /* 포커스 시 생기는 기본 아웃라인 제거 */
+  }
 `;
 
 export const ImgBox = styled.div`
@@ -105,7 +114,7 @@ export const ImgBox = styled.div`
   line-height: normal;
 `;
 
-export const ImgPlusBtn = styled.button`
+export const ImgPlusDiv = styled.div`
   width: 80px;
   height: 80px;
   flex-shrink: 0;
@@ -120,13 +129,13 @@ export const ImgPlusBtn = styled.button`
   align-items: center;
   justify-content: center;
   gap: 4px;
-
+  margin-right: 5px;
   background-image: ${({ imageUrl }) =>
     imageUrl ? `url(${imageUrl})` : "none"};
   background-size: cover;
   background-position: center;
   overflow: hidden; /* 이미지가 요소의 경계를 넘어가지 않도록 */
-
+border: 1px solid #9c9ca1;
   color: var(--Red-Red04, #ff6969);
   font-family: SUIT;
   font-size: 10px;
