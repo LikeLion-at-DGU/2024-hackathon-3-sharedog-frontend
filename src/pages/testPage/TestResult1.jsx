@@ -137,7 +137,7 @@ const testResult1 = () => {
             확인
           </FooterButton1>
           <FooterButton2 onClick={handleFooterClick2}>
-            헌열 예약하기
+            헌혈 예약하기
           </FooterButton2>
         </Container>
       </Footer>

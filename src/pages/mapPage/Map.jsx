@@ -163,7 +163,7 @@ const Map = () => {
               <Text2>혈액검사-채혈-안정까지 약 1시간 40분 소요돼요.</Text2>
             </InfoBox2>
           </CautionBox>
-          <ReservationBtn onClick={openModal}>헌열 예약하기</ReservationBtn>
+          <ReservationBtn onClick={openModal}>헌혈 예약하기</ReservationBtn>
         </InfoCheck>
       </Wrapper>
 
@@ -195,7 +195,7 @@ const Map = () => {
                 <img src={Complete} alt="예약 완료" style={{ width: '50px', height: '50px' }} />
               </ModalBody>
               <ModalFooter>
-                <ModalButton onClick={() => navigate('/reservationlist')}>헌열 예약 내역<img src={Arrow} alt="예약 내역 보기"/></ModalButton>
+                <ModalButton onClick={() => navigate('/reservationlist')}>헌혈 예약 내역<img src={Arrow} alt="예약 내역 보기"/></ModalButton>
               </ModalFooter>
             </ModalWrapper>
           </Modal>
