@@ -118,8 +118,8 @@ line-height: 15px;
 const SlideImg=styled.img`
   width: 25%;
   border-radius: 6px;
-  background: ${props => `url(${props.imgurl}) lightgray 50% / cover no-repeat`};
-`;
+  /* background: ${props => `url(${props.imgurl}) lightgray 50% / cover no-repeat`};*/
+`; 
 
 const Slider = ({ post }) => {
 
@@ -149,7 +149,7 @@ const Slider = ({ post }) => {
               <ContentTitle>{slide.title}</ContentTitle>
               <ContentText>{slide.content}</ContentText>
             </ContentBox>
-            <SlideImg imgurl={slide.imgurl} image_1/>
+            {slide.image_1 && <SlideImg src={slide.image_1} alt={slide.title} />}
             
           </Slide>
         </SwiperSlide>

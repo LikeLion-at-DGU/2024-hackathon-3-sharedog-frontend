@@ -229,8 +229,8 @@ export const InfoCardWrapper = styled.div`
     justify-content: space-between;
 `;
 
-export const InfoCard = ({ icon: Icon, text }) => (
-    <InfoWrapper>
+export const InfoCard = ({ icon: Icon, text,onClick  }) => (
+    <InfoWrapper onClick={onClick}>
         <Info>
             <Icon />
             <InfoText>{text}</InfoText>
