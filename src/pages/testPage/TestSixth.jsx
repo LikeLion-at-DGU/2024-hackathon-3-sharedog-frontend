@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Test11SVG from '../../assets/icons/test11.svg?react';
 import Test12SVG from '../../assets/icons/test12.svg?react';
 import { Wrapper } from './Styled';
+import { API } from '../../api';
 
 const Title = styled.div`
   color: var(--Gray-Gray03, #3A3A3C);
@@ -85,8 +86,16 @@ const TestSixth = () => {
   const navigate = useNavigate();
   const [activeSVG, setActiveSVG] = useState(null); // 클릭된 SVG를 추적할 상태
 
-  const handleFooterClick = () => {
-    navigate('/testFinal'); // 페이지 네비게이션
+  const handleFooterClick = async () => {
+    if (activeSVG) {
+      try {
+        await sendDataToAPI();
+      } catch (error) {
+        console.error('API 요청 실패:', error);
+      }
+    } else {
+      console.log('SVG가 선택되지 않았습니다.');
+    }
   };
 
   const handleSVGClick = (id) => {
@@ -94,11 +103,41 @@ const TestSixth = () => {
   };
 
   const sendDataToAPI = async () => {
+    const hasDiseaseMap = {
+      'test11': '네! 앓았던 적이 있어요',
+      'test12': '아니요! 앓았던 적이 없어요'
+    };
+
+    const hasDisease = hasDiseaseMap[activeSVG];
+
+    if (!hasDisease) {
+      console.error('유효하지 않은 has_disease 값:', activeSVG);
+      return;
+    }
+
+    // 전송할 데이터 콘솔에 출력
+    console.log('전송할 데이터:', { has_disease: hasDisease });
+
     try {
-      const response = await API.post('/api/diseasetests', {
-        has_disease: activeSVG === 'test11' ? '네! 앓았던 적이 있어요' : '아니요! 앓았던 적이 없어요' // activeSVG 값에 따라 size 설정
-      });
-      console.log('API 요청 성공:', response.data);
+      await API.post('/api/diseasetests', { has_disease: hasDisease });
+      console.log('POST 요청 성공');
+
+      // POST 요청 후 GET 요청을 통해 데이터를 받아오기
+      const response = await API.get('/api/totaltests');
+      console.log('GET 요청 성공:', response.data); // 응답 데이터 확인을 위한 로그
+
+      const lastItem = response.data[response.data.length - 1];
+      const canBlood = lastItem ? lastItem.can_blood : undefined;
+
+      console.log('canBlood 값:', canBlood); // 응답 데이터 확인을 위한 로그
+
+      if (canBlood === '헌혈 불가') {
+        navigate('/Result2'); // 헌혈불가일 경우 result2로 네비게이션
+      } else if (canBlood === '헌혈 가능') {
+        navigate('/Result1'); // 헌혈가능일 경우 result1로 네비게이션
+      } else {
+        console.error('유효하지 않은 can_blood 값:', canBlood);
+      }
     } catch (error) {
       console.error('API 요청 실패:', error);
     }
@@ -106,7 +145,7 @@ const TestSixth = () => {
 
   return (
     <>
-      <Header progress={20} />
+      <Header/>
       <Wrapper>
         <Wrap>
           <Title>과거에 심장사상충, 바베시아, <br /> 혈액 및 바이러스 질병 이력이 있나요? </Title>
