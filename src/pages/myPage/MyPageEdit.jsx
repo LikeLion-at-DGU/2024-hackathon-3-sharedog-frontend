@@ -8,21 +8,20 @@ import { API } from "../../api";
 
 const MyPageEdit = () => {
   const navigate = useNavigate();
+
   const [nickname, setNickname] = useState("");
   const [profileImage, setProfileImage] = useState(null);
   const [profileImageUrl, setProfileImageUrl] = useState(null);
   const [isComplete, setIsComplete] = useState(false);
-  const [id, setId] = useState(""); // 유저 ID 상태 추가
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await API.get("/api/users/myprofile/${id}");
-        const data = response.data;
+        const response = await API.get("/api/users/myprofile");
+        const data = response.data[0]; // Assuming response.data is an array and you need the first element
         console.log("프로필 데이터:", data);
         setNickname(data.nickname);
         setProfileImageUrl(data.profile_image);
-        setId(data.id);
       } catch (error) {
         console.error("에러:", error);
       }
