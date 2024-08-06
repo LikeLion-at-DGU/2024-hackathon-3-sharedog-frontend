@@ -30,6 +30,25 @@ export const InPutText = styled.div`
   font-weight: 600;
   line-height: 140%; /* 19.6px */
   letter-spacing: -0.28px;
+  justify-content: space-between;
+
+  display: flex;
+  flex-direction: row;
+`;
+
+export const AlertText = styled.div`
+  color: var(--Gray-Gray01, #ff6565);
+  font-family: SUIT;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 12.8px */
+  letter-spacing: -0.16px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 2vh;
 `;
 
 export const DropDown = styled.div`
@@ -70,11 +89,21 @@ export const DropDownSelect = styled.select`
   cursor: pointer; // 커서가 포인터로 변경되도록 추가
 `;
 
-const InputDropDown = ({ title, inputtext, value, options = [], onChange }) => {
+const InputDropDown = ({
+  title,
+  inputtext,
+  value,
+  options = [],
+  onChange,
+  alerttext,
+}) => {
   return (
     <Wrapper>
       <InPutSection>
-        <InPutText>{title}</InPutText>
+        <InPutText>
+          {title}
+          <AlertText>{alerttext}</AlertText>
+        </InPutText>
         <DropDown>
           <DropDownSelect value={value} onChange={onChange}>
             <option value="" disabled>

@@ -7,6 +7,7 @@ import {
   RadioLabel,
   RadioButton,
   RadioBox,
+  AlertText,
 } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
@@ -116,6 +117,11 @@ const PetRegister = () => {
         <InPutBox>
           <RadioGroup>
             대표 프로필 지정
+            <AlertText>
+              {
+                "*필수 선택 | 등록된 강아지가 1마리일 경우 자동으로 대표 프로필로 등록되며 해제가 불가합니다."
+              }
+            </AlertText>
             <RadioBox>
               <RadioLabel>
                 <RadioButton
@@ -142,23 +148,27 @@ const PetRegister = () => {
             inputtext={"반려견 이름을 입력해 주세요."}
             value={dogname}
             onChange={(e) => setDogname(e.target.value)}
+            alerttext={"*필수 입력"}
           />
           <Select
             title={"반려견 성별"}
             value={gender}
             onChange={handleGenderChange}
+            alerttext={"*필수 선택"}
           />
           <InputHolder
             title={"반려견 나이"}
-            inputtext={"반려견 나이를 입력해 주세요."}
+            inputtext={"반려견 나이를 입력해 주세요. 숫자만 입력 가능합니다."}
             value={dog_age}
             onChange={(e) => setDogAge(e.target.value)}
+            alerttext={"*필수 입력 | 숫자만 입력 가능합니다."}
           />
           <InputHolder
             title={"반려견 몸무게"}
-            inputtext={"반려견 몸무게를 입력해 주세요."}
+            inputtext={"반려견 몸무게를 입력해 주세요. 숫자만 입력 가능합니다."}
             value={dog_weight}
             onChange={(e) => setDogWeight(e.target.value)}
+            alerttext={"*필수 입력 | 숫자만 입력 가능합니다."}
           />
           <InputDropDown
             title={"반려견 혈액형"}
@@ -166,6 +176,7 @@ const PetRegister = () => {
             options={bloodOptions}
             value={dog_blood}
             onChange={(e) => setDogBlood(e.target.value)}
+            alerttext={"*필수 선택"}
           />
           <CompleteBtn
             style={{

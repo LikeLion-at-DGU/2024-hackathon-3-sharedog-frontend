@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CheckMyPageSVG from "../../assets/icons/checkMyPage.svg?react";
 import Check2MyPageSVG from "../../assets/icons/check2MyPage.svg?react";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react";
-import BasicProfile from '../../assets/icons/petFootMyPage.svg?react';
+import BasicProfile from "../../assets/icons/petFootMyPage.svg?react";
+import TrashSVG from "../../assets/icons/trash.svg?react";
+import Modal from "../../components/myPageComponent/Modal";
+import Modal2 from "../../components/myPageComponent/Modal2";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -30,8 +33,8 @@ export const PetInfoBox = styled.div`
 
 export const MainProfileBox = styled.div`
   display: flex;
-  gap: 10px;
-  align-items: center; /* Added to align items vertically */
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const MainProfile = styled.div`
@@ -116,6 +119,18 @@ export const Editbtn = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 100%;
+  cursor: pointer;
+`;
+
+export const DeleteBtn = styled.button`
+  width: 11px;
+  height: 12px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  border-style: none;
+  background: none;
+  padding: 0;
 `;
 
 const PetInfoCard = ({
@@ -127,26 +142,47 @@ const PetInfoCard = ({
   dog_image,
   kingdog,
   onEditClick,
+  onDeleteClick,
 }) => {
+  const [showFirstModal, setShowFirstModal] = useState(false);
+  const [showSecondModal, setShowSecondModal] = useState(false);
+
+  const handleDeleteClick = () => setShowFirstModal(true);
+  const handleCloseFirstModal = () => setShowFirstModal(false);
+  const handleCloseSecondModal = () => setShowSecondModal(false);
+
+  const handleConfirmDelete = () => {
+    setShowFirstModal(false);
+    onDeleteClick();
+    setShowSecondModal(true);
+  };
+
   return (
     <Wrapper>
       <PetInfoBox>
         <MainProfileBox>
-          {kingdog && (
-            <>
-              <CheckMyPageSVG />
-              <MainProfile>대표 프로필</MainProfile>
-            </>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            {kingdog && (
+              <>
+                <CheckMyPageSVG />
+                <MainProfile>대표 프로필</MainProfile>
+              </>
+            )}
+          </div>
+          {!kingdog && (
+            <DeleteBtn onClick={handleDeleteClick}>
+              <TrashSVG />
+            </DeleteBtn>
           )}
         </MainProfileBox>
         <InfoTextBox>
-        <PetImg>
-        {dog_image ?<img
-            src={dog_image}
-            alt={`${dogname} Info`}/> 
-          : <BasicProfile/>}
-          
-        </PetImg>
+          <PetImg>
+            {dog_image ? (
+              <img src={dog_image} alt={`${dogname} Info`} />
+            ) : (
+              <BasicProfile />
+            )}
+          </PetImg>
           <InfoList>
             <NameBox>
               {dogname}
@@ -174,8 +210,27 @@ const PetInfoCard = ({
           </InfoList>
         </InfoTextBox>
       </PetInfoBox>
+
+      {showFirstModal && (
+        <Modal
+          onClose={handleCloseFirstModal}
+          text1="정말로 프로필을 삭제하시겠습니까?"
+          btn1Text="취소"
+          btn2Text="확인"
+          onConfirm={handleConfirmDelete}
+        />
+      )}
+
+      {showSecondModal && (
+        <Modal2
+          onClose={handleCloseSecondModal}
+          text1="삭제되었습니다."
+          btn2Text="확인"
+        />
+      )}
     </Wrapper>
   );
 };
 
 export default PetInfoCard;
+export { TrashSVG };

@@ -86,7 +86,6 @@ export const PictureImg = styled.div`
 
 export const InfoList = styled.div`
   width: 80%;
-  height: 50vh;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -100,7 +99,6 @@ export const InfoList = styled.div`
 
 export const InfoList2 = styled.div`
   width: 80%;
-  height: 40vh;;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -229,6 +227,7 @@ export const PlusBtn = styled.button`
   border-radius: 22.252px;
   border: 1px solid var(--Red-Red04, #ff6969);
   background: #fff;
+  cursor: pointer;
 
   color: var(--Red-Red04, #ff6969);
   text-align: center;
@@ -243,6 +242,21 @@ export const PlusBtn = styled.button`
     background: var(--Red-Red04, #ff6969);
     color: var(--Gray-White, #fff);
   }
+`;
+
+export const AlertText = styled.div`
+  color: var(--Gray-Gray01, #ff6565);
+  font-family: SUIT;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 12.8px */
+  letter-spacing: -0.16px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1vh;
 `;
 
 export const RadioGroup = styled.div`
@@ -318,10 +332,15 @@ export const RadioButton = styled.input.attrs({ type: "radio" })`
     left: 50%;
     transform: translate(-50%, -50%);
   }
+
+  /* 비활성화 상태 스타일 */
+  &:disabled {
+    border-color: #ccc; /* 비활성화 상태에서 보더 색상 */
+    cursor: not-allowed;
+  }
 `;
 
 export const AlertBox = styled.div`
-  height: 16px;
   align-self: stretch;
 
   color: var(--Semantic-Error, #ff6565);
@@ -332,7 +351,7 @@ export const AlertBox = styled.div`
   line-height: 160%; /* 16px */
   letter-spacing: -0.2px;
 
-  padding: 10px;
+  padding: 3px;
 `;
 
 // EditMyPageSVG: SVG 아이콘 컴포넌트 내보내기
