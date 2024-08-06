@@ -29,7 +29,7 @@ const SignUpSplash = () => {
   // 2초 후에 홈 페이지로 이동
   useEffect(() => {
     const timer = setTimeout(() => {
-      // navigate("/home");
+      navigate("/home");
     }, 2000); // 2초 후에 /home으로 이동
     return () => clearTimeout(timer); // 컴포넌트가 언마운트될 때 타이머 정리
   }, [navigate]);
