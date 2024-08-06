@@ -56,8 +56,8 @@ const SVGWrapper = styled.div`
 `;
 
 const SVGContainer = styled.div`
-  border-radius: 15px;
-  border: ${props => (props.isActive ? '2px solid rgba(255, 105, 105, 0.60)' : 'none')}; /* 클릭 시 보더 색상 */
+  border-radius: 5px;
+  border: ${props => (props.isActive ? '3px solid rgba(255, 105, 105, 0.60)' : 'none')}; /* 클릭 시 보더 색상 */
   background: ${props => (props.isActive ? '#FAFAFC' : 'transparent')}; /* 클릭 시 배경 색상 */
   box-shadow: ${props => (props.isActive ? '0px 0px 10px 0px rgba(255, 105, 105, 0.25)' : 'none')}; /* 클릭 시 그림자 */
   display: flex;
@@ -71,6 +71,7 @@ const SVGContainer = styled.div`
     border: 3px solid rgba(255, 105, 105, 0.60);
     background: #FAFAFC;
     box-shadow: 0px 0px 10px 0px rgba(255, 105, 105, 0.25);
+
   }
 `;
 
