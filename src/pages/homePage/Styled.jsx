@@ -254,10 +254,15 @@ export const HomePostTitle = styled.div`
     font-weight: 700;
     margin-bottom: 2vh;
 `;
+export const HomeWrapper=styled.div`
+ display: flex;
+ width: 100%;
+ justify-content: flex-end;
+`;
 export const HomeFullBtn = styled.div`
     display: flex;
-    width: 100%;
-    justify-content: flex-end;
+    /* width: 100%; */
+    
     color: rgba(156, 156, 161, 0.70);
     text-align: center;
     font-family: SUIT;

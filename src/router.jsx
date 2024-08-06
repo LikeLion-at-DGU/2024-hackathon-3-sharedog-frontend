@@ -33,6 +33,8 @@ import TestSixth from "./pages/testPage/TestSixth";
 import TestResult1 from "./pages/testPage/TestResult1";
 import TestResult2 from "./pages/testPage/TestResult2";
 import Auth from "./pages/loginPage/Auth";
+import Benefits from './pages/explainPage/Benefits'
+import Cautions from './pages/explainPage/Cautions'
 
 const router = createBrowserRouter([
   {
@@ -58,7 +60,11 @@ const router = createBrowserRouter([
       { path: "/signupsplash", element: <SignUpSplash /> }, //회원가입 완료 화면
       { path: "/calendarPage/:id", element: <CalendarPage /> }, //달력 화면
       { path: "/map/:id", element: <MapPage /> }, //지도 화면
+
       { path: "/standard", element: <StandardPage /> }, //헌혈 기준 화면
+      { path: "/benefits", element: <Benefits /> },//헌혈 주의사항 화면
+      { path: "/cautions", element: <Cautions /> },//헌혈혜택 화면
+
       { path: "/auth/kakao/callback", element: <Auth /> },
       { path: "/mypost", element: <MyPost /> }, //내가 쓴 글 화면
       { path: "/commentpost", element: <CommentPost /> }, //내가 댓글 단 글 화면

@@ -30,6 +30,25 @@ export const InPutText = styled.div`
   font-weight: 600;
   line-height: 140%; /* 19.6px */
   letter-spacing: -0.28px;
+  justify-content: space-between;
+
+  display: flex;
+  flex-direction: row;
+`;
+
+export const AlertText = styled.div`
+  color: var(--Gray-Gray01, #ff6565);
+  font-family: SUIT;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 12.8px */
+  letter-spacing: -0.16px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 2vh;
 `;
 
 export const SelectBox = styled.div`
@@ -63,13 +82,16 @@ export const Option = styled.div`
   cursor: pointer;
 `;
 
-const Select = ({ title, value, onChange }) => {
+const Select = ({ title, value, onChange, alerttext }) => {
   const options = ["수컷", "중성화", "암컷"];
 
   return (
     <Wrapper>
       <InPutSection>
-        <InPutText>{title}</InPutText>
+        <InPutText>
+          {title}
+          <AlertText>{alerttext}</AlertText>
+        </InPutText>
         <SelectBox>
           {options.map((option) => (
             <Option
