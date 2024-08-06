@@ -2,7 +2,7 @@ import Header from './header/Header';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import styled from "styled-components";
-import Test1SVG from '../../assets/icons/test1.svg?react';
+import Test1 from '../../assets/images/test1.jpg';
 import Check2MyPageSVG from '../../assets/icons/check2MyPage.svg?react';
 import { 
   Wrapper 
@@ -115,7 +115,7 @@ const testResult1 = () => {
       <Header progress={0} />
       <Wrapper>
         <Title>헌혈견이 될 수 있어요!</Title>
-        <Test1SVG />
+        <img src={Test1} alt="Test1" />
         <InputBox>
           <Content>
             <Check2MyPageSVG />
