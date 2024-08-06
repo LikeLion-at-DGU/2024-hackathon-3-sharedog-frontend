@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Test9SVG from '../../assets/icons/test9.svg?react';
 import Test10SVG from '../../assets/icons/test10.svg?react';
 import { Wrapper } from './Styled';
+import { API } from '../../api';
 
 const Title = styled.div`
   color: var(--Gray-Gray03, #3A3A3C);
@@ -85,8 +86,17 @@ const TestFifth = () => {
   const navigate = useNavigate();
   const [activeSVG, setActiveSVG] = useState(null); // 클릭된 SVG를 추적할 상태
 
-  const handleFooterClick = () => {
-    navigate('/testSixth'); // 페이지 네비게이션
+  const handleFooterClick = async () => {
+    if (activeSVG) {
+      try {
+        await sendDataToAPI();
+        navigate('/testSixth'); // 페이지 네비게이션
+      } catch (error) {
+        console.error('API 요청 실패:', error);
+      }
+    } else {
+      console.log('SVG가 선택되지 않았습니다.');
+    }
   };
 
   const handleSVGClick = (id) => {
@@ -94,10 +104,20 @@ const TestFifth = () => {
   };
 
   const sendDataToAPI = async () => {
+    const isVaccinatedMap = {
+      'test9': '네! 매월 챙기고 있어요',
+      'test10': '아니요! 매월 챙기지 못했어요'
+    };
+
+    const isVaccinated = isVaccinatedMap[activeSVG];
+
+    if (!isVaccinated) {
+      console.error('유효하지 않은 is_vaccinated 값:', activeSVG);
+      return;
+    }
+
     try {
-      const response = await API.post('/api/vaccinetests', {
-        is_vaccinated: activeSVG === 'test9' ? '네! 매월 챙기고 있어요' : '아니요! 매월 챙기지 못했어요' // activeSVG 값에 따라 size 설정
-      });
+      const response = await API.post('/api/vaccinetests', { is_vaccinated: isVaccinated });
       console.log('API 요청 성공:', response.data);
     } catch (error) {
       console.error('API 요청 실패:', error);
@@ -106,7 +126,7 @@ const TestFifth = () => {
 
   return (
     <>
-      <Header progress={20} />
+      <Header/>
       <Wrapper>
         <Wrap>
           <Title>매월 심장사상충 <br /> 예방약 및 백신 접종을 하고 있나요?</Title>

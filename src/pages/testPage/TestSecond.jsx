@@ -104,7 +104,7 @@ const TestSecond = () => {
 
   return (
     <>
-      <Header progress={20} />
+      <Header/>
       <Wrapper>
         <Wrap>
           <Title>강아지의 견종은 <br /> 어디에 해당하나요?</Title>

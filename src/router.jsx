@@ -30,6 +30,8 @@ import TestThird from "./pages/testPage/TestThird";
 import TestFourth from "./pages/testPage/TestFourth";
 import TestFifth from "./pages/testPage/TestFifth";
 import TestSixth from "./pages/testPage/TestSixth";
+import TestResult1 from "./pages/testPage/TestResult1";
+import TestResult2 from "./pages/testPage/TestResult2";
 import Auth from "./pages/loginPage/Auth";
 
 const router = createBrowserRouter([
@@ -68,6 +70,8 @@ const router = createBrowserRouter([
       { path: "/testFifth", element: <TestFifth /> }, //테스트 5번째 페이지
       { path: "/testSixth", element: <TestSixth /> }, //테스트 6번째 페이지
       { path:"/PetEdit/:id", element:<PetEdit />},/* 경로 추가 */
+      { path:"/Result1", element:<TestResult1 />},
+      { path:"/Result2", element:<TestResult2 />}
     ],
     errorElement: <NotFound />, // 일치하는 경로가 없을 때 표시할 컴포넌트
   },
