@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Footer from './footer/testFooter';
 import React, { useState } from 'react'; // 상태 관리를 위해 useState를 import합니다.
 import styled from "styled-components";
-import Test2SVG from '../../assets/icons/test2.svg?react';
-import Test3SVG from '../../assets/icons/test3.svg?react';
+import Test2 from '../../assets/images/test2.jpg';
+import Test3 from '../../assets/images/test3.jpg';
 import { Wrapper } from './Styled';
 import { API } from '../../api';
 
@@ -114,7 +114,7 @@ const TestSecond = () => {
                 onClick={() => handleSVGClick('test2')}
                 isActive={activeSVG === 'test2'}
               >
-                <Test2SVG />
+                <img src={Test2} alt="Test2" />
               </SVGContainer>
               <Content>소형견</Content>
             </SVGWrapper>
@@ -123,7 +123,7 @@ const TestSecond = () => {
                 onClick={() => handleSVGClick('test3')}
                 isActive={activeSVG === 'test3'}
               >
-                <Test3SVG />
+                <img src={Test3} alt="Test3" />
               </SVGContainer>
               <Content>대형견</Content>
             </SVGWrapper>

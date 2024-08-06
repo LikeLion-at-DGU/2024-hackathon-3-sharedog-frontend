@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from './footer/testFooter';
 import React from 'react';
 import styled from "styled-components";
-import Test13SVG from '../../assets/icons/test13.svg?react';
+import Test13 from '../../assets/images/test13.jpg';
 import Check2MyPageSVG from '../../assets/icons/check2MyPage.svg?react';
 import { 
   Wrapper 
@@ -65,7 +65,7 @@ const testResult2 = () => {
       <Header/>
       <Wrapper>
         <Title>헌혈 대상이 아니에요</Title>
-        <Test13SVG />
+        <img src={Test13} alt="Test13" />
         <InputBox>
           <Content>
             <Check2MyPageSVG /> 

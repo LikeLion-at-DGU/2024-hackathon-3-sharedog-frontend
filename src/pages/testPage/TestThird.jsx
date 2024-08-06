@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import Footer from './footer/testFooter';
 import React, { useState } from 'react'; // 상태 관리를 위해 useState를 import합니다.
 import styled from "styled-components";
-import Test4SVG from '../../assets/icons/test4.svg?react';
-import Test5SVG from '../../assets/icons/test5.svg?react';
-import Test6SVG from '../../assets/icons/test6.svg?react';
+import Test4 from '../../assets/images/test4.jpg';
+import Test5 from '../../assets/images/test5.jpg';
+import Test6 from '../../assets/images/test6.jpg';
 import { Wrapper } from './Styled';
 import { API } from '../../api';
 
@@ -138,7 +138,7 @@ const TestThird = () => {
               onClick={() => handleSVGClick('test4')}
               isActive={activeSVG === 'test4'}>
               <SVGContainer>
-                <Test4SVG />
+                <img src={Test4} alt="Test4" /> 
               </SVGContainer>
               <Content>18개월 미만이에요</Content>
             </SVGWrapper>
@@ -146,7 +146,7 @@ const TestThird = () => {
               onClick={() => handleSVGClick('test5')}
               isActive={activeSVG === 'test5'}>
               <SVGContainer>
-                <Test5SVG />
+                <img src={Test5} alt="Test5" />
               </SVGContainer>
               <Content>18개월 이상 8세 이하에요</Content>
             </SVGWrapper>
@@ -155,7 +155,7 @@ const TestThird = () => {
               isActive={activeSVG === 'test6'}
             >
               <SVGContainer>
-                <Test6SVG />
+                <img src={Test6} alt="Test6" />
               </SVGContainer>
               <Content>9세 이상이에요</Content>
             </SVGWrapper>

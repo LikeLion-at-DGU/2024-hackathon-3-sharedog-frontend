@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from './footer/testFooter';
 import React from 'react';
 import styled from "styled-components";
-import Test1SVG from '../../assets/icons/test1.svg?react';
+import Test1 from '../../assets/images/test1.jpg';
 import { 
   Wrapper 
 } from './Styled';
@@ -49,7 +49,7 @@ const testFirst = () => {
       <Header/>
       <Wrapper>
         <Title>우리집 강아지는 <br></br> <p>헌혈견</p>이 될 수 있을까?</Title>
-        <Test1SVG />
+        <img src={Test1} alt="Test1" />
         <Content>3분만에 우리집 강아지가 <br></br> 헌혈견이 될 수 있는지 알아보세요!</Content>
       </Wrapper>
       <Footer 
