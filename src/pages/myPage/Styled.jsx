@@ -43,7 +43,7 @@ export const InfoBox = styled.div`
   margin-top: 5px;
 
   color: var(--Grayscale-Gray700, #222b39);
-  font-family: Pretendard;
+  font-family: SUIT, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
@@ -122,7 +122,7 @@ export const InfoListItem = styled.div`
   flex-shrink: 0;
 
   color: var(--Grayscale-Gray400, #8490a0);
-  font-family: Pretendard;
+  font-family: SUIT, sans-serif;
   font-size: 11.518px;
   font-style: normal;
   font-weight: 600;
@@ -136,7 +136,7 @@ export const ItemDetail = styled.div`
   flex-shrink: 0;
   justify-content: space-between;
   color: var(--Grayscale-Gray600, #333d4b);
-  font-family: Pretendard;
+  font-family: SUIT, sans-serif;
   font-size: 13.438px;
   font-style: normal;
   font-weight: 500;
