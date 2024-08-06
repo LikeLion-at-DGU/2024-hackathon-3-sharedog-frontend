@@ -7,6 +7,7 @@ import {faLocationArrow , }
     from "@fortawesome/free-solid-svg-icons";
 // import CmtSend from '../../assets/icons/cmtSend.svg?react'
 import {API} from '../../api'
+import Logo from '../../assets/images/Logo.png';
 
 const Wrapper = styled.div`
     display  :flex ;
@@ -143,7 +144,7 @@ const Comments = ({ comment, depth = 0, profileImageUrl }) => {
             key={recomment.id} 
             comment={recomment} 
             depth={depth + 1} 
-            profileImageUrl={recomment.profileImageUrl || 'https://via.placeholder.com/23'} 
+            profileImageUrl={recomment.profileImageUrl || Logo} 
           />
         ))
       )}
@@ -243,7 +244,7 @@ const SendProfile = styled.div`//댓글프로필
 const CommentSend = ({ postId, onAddComment, profileImageUrl }) => {
   const [inputValue, setInputValue] = useState('');
 
-  console.log("Received profileImageUrl:", profileImageUrl); // 추가된 로그
+  // console.log("Received profileImageUrl:", profileImageUrl); // 추가된 로그
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -271,9 +272,9 @@ const CommentSend = ({ postId, onAddComment, profileImageUrl }) => {
   return (
     <Color>
       <FooterCmt>
-        <SendProfile>
+        {/* <SendProfile>
           <img src={profileImageUrl} alt="profile" />
-        </SendProfile>
+        </SendProfile> */}
         <FooterCmtContent>
           <Input
             type="text"

@@ -48,12 +48,16 @@ const PetRegister = () => {
     setKingdog(e.target.value === "Yes");
   };
 
+  const isNumeric = (value) => {
+    return !isNaN(value) && value !== null && value !== "";
+  };
+
   const isCompleteCheck = () => {
     return (
       dogname.trim() !== "" && // dogname이 빈 문자열이 아닌지 확인
       gender.trim() !== "" && // gender가 빈 문자열이 아닌지 확인
-      !isNaN(dog_age) && // dog_age가 숫자이며 NaN이 아닌지 확인
-      !isNaN(dog_weight) && // dog_weight가 숫자이며 NaN이 아닌지 확인
+      (!dog_age || isNumeric(dog_age)) && // dog_age가 비어있거나 숫자인지 확인
+      (!dog_weight || isNumeric(dog_weight)) && // dog_weight가 비어있거나 숫자인지 확인
       dog_blood.trim() !== "" && // dog_blood가 빈 문자열이 아닌지 확인
       typeof kingdog === "boolean" // kingdog가 불리언인지 확인
     );
@@ -72,7 +76,7 @@ const PetRegister = () => {
     }
 
     try {
-      const response = await API.put("/api/users/dogprofiles", formData, {
+      const response = await API.post("/api/users/dogprofiles", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       console.log("서버 응답 데이터:", response.data);
@@ -148,13 +152,13 @@ const PetRegister = () => {
             title={"반려견 나이"}
             inputtext={"반려견 나이를 입력해 주세요."}
             value={dog_age}
-            onChange={(e) => setDogAge(Number(e.target.value))}
+            onChange={(e) => setDogAge(e.target.value)}
           />
           <InputHolder
             title={"반려견 몸무게"}
             inputtext={"반려견 몸무게를 입력해 주세요."}
             value={dog_weight}
-            onChange={(e) => setDogWeight(Number(e.target.value))}
+            onChange={(e) => setDogWeight(e.target.value)}
           />
           <InputDropDown
             title={"반려견 혈액형"}
@@ -166,7 +170,7 @@ const PetRegister = () => {
           <CompleteBtn
             style={{
               borderRadius: "30px",
-              background: isComplete ? "#FF6969" : "rgba(156, 156, 161, 0.5)",
+              background: isComplete ? "#FF6969" : "rgba(156, 156, 156, 0.5)",
               color: "#fff",
             }}
             disabled={!isComplete}
