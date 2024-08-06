@@ -12,16 +12,14 @@ const PetInfo = () => {
   const [dog_weight, setDogWeight] = useState("");
   const [dog_blood, setDogBlood] = useState("");
   const [isComplete, setIsComplete] = useState(false);
-  const [dogInfo, setDogInfo] = useState([]); // 추가된 상태
+  const [dogInfo, setDogInfo] = useState([]);
 
   const navigate = useNavigate();
 
-  // 등록 버튼 클릭 핸들러
   const handleRegisterClick = () => {
     navigate("/PetRegister");
   };
 
-  // 모든 필드가 입력되었는지 확인
   useEffect(() => {
     if (dogname && gender && dog_age && dog_weight && dog_blood) {
       setIsComplete(true);
@@ -30,7 +28,6 @@ const PetInfo = () => {
     }
   }, [dogname, gender, dog_age, dog_weight, dog_blood]);
 
-  // 컴포넌트가 마운트될 때 서버로부터 데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -48,6 +45,16 @@ const PetInfo = () => {
     navigate(`/PetEdit/${id}`);
   };
 
+  const handleDeleteClick = async (id) => {
+    try {
+      await API.delete(`/api/users/dogprofiles/${id}`);
+      setDogInfo(dogInfo.filter((dog) => dog.id !== id));
+      console.log("삭제 성공:", id);
+    } catch (error) {
+      console.error("삭제 오류:", error);
+    }
+  };
+
   return (
     <>
       <Wrapper>
@@ -63,6 +70,7 @@ const PetInfo = () => {
             kingdog={dog.kingdog}
             dog_image={dog.dog_image}
             onEditClick={() => handleEditClick(dog.id)}
+            onDeleteClick={() => handleDeleteClick(dog.id)}
             setDogname={setDogname}
             setGender={setGender}
             setDogAge={setDogAge}
