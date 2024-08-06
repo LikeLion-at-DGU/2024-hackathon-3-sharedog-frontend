@@ -1,10 +1,10 @@
-import { Wrapper, InPutBox, CompleteBtn, BtnBox, AlertBox } from "./Styled";
+import { Wrapper, InPutBox, CompleteBtn, BtnBox } from "./Styled";
 import Header from "./header/Header";
 import InputHolder from "../../components/myPageComponent/InputHolder";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ProfileEdit from "../../components/myPageComponent/ProfileEdit";
-import { API } from "../../api"; // API import
+import { API } from "../../api";
 
 const MyPageEdit = () => {
   const navigate = useNavigate();
@@ -12,17 +12,17 @@ const MyPageEdit = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [profileImageUrl, setProfileImageUrl] = useState(null);
   const [isComplete, setIsComplete] = useState(false);
-  const [id, setId] = useState(null); // id 상태 추가
+  const [id, setId] = useState(""); // 유저 ID 상태 추가
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await API.get("/api/users/myprofile/{id}");
+        const response = await API.get("/api/users/myprofile/${id}");
         const data = response.data;
-        console.log("프로필 데이터:", response.data);
+        console.log("프로필 데이터:", data);
         setNickname(data.nickname);
-        setProfileImageUrl(data.profile_image); // profile_image URL로 변경
-        setId(data.id); // id 값을 상태로 저장
+        setProfileImageUrl(data.profile_image);
+        setId(data.id);
       } catch (error) {
         console.error("에러:", error);
       }
@@ -31,8 +31,8 @@ const MyPageEdit = () => {
   }, []);
 
   const handleImageChange = (file) => {
-    setProfileImage(file); // 파일 객체 자체를 상태로 저장
-    setProfileImageUrl(URL.createObjectURL(file)); // 미리보기용 URL 설정
+    setProfileImage(file);
+    setProfileImageUrl(URL.createObjectURL(file));
   };
 
   const checkIsComplete = () => {
@@ -43,7 +43,7 @@ const MyPageEdit = () => {
     const formData = new FormData();
     formData.append("nickname", nickname);
     if (profileImage) {
-      formData.append("profile_image", profileImage); // profileImage를 profile_image로 변경
+      formData.append("profile_image", profileImage);
     }
 
     try {
@@ -107,4 +107,5 @@ const MyPageEdit = () => {
     </>
   );
 };
+
 export default MyPageEdit;

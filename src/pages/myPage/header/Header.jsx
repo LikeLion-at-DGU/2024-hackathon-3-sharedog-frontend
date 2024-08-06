@@ -22,8 +22,6 @@ const HeaderBox = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%; /* 부모 컨테이너에 맞추기 */
-  max-width: 886px; /* 최대 너비 */
-  min-width: 316px; /* 최소 너비 */
   height: 8vh;
   margin: 0 auto; /* 중앙 정렬 */
   padding: 0 16px; /* 가로 여백 추가 (옵션) */
