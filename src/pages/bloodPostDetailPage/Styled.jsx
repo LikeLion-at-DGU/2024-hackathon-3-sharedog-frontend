@@ -25,7 +25,7 @@ const Body = styled.div`
     /* height: 80vh; 80vh에서 FooterCmt 높이를 제외 */
     /* flex: 1; */
     overflow-y: auto;
-    padding-top:8vh;
+    /* padding-top:8vh; */
     padding-bottom: 10vh; /* FooterCmt 높이만큼 padding 추가 */
 
     
