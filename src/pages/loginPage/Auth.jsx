@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import styled, { keyframes } from "styled-components"; // keyframes 추가
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -49,12 +50,6 @@ const Auth = () => {
       }
     } catch (error) {
       console.error('Access Token 가져오기 에러:', error);
-      // if (error.message.includes('invalid_grant')) {
-      //   console.warn('인증 코드가 유효하지 않거나 만료되었습니다.');
-      // } else {
-      //   setLoginError(`Access Token 가져오기 에러: ${error.message}`);
-      // }
-      //상관없는 에러라 그냥 표시안되게함 
     }
   };
 
@@ -86,8 +81,6 @@ const Auth = () => {
       localStorage.setItem('refresh', refresh);
       setJwtToken({ access, refresh });
 
-
-    
       // 사용자 상태 확인
       checkUserStatus(access);
       // 백엔드 사용자 정보 호출
@@ -176,23 +169,63 @@ const Auth = () => {
   };
 
   return (
-    <div>
-      {code ? <p>인증 코드: {code}</p> : <p>인증 코드가 URL에 없습니다.</p>}
-      {accessToken && <p>Access Token: {accessToken}</p>}
-      {jwtToken.access && <p>JWT Access Token: {jwtToken.access}</p>}
-      {jwtToken.refresh && <p>JWT Refresh Token: {jwtToken.refresh}</p>}
-      {loginError && <p style={{ color: 'red' }}> 각종에러입니다: {loginError}</p>}
-      {userInfo && (
-        <div>
-          <h3>사용자 정보:</h3>
-          <p>프로필 이미지: {userInfo.user_profile.profile_image}</p>
-          <p>닉네임: {userInfo.user_profile.nickname}</p>
-          <p>username: {userInfo.username}</p>
-          <p>이메일: {userInfo.email}</p>
-        </div>
-      )}
-    </div>
+    <Wrapper>
+      <LoadingScreen>
+        <LoadingSpinner />
+        <LoadingText>
+          <p><span>로그인</span>중입니다!</p>
+          <p>잠시만 기다려주세요!</p>
+        </LoadingText>
+      </LoadingScreen>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const LoadingScreen = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const spinAnimation = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const LoadingSpinner = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 105, 105, 0.2);
+  border-top: 5px solid rgba(255, 105, 105, 1);
+  border-radius: 50%;
+  animation: ${spinAnimation} 1s linear infinite;
+`;
+
+const LoadingText = styled.div`
+  margin-top: 20px;
+  text-align: center;
+  
+  p {
+    margin: 5px 0;
+    font-family: SUIT;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+  
+  span {
+    color: #ff6969;
+    font-weight: bold;
+  }
+`;
 
 export default Auth;

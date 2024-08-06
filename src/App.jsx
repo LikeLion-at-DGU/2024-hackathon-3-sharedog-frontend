@@ -37,6 +37,8 @@ const Layout = () => {
         || location.pathname === '/testThird' || location.pathname === '/testFourth'
         || location.pathname === '/testFifth' || location.pathname === '/testSixth'
         || location.pathname === '/Result1' || location.pathname === '/Result2';
+        || location.pathname === '/testFifth' || location.pathname === '/testSixth'
+        || location.pathname === '/auth/kakao/callback' ;
 
   return (
     <Wrapper>
