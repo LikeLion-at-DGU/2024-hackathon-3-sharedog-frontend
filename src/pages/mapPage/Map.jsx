@@ -130,7 +130,6 @@ const Map = () => {
       <Wrapper>
         <MapBox id="map"></MapBox>
         <InfoCheck>
-          <InfoCheckText>예약자 정보 확인</InfoCheckText>
           <InfoBox>
             <InfoBox2>
               <Text1>이름</Text1>

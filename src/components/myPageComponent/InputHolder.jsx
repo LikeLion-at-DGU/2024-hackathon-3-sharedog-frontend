@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import AlertSVG from "../../assets/icons/Alert.svg?react"; // SVG 파일 가져오기
 
@@ -30,6 +31,25 @@ export const InPutText = styled.div`
   font-weight: 600;
   line-height: 140%; /* 19.6px */
   letter-spacing: -0.28px;
+  justify-content: space-between;
+
+  display: flex;
+  flex-direction: row;
+`;
+
+export const AlertText = styled.div`
+  color: var(--Gray-Gray01, #ff6565);
+  font-family: SUIT;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 12.8px */
+  letter-spacing: -0.16px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 2vh;
 `;
 
 export const Holder = styled.input`
@@ -61,11 +81,14 @@ export const Holder = styled.input`
   }
 `;
 
-const InputHolder = ({ title, inputtext, value, onChange }) => {
+const InputHolder = ({ title, inputtext, value, onChange, alerttext }) => {
   return (
     <Wrapper>
       <InPutSection>
-        <InPutText>{title}</InPutText>
+        <InPutText>
+          {title}
+          <AlertText>{alerttext}</AlertText>
+        </InPutText>
         <Holder
           type="text"
           placeholder={inputtext}

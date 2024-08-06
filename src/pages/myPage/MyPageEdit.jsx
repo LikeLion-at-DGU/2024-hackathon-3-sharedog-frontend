@@ -84,6 +84,7 @@ const MyPageEdit = () => {
             title={"닉네임"}
             inputtext={"닉네임을 입력해 주세요."}
             value={nickname}
+            alerttext={"*필수 입력"}
             onChange={(e) => {
               setNickname(e.target.value);
             }}

@@ -90,24 +90,28 @@ const SignUpPet = () => {
                 inputtext={"반려견 이름을 입력해 주세요."}
                 value={dogname}
                 onChange={(e) => setDogname(e.target.value)}
+                alerttext={"*필수 입력"}
               />
               <Select
                 title={"반려견 성별"}
                 $isSelected={true}
                 value={gender}
                 onChange={(value) => setGender(value)}
+                alerttext={"*필수 선택"}
               />
               <InputHolder
                 title={"반려견 나이"}
                 inputtext={"반려견 나이를 입력해 주세요."}
                 value={dog_age}
                 onChange={(e) => setDog_Age(e.target.value)}
+                alerttext={"*필수 입력 | 숫자만 입력 가능합니다."}
               />
               <InputHolder
                 title={"반려견 몸무게"}
                 inputtext={"반려견 몸무게를 입력해 주세요."}
                 value={dog_weight}
                 onChange={(e) => setDogWeight(e.target.value)}
+                alerttext={"*필수 입력 | 숫자만 입력 가능합니다."}
               />
               <InputDropDown
                 title={"반려견 혈액형"}
@@ -115,6 +119,7 @@ const SignUpPet = () => {
                 value={dog_blood}
                 options={bloodOptions}
                 onChange={(e) => setDogBlood(e.target.value)}
+                alerttext={"*필수 선택"}
               />
             </InPut>
           </InputField>
