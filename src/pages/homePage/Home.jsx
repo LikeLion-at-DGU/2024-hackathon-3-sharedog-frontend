@@ -57,6 +57,8 @@ import {
   
     console.log("헤더에 들어갈데이터:", data.profiles[0]); //나중에 지우기
     console.log("슬라이드 데이터:", data.posts);
+    console.log("이미지 :", data.posts.image_1);
+
   
     return (
       <Wrapper>
