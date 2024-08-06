@@ -24,10 +24,7 @@ const CLIENT_SECRET = import.meta.env.VITE_CLIENT_SECRET;
 const Login = () => {
   const navigate = useNavigate();
 
-  // Editbtn 클릭 핸들러
-  const handleSignupClick = () => {
-    navigate("/SignUp"); // 경로 확인
-  };
+
 
 
   const handleKakaoLogin = () => {
@@ -40,23 +37,19 @@ const Login = () => {
       <BackgroundImg />
       <Overlay />
       <Content>
-        <TitleBold>
-          반려견 헌혈
-          <br /> 신청
-          <TitleDetail>부터</TitleDetail> 관리
-          <TitleDetail>까지</TitleDetail> 한 번에
-        </TitleBold>
+        <TitleDetail>
+          반려견 헌혈 및 수혈까지 편리하게!
+        </TitleDetail>
         <NameBox>
           <IconImg>
             <AppIconSVG />
           </IconImg>
-          <NameText>포피 ForPpy</NameText>
+          <NameText>나눠주개</NameText>
         </NameBox>
       </Content>
       <KakaoLoginBtn onClick={handleKakaoLogin}>
-        <KakaoIconSVG /> 카카오 로그인
+        <KakaoIconSVG /> 카카오 로그인 / 회원가입
       </KakaoLoginBtn>
-      <LoginBtn onClick={handleSignupClick}>이메일로 로그인</LoginBtn>
     </Wrapper>
   );
 };

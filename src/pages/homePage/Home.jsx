@@ -49,6 +49,11 @@ import {
     const handleFullBtnClick = () => {
       navigate("/bloodPost");
     };
+
+    const handleInfoCardClick = (path) => {
+      navigate(path);
+    };
+  
   
     console.log("헤더에 들어갈데이터:", data.profiles[0]); //나중에 지우기
     console.log("슬라이드 데이터:", data.posts);
@@ -61,7 +66,7 @@ import {
         </Bg>
         <ContentWrapper>
           <InfoCardWrapper>
-            <InfoCard icon={Home1} text="헌혈기준" />
+            <InfoCard icon={Home1} text="헌혈기준" onClick={() => handleInfoCardClick('/standard')} />
             <InfoCard icon={Home2} text="주의사항" />
             <InfoCard icon={Home3} text="헌혈 혜택" />
           </InfoCardWrapper>
