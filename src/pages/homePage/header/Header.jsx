@@ -81,7 +81,7 @@ const Header = ({ profile }) => { //props로 정보받아오는건 나중에 연
           </ProfileName>
           <ProfileInfo>
             <ExclamationSVG/>
-            헌혈 가능 여부 인증이 필요해요!
+            헌혈 가능 여부 테스트를 해보세요!
             </ProfileInfo>
         </Profile>
         <ProfileImg>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import BgImg from '../../assets/images/HomeBG.svg';
 import PetIcon from '../../assets/icons/PetIcon.svg?react';
+import TestSVG from '../../assets/icons/home2Icon.svg?react'
 import GoTest from '../../assets/icons/goTest.svg?react';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react'; // 슬라이드 코드
@@ -8,6 +9,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import {API} from '../../api';
+import React, { useState, useEffect } from 'react';
 
 export const Wrapper = styled.div`
     display: flex;
@@ -112,10 +115,9 @@ const TestBtn = styled(Link)`
     color: #FFF;
     text-align: center;
     font-family: SUIT;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
 `;
-
 export const PetTestCard = () => (
     <OverlapContent>
         <PetTest>
@@ -127,6 +129,71 @@ export const PetTestCard = () => (
         </PetTest>
     </OverlapContent>
 );
+
+
+export const PetTestCard2 = () => (
+    <OverlapContent>
+        <PetTest>
+            <PetContent>
+                <TestText>반려견 정보를<br />추가 등록할 수 있어요 !</TestText>
+                <TestBtn  to="/petregister">반려견 정보 등록하기 <GoTest /></TestBtn>
+            </PetContent>
+            <TestSVG/>
+        </PetTest>
+    </OverlapContent>
+);
+export const PetTestCard3 = () => {
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await API.get('/api/main/');
+                console.log("데이터터 :",response.data);
+                setData(response.data);
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (loading) return <OverlapContent>로딩 중...</OverlapContent>;
+    if (error) return <OverlapContent>에러 발생: {error.message}</OverlapContent>;
+
+    return (
+        <OverlapContent>
+        <PetTest>
+            <TextBox>
+                <TestText> {data.kingdog_profiles[0].dogname}는  총  <Pink>{data.reservation_cnt}</Pink>회 헌혈했어요!
+                </TestText>
+               
+                
+            </TextBox>
+            <PetIcon />
+        </PetTest>
+    </OverlapContent>
+    );
+};
+const TextBox=styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    @media (min-height: 800px) {
+        height: 130px;
+    }
+
+`;
+const Pink=styled.div`
+    color:#FF6969;
+
+`;
+
 //------------홈 강아지테스트부분 슬라이드 ---------------------------
 const SampleSlider = styled.div`
     width: 90%;
@@ -183,7 +250,9 @@ export const PetSlider = () => {
             >
                 {slides.map((_, index) => ( // `slide`가 사용되지 않으므로 `_`로 대체
                     <SwiperSlide key={index}>
-                        <PetTestCard /> {/* PetTestCard 사용 */}
+                        {index === 0 && <PetTestCard/>}
+                        {index === 1 && <PetTestCard2/>}
+                        {index === 2 && <PetTestCard3/>}
                     </SwiperSlide>
                 ))}
             </Swiper>
