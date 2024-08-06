@@ -8,33 +8,21 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh;
-  position: fixed;
+  margin: 0 auto;
+  /* position: fixed;
   top: 0;
   left: 0;
   z-index: 1000; /* 다른 요소들 위에 표시되도록 */
-  background-color: #fff; /* 헤더 배경색 */
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); /* 헤더 하단에 그림자 추가 */
-`;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); 
+  `;
 
 const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 88%;
-  height: 8vh;
-  flex-shrink: 0;
-`;
-
-const AlramBtn = styled.button`
-  display: flex;
-  font-size: 19px;
-  justify-content: center;
-  align-items: center;
-  background: none;
-  border: none;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
+  gap: 22px;
 `;
 
 const TitleTxt = styled.div`
@@ -55,9 +43,6 @@ const Header2 = ({ title }) => {
     <Wrapper>
       <HeaderBox>
         <TitleTxt>{title}</TitleTxt>
-        <AlramBtn>
-          <AlramBtnSVG />
-        </AlramBtn>
       </HeaderBox>
     </Wrapper>
   );

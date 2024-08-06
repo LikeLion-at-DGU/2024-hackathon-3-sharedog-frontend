@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CheckMyPageSVG from "../../assets/icons/checkMyPage.svg?react";
 import Check2MyPageSVG from "../../assets/icons/check2MyPage.svg?react";
 import EditMyPageSVG from "../../assets/icons/editMyPage.svg?react";
+import BasicProfile from '../../assets/icons/petFootMyPage.svg?react';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -139,12 +140,13 @@ const PetInfoCard = ({
           )}
         </MainProfileBox>
         <InfoTextBox>
-          <PetImg>
-            <img
-              src={dog_image || "default_image_url"}
-              alt={`${dogname} Info`}
-            />
-          </PetImg>
+        <PetImg>
+        {dog_image ?<img
+            src={dog_image}
+            alt={`${dogname} Info`}/> 
+          : <BasicProfile/>}
+          
+        </PetImg>
           <InfoList>
             <NameBox>
               {dogname}
