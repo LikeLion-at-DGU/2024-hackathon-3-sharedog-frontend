@@ -46,7 +46,7 @@ const testFirst = () => {
 
   return (
     <>
-      <Header progress={0} />
+      <Header/>
       <Wrapper>
         <Title>우리집 강아지는 <br></br> <p>헌혈견</p>이 될 수 있을까?</Title>
         <Test1SVG />

@@ -86,8 +86,17 @@ const TestFourth = () => {
   const navigate = useNavigate();
   const [activeSVG, setActiveSVG] = useState(null); // 클릭된 SVG를 추적할 상태
 
-  const handleFooterClick = () => {
-    navigate('/testFifth'); // 페이지 네비게이션
+  const handleFooterClick = async () => {
+    if (activeSVG) {
+      try {
+        await sendDataToAPI();
+        navigate('/testFifth'); // 페이지 네비게이션
+      } catch (error) {
+        console.error('API 요청 실패:', error);
+      }
+    } else {
+      console.log('SVG가 선택되지 않았습니다.');
+    }
   };
 
   const handleSVGClick = (id) => {
@@ -95,10 +104,20 @@ const TestFourth = () => {
   };
 
   const sendDataToAPI = async () => {
+    const weightGroupMap = {
+      'test7': '20kg 이하에요',
+      'test8': '20kg 이상이에요'
+  };
+
+    const weightGroup = weightGroupMap[activeSVG];
+
+    if (!weightGroup) {
+      console.error('유효하지 않은 weight_group 값:', activeSVG);
+      return;
+    }
+
     try {
-      const response = await API.post('/api/weighttests', {
-        weight_group: activeSVG === 'test7' ? '20kg 이하에요' : '20kg 이상이에요'  // activeSVG 값에 따라 size 설정
-      });
+      const response = await API.post('/api/weighttests', { weight_group: weightGroup });
       console.log('API 요청 성공:', response.data);
     } catch (error) {
       console.error('API 요청 실패:', error);
@@ -107,7 +126,7 @@ const TestFourth = () => {
 
   return (
     <>
-      <Header progress={20} />
+      <Header />
       <Wrapper>
         <Wrap>
           <Title>강아지의 몸무게는 <br /> 어디에 해당하나요?</Title>

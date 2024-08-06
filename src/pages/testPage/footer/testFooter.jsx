@@ -21,6 +21,9 @@ const FooterButton = styled.div`
   color: #FAFAFC;
   background: ${({ btnColor }) => btnColor || 'rgba(156, 156, 161, 0.50)'};
   cursor: pointer;
+  font-family: SUIT;
+  font-style: normal;
+  font-weight: 700;
 `;
 
 const testFooter = ({buttonText, btnColor, onClick}) => {  

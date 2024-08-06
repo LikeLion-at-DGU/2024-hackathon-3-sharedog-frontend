@@ -105,10 +105,21 @@ const TestThird = () => {
   };
 
   const sendDataToAPI = async () => {
+    const ageGroupMap = {
+      'test4': '18개월 미만이에요',
+      'test5': '18개월 이상 8세 이하에요',
+      'test6': '9살 이상이에요'
+    };
+
+    const ageGroup = ageGroupMap[activeSVG];
+
+    if (!ageGroup) {
+      console.error('유효하지 않은 age_group 값:', activeSVG);
+      return;
+    }
+
     try {
-      const response = await API.post('/api/agetests', {
-        age_group: activeSVG // activeSVG 값에 따라 size 설정
-      });
+      const response = await API.post('/api/agetests', { age_group: ageGroup });
       console.log('API 요청 성공:', response.data);
     } catch (error) {
       console.error('API 요청 실패:', error);
@@ -118,7 +129,7 @@ const TestThird = () => {
 
   return (
     <>
-      <Header progress={20} />
+      <Header />
       <Wrapper>
         <Wrap>
           <Title>강아지의 나이는 <br /> 어디에 해당하나요?</Title>
