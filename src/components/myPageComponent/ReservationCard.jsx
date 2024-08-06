@@ -138,20 +138,7 @@ export const InfoValue = styled.div`
 export const BtnBox = styled.div`
   display: flex;
   gap: 20px;
-  margin: 5px;
-`;
-
-export const BloodBtn1 = styled.button`
-  width: 100px;
-  border-radius: 20px;
-  background: #c3c9d0;
-  color: #fff;
-  text-align: center;
-  font-family: SUIT;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 5px 10px;
-  border: none;
+  margin: 5px 0;
 `;
 
 export const BloodBtn2 = styled.button`
@@ -169,8 +156,7 @@ export const BloodBtn2 = styled.button`
 
 const StatusButtons = ({ id, handleComplete }) => (
   <BtnBox>
-    <BloodBtn1 onClick={() => handleComplete(id, "not")}>헌혈 미완료</BloodBtn1>
-    <BloodBtn2 onClick={() => handleComplete(id, "yes")}>헌혈 완료</BloodBtn2>
+    <BloodBtn2 onClick={() => handleComplete(id, true)}>헌혈 완료</BloodBtn2>
   </BtnBox>
 );
 
@@ -178,22 +164,24 @@ const ReservationCard = ({ reservations = [] }) => {
   const [statuses, setStatuses] = useState(
     reservations.map((reservation) => ({
       id: reservation.id,
-      status: reservation.blood === "yes" ? "yes" : "none", // none, yes, not
+      status: reservation.blood_donation_completed, // true or false
     }))
   );
 
-  const handleComplete = (id, status) => {
+  const handleComplete = (id, completed) => {
     setStatuses((prevState) =>
-      prevState.map((res) => (res.id === id ? { ...res, status } : res))
+      prevState.map((res) => (res.id === id ? { ...res, status: completed } : res))
     );
   };
 
-  const isBeforeCurrentTime = (dateContent, activeTime) => {
-    const [year, month, day] = dateContent.split("-");
-    const [hours, minutes] = activeTime.split(":");
-    const reservationDate = new Date(year, month - 1, day, hours, minutes);
+  // 날짜를 비교하여 예약이 과거인지 확인하는 함수
+  const isPast = (dateHead) => {
+    const [dateString] = dateHead.split(" ");
+    const [year, month, day] = dateString.split(".");
+    const reservationDate = new Date(year, month - 1, day);
     const now = new Date();
-    return reservationDate < now; // 현재 시간보다 과거의 예약인지 확인
+    // 현재 날짜와 예약 날짜를 비교
+    return reservationDate < now;
   };
 
   return (
@@ -202,22 +190,18 @@ const ReservationCard = ({ reservations = [] }) => {
         const currentStatus = statuses.find(
           (res) => res.id === reservation.id
         )?.status;
-        const showButtons = isBeforeCurrentTime(
-          reservation.dateContent,
-          reservation.activeTime
-        );
+        const showButton = isPast(reservation.dateHead);
 
         return (
           <ReservationCardContainer key={reservation.id}>
             <DateBox>
               {reservation.dateHead}
-              {currentStatus === "yes" && (
+              {currentStatus ? (
                 <StatusYes>
                   <CompleteMyPageSVG />
                   헌혈 완료
                 </StatusYes>
-              )}
-              {currentStatus === "not" && (
+              ) : (
                 <StatusNot>
                   <NotCompleteMyPageSVG />
                   헌혈 미완료
@@ -245,12 +229,12 @@ const ReservationCard = ({ reservations = [] }) => {
                   <InfoItem>
                     <InfoLabel>일시:</InfoLabel>
                     <InfoValue>
-                      {reservation.dateContent} {reservation.activeTime}
+                      {reservation.dateHead} {reservation.activeTime}
                     </InfoValue>
                   </InfoItem>
                 </InfoList>
               </InfoContainer>
-              {showButtons && (
+              {showButton && !currentStatus && (
                 <StatusButtons
                   id={reservation.id}
                   handleComplete={handleComplete}
