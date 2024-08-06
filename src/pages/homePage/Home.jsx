@@ -9,6 +9,7 @@ import {
     PetSlider,
     HomeFullBtn,
     HomeFilter,
+    HomeWrapper,
   } from "./Styled";
   import Header from "./header/Header";
   import React from "react";
@@ -79,7 +80,9 @@ import {
             activeRegion={activeRegion} 
             onRegionChange={handleRegionChange} 
           />
+          <HomeWrapper>
           <HomeFullBtn onClick={handleFullBtnClick}>전체보기</HomeFullBtn>
+          </HomeWrapper>
           <Slider post={data.posts} />
         </ContentWrapper>
       </Wrapper>

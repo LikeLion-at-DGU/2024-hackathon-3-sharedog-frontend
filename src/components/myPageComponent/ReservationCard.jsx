@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import CompleteMyPageSVG from "../../assets/icons/completeMyPage.svg?react";
 import NotCompleteMyPageSVG from "../../assets/icons/notCompleteMyPage.svg?react";
+import DefaultDogImageSVG from "../../assets/icons/petFootMyPage.svg?react";
 
 // Styled Components
 export const Wrapper = styled.div`
@@ -192,8 +193,6 @@ const ReservationCard = ({ reservations = [] }) => {
     const [hours, minutes] = activeTime.split(":");
     const reservationDate = new Date(year, month - 1, day, hours, minutes);
     const now = new Date();
-    console.log("Reservation Date:", reservationDate);
-    console.log("Current Date:", now);
     return reservationDate < now; // 현재 시간보다 과거의 예약인지 확인
   };
 
@@ -207,8 +206,6 @@ const ReservationCard = ({ reservations = [] }) => {
           reservation.dateContent,
           reservation.activeTime
         );
-
-        console.log("Show Buttons:", showButtons);
 
         return (
           <ReservationCardContainer key={reservation.id}>
@@ -230,10 +227,14 @@ const ReservationCard = ({ reservations = [] }) => {
             <CardBox>
               <InfoContainer>
                 <PetImg>
-                  <img
-                    src={reservation.dog.dog_image}
-                    alt={`${reservation.dog.dogname} Info`}
-                  />
+                  {reservation.dog.dog_image ? (
+                    <img
+                      src={reservation.dog.dog_image}
+                      alt={`${reservation.dog.dogname} Info`}
+                    />
+                  ) : (
+                    <DefaultDogImageSVG />
+                  )}
                 </PetImg>
                 <InfoList>
                   <InfoItem>{reservation.hospital}</InfoItem>
