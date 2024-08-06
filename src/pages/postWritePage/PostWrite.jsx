@@ -76,15 +76,16 @@ const PostWrite = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      if (response.status === 201) {
-        // POST 요청 성공 상태 코드 확인
-        alert("Post 성공 :)");
-        navigate("/bloodPost"); // 긴급헌혈목록으로 이동
-      } else {
-        alert("Post 실패 :(");
-        navigate("/bloodPost");
-        console.log("보내진데이터 :", response.data);
-      }
+      navigate("/bloodPost");
+      // if (response.status === 201) {
+      //   // POST 요청 성공 상태 코드 확인
+      //   alert("Post 성공 :)");
+      //   navigate("/bloodPost"); // 긴급헌혈목록으로 이동
+      // } else {
+      //   alert("Post 실패 :(");
+      //   navigate("/bloodPost");
+      //   console.log("보내진데이터 :", response.data);
+      // }
     } catch (error) {
       alert("Post 실패 :(");
       console.error(

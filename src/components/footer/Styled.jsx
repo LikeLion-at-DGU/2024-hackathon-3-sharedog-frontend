@@ -62,15 +62,7 @@ const Path = styled(NavLink)`
     color: #ff6969;
   }
 
-  &:hover ${Icon} path {
-    // 호버됐을때 아이콘 색상 변경 근데 생각해보니 모바일은 호버없음
-    fill: #ffcccc;
-  }
 
-  &:hover ${IconText} {
-    // 호버됐을때 텍스트 색상 변경
-    color: #ffcccc;
-  }
 `;
 
 const FooterIcon = ({ Svg, label, to }) => (
