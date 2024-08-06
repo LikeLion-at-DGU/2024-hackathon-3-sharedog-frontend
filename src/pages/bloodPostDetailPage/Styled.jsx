@@ -7,6 +7,7 @@ import {faLocationArrow , }
     from "@fortawesome/free-solid-svg-icons";
 // import CmtSend from '../../assets/icons/cmtSend.svg?react'
 import {API} from '../../api'
+
 const Wrapper = styled.div`
     display  :flex ;
     flex-direction: column;
@@ -20,7 +21,7 @@ const Body = styled.div`
     align-items: center;
     width: 88%;
     /* height: 80vh; */
-    height: 80vh; /* 80vh에서 FooterCmt 높이를 제외 */
+    /* height: 80vh; 80vh에서 FooterCmt 높이를 제외 */
     /* flex: 1; */
     overflow-y: auto;
     padding-top:8vh;
@@ -121,13 +122,12 @@ const CmtReSendBtn=styled.button`
   margin: 0; /* 기본 마진 제거 */
   outline: none; /* 포커스 시 나타나는 윤곽선 제거 */
 `;//답글달기 버튼 
-const Comments  = ({comment, depth = 0 }) => {
-  
+const Comments = ({ comment, depth = 0, profileImageUrl }) => {
   return (
     <CmtDepth $depth={depth}>
       <CmtWrapper>
         <CmtProfile>
-          <img src={comment.profileImageUrl} alt={comment.writer} />
+          <img src={profileImageUrl} alt={comment.writer} />
         </CmtProfile>
         <CmtContent>
           <ProfileInfoBox>
@@ -135,12 +135,16 @@ const Comments  = ({comment, depth = 0 }) => {
             <CmtReSendBtn>답글달기</CmtReSendBtn> {/*답글달기함수추가해야됨*/}
           </ProfileInfoBox>
           {comment.content}
-          
         </CmtContent>
       </CmtWrapper>
       {comment.recomments && comment.recomments.length > 0 && (
         comment.recomments.map((recomment) => (
-          <Comments key={recomment.id} comment={recomment} depth={depth + 1} />
+          <Comments 
+            key={recomment.id} 
+            comment={recomment} 
+            depth={depth + 1} 
+            profileImageUrl={recomment.profileImageUrl || 'https://via.placeholder.com/23'} 
+          />
         ))
       )}
     </CmtDepth>
@@ -155,7 +159,7 @@ const Color = styled.div`//댓글달때 배경색
   display: flex;
   align-items: center;
   width: 100%;
-  height: 9vh;
+  height: 7vh;
   position:fixed;
     bottom: 10vh;  // 푸터바로위에 위치하려고 푸터높이만큼 높임 
     left: 0;
@@ -236,10 +240,10 @@ const SendProfile = styled.div`//댓글프로필
       object-fit: cover; //이미지 비율안깨지게함 
     }
 `;
-
-
-const CommentSend = ({ postId, onAddComment }) => {
+const CommentSend = ({ postId, onAddComment, profileImageUrl }) => {
   const [inputValue, setInputValue] = useState('');
+
+  console.log("Received profileImageUrl:", profileImageUrl); // 추가된 로그
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -258,12 +262,17 @@ const CommentSend = ({ postId, onAddComment }) => {
       console.error('Error sending comment:', error);
     }
   };
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSendComment();
+    }
+  };
 
-    return (
-      <Color>
+  return (
+    <Color>
       <FooterCmt>
         <SendProfile>
-        <img src="https://via.placeholder.com/23" alt="profile" />
+          <img src={profileImageUrl} alt="profile" />
         </SendProfile>
         <FooterCmtContent>
           <Input
@@ -271,15 +280,16 @@ const CommentSend = ({ postId, onAddComment }) => {
             placeholder="댓글을 입력하세요."
             value={inputValue}
             onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
           />
           <IconWrapper $active={inputValue.length > 0} onClick={handleSendComment}>
             <FontAwesomeIcon icon={faLocationArrow} />
           </IconWrapper>
         </FooterCmtContent>
       </FooterCmt>
-      </Color>
-    );
-  };
+    </Color>
+  );
+};
 // -----------------------------------
 
 const detailPageStyles = {
