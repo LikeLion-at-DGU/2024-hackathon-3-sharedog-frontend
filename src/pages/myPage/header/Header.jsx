@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 10vh;
-
 `;
 
 const HeaderBox = styled.div`
@@ -61,7 +60,7 @@ const Header = ({ title }) => {
           <BackBtnSVG />
         </BackBtn>
         <TitleTxt>{title}</TitleTxt>
-        <div style={{width : "19px"}}></div>
+        <div style={{ width: "19px" }}></div>
       </HeaderBox>
     </Wrapper>
   );
